@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+  <ModulePrefs title="Calendar Integration SL">
+    <Require feature="dynamic-height"/>
+    <Require feature="google.calendar-0.5"/>
+    <Require feature="google.calendar-0.5.read"/>
+  </ModulePrefs>
+<Content type="html">
+      <![CDATA[
+      <script>
+          var content = document.getElementById('Content');
+          content.innerHTML = 'Hello World';
+      </script>
+        <div id="Content"></div>]]>
+  </Content>
+</Module>
