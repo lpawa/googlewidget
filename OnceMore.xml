@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?><Module><ModulePrefs title="Weather" category="tools" category2="funandgames" description="View the local weather for multiple locations on your page. All by simply editing the setting..." author_email="contactus@igoogleportal.com" scrolling="true" render_inline="optional" title_url="http://www.igoogleportal.com/" thumbnail="http://www.igoogleportal.com/gadget/img/weather-thm.png" height="350"><Require feature="dynamic-height"/><Require feature="setprefs"/></ModulePrefs><UserPref name="unit" datatype="enum" default_value="1" display_name="Choose Units:"><EnumValue value="1" display_value="Celsius"/><EnumValue value="0" display_value="Fahrenheit"/></UserPref><UserPref name="code" datatype="string" default_value="10001" display_name="Enter zip Code (80111) or City Name (Melbourne, AU):"/><Content type="html" view="home">
+        <center>
+        <div style='width: 300px; height: 250px; background-image: url( http://vortex.accuweather.com/adcbin/netweather_v2/backgrounds/lhtblue_300x250_bg.jpg ); background-repeat: no-repeat; background-color: #3BA6C9;' ><div id='NetweatherContainer' style='height: 238px;' >
+
+        <script type="text/javascript">
+          var prefs = new _IG_Prefs(__MODULE_ID__);
+          var zipcode = prefs.getString("code");
+          var dunit = prefs.getInt("unit");
+          document.write('&lt;script type="text/javascript" src="http://netweather.accuweather.com/adcbin/netweather_v2/netweatherV2ex.asp?partner=netweather&amp;tStyle=whteYell&amp;logo=1&amp;zipcode=' + zipcode + '&amp;lang=eng&amp;size=9&amp;theme=lhtblue&amp;metric='+ dunit + '&amp;target=_self"&gt;&lt;/script&gt;');
+          _IG_AdjustIFrameHeight();
+        </script>
+
+        </div><div style='text-align: center; font-family: arial, helvetica, verdana, sans-serif; font-size: 11px; line-height: 12px; color: #FFFFFF;' ><a style='color: #FFFFFF' href='http://www.accuweather.com/us/me/orrs-island/04066/city-weather-forecast.asp?partner=accuweather' >Weather Forecast</a> | <a style='color: #FFFFFF' href='http://www.accuweather.com/maps-satellite.asp' >Weather Maps</a> | <a style='color: #FFFFFF' href='http://www.accuweather.com/index-radar.asp' >Weather Radar</a></div></div>
+        </center>
+        </Content></Module>
