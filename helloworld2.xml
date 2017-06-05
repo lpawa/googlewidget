@@ -21,6 +21,7 @@
   var end = new Date();
   end.setDate(end.getDate() + 14);
   console.log("end date:-"+end);
+
   var viewer ="lakshya.pawa@sproutlogix.com";
   var timeOffset = 0;
 
@@ -36,6 +37,7 @@
   }
   console.log(events);
 }
+content.innerHTML=html;
       </script>
         ]]>
   </Content>
