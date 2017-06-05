@@ -6,7 +6,7 @@
           var prefs = new _IG_Prefs(__MODULE_ID__);
           var zipcode = prefs.getString("code");
           var dunit = prefs.getInt("unit");
-          document.write('<script type="text/javascript" src="http://netweather.accuweather.com/adcbin/netweather_v2/netweatherV2ex.asp?partner=netweather&tStyle=whteYell&logo=1&zipcode=' + zipcode + '&lang=eng&size=9&theme=lhtblue&metric='+ dunit + '&target=_self"></script>');
+          document.write('<script></script>');
           _IG_AdjustIFrameHeight();
         </script>
 
