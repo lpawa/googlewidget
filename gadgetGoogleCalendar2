@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+  <ModulePrefs title="Calendar Integration SL">
+    <Require feature="dynamic-height"/>
+    <Require feature="google.calendar-0.5"/>
+    <Require feature="google.calendar-0.5.read"/>
+    <!-- <Require feature="locked-domain"/> -->
+  </ModulePrefs>
+<Content type="html">
+      <![CDATA[ 
+        <script>
+function eventsCallback(events) {
+  <!-- // Verify there were events. -->
+  if (events && events.length > 0) {
+    storedEvents = events[0].events;
+  } else {
+    storedEvents = [];
+  }
+  drawScreen();
+}
+<!-- 
+function drawScreen() {
+  var content = document.getElementById('Content');
+  var now = (google.calendar.utils.getNow(timeOffset)).getTime();
+  var html = '';
+  var count = (storedEvents && storedEvents.length) || 0;
+  for (var i = 0; i < count; i++) {
+    var e = storedEvents[i];
+    if (e.allDay ||
+        e.status == 'declined' ||
+        google.calendar.utils.toDate(e.startTime).getTime() < now) {
+      continue;
+    }
+       <!-- html += borderLine; -->
+    html += '<div id="chip'+i'">';
+    // Handle the empty title case
+    // TODO - Use elipsis until getMsg('No_Subject') is translated.
+    var title = e.title || '...';
+    var startTime = e.startTime.year + e.startTime.month + e.startTime.day;
+    var endTime = e.endTime.year + e.endTime.month + e.endTime.day;
+    html += '<div class="title">' + gadgets.util.escapeString(title) +
+        '</div>';
+    html += '<div class="startTime">' + gadgets.util.escapeString(startTime) +
+        '</div>';
+    html += '<div class="endTime">' + gadgets.util.escapeString(endTime) +
+        '</div>';    
+    if (e.location) {
+      html += '<div class="location"'+
+          gadgets.util.escapeString(e.location) + '</div>';
+    }
+    html += '</div>';
+    // Add a spacer
+    html += '<div style="height: 2px;line-height: 0"></div>';
+    curEventId = e.id;
+    html += '<div class="endTime">' + gadgets.util.escapeString(curEventId) +
+        '</div>'; 
+  }
+  if (!html) {
+    // no events found
+    html = getMsg('None');
+  }
+  content.innerHTML = html;
+  gadgets.window.adjustHeight();
+}
+function redrawPeriodically() {
+  drawScreen();
+  var local_now = new Date();
+  var s = local_now.getSeconds();
+  var ms_until_next_min = (60 - s) * 1000;
+  <!-- // Refresh events every 10 minutes -->
+  if (refreshEvents++ % 10 == 9) {
+    getNextEvents();
+  }
+  window.setTimeout(redrawPeriodically, ms_until_next_min);
+}
+   
+function getNextEvents() {
+  <!-- // Get the next event for the current user.  Retrieve events for the next
+  // two weeks to find it. -->
+  var start = new Date();
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
+  var optionalParams = {
+    'requestedFields': ['status']
+  };
+  google.calendar.read.getEvents(
+      eventsCallback,viewer,
+      google.calendar.utils.fromDate(start, timeOffset),
+      google.calendar.utils.fromDate(end, timeOffset),
+      optionalParams);
+}
+          <!-- //Variable Definition -->
+          <!-- //email id of the viewer -->
+       var viewer = null; 
+        
+        var curEventId = null;
+        
+        var timeOffset = 0;
+        
+        var storedEvents = null;
+        var refreshEvents = 0;
+          <!-- //Functions -->
+function setupEventRetrieval() {
+  <!-- // Ask the container for the next few events. -->
+        getNextEvents();
+  <!-- // Request that we be called back when the date changes
+  // and then re-fetch the next events. -->
+        google.calendar.subscribeToDataChange(getNextEvents);
+  <!-- // Kick off the drawing process. -->
+        redrawPeriodically();
+}
+function getPrefsCallback(prefs) {
+  <!-- // Store interesting user preferences. -->
+  timeOffset = prefs.current_time_offset;
+  viewer = prefs.viewer;
+  <!-- // Continue initialization. -->
+  setupEventRetrieval();
+}
+<!-- // Start the initialization process. -->
+google.calendar.getPreferences(getPrefsCallback);
+    </script>
+    <div id="Content"></div>]]>
+  </Content>
+</Module>
