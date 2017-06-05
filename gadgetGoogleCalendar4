@@ -57,7 +57,7 @@ function drawScreen() {
   }
   if (!html) {
     // no events found
-    html = getMsg('None');
+    html = "No events present bro!";
   }
   content.innerHTML = html;
   gadgets.window.adjustHeight();
