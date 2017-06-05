@@ -32,7 +32,7 @@ function drawScreen() {
       continue;
     }
        <!-- html += borderLine; -->
-    html += '<div id="chip'+i'">';
+    html += '<div id="chip'+i+'">';
     // Handle the empty title case
     // TODO - Use elipsis until getMsg('No_Subject') is translated.
     var title = e.title || '...';
