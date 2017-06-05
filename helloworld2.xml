@@ -15,6 +15,7 @@
           var content = document.getElementById('Content');
           var html = 'Hello World <br>';
           var start = new Date();
+          var storedEvent = null;
           console.log("start date:-"+start);
           html = html + "start date : -" + start + "<br>"
   var end = new Date();
@@ -28,7 +29,14 @@
       google.calendar.utils.fromDate(start, timeOffset),
       google.calendar.utils.fromDate(end, timeOffset),
       optionalParams);
-content.innerHTML = html;
+      function eventsCallback(events) {
+  if (events && events.length > 0) {
+    storedEvents = events[0].events;
+  } else {
+    storedEvents = [];
+  }
+  console.log(events);
+}
       </script>
         ]]>
   </Content>
