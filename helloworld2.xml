@@ -26,13 +26,7 @@
   };
   var viewer ="lakshya.pawa@sproutlogix.com";
   var timeOffset = 0;
-function getPrefsCallback(prefs) {
-  <!-- // Store interesting user preferences. -->
-  timeOffset = prefs.current_time_offset;
-  viewer = prefs.viewer;
-}
-<!-- // Start the initialization process. -->
-google.calendar.getPreferences(getPrefsCallback);
+
   google.calendar.read.getEvents(
       eventsCallback,viewer,
       google.calendar.utils.fromDate(start, timeOffset),
