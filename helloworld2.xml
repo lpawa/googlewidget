@@ -35,6 +35,7 @@
   } else {
     storedEvents = [];
   }
+  console.log("I have reached here");
   console.log(events);
 }
 content.innerHTML=html;
