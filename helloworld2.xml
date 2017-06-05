@@ -28,6 +28,7 @@
       google.calendar.utils.fromDate(start, timeOffset),
       google.calendar.utils.fromDate(end, timeOffset),
       optionalParams);
+content.innerHTML = html;
       </script>
         ]]>
   </Content>
