@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module> 
   <ModulePrefs title="Calendar Integration SL">
-
+     <Require feature="dynamic-height"/>
+    <Require feature="google.calendar-0.5"/>
+    <Require feature="google.calendar-0.5.read"/>
   </ModulePrefs>
 <Content type="html">
     <![CDATA[
@@ -12,6 +14,19 @@
       <script>
           var content = document.getElementById('Content');
           content.innerHTML = 'Hello World';
+          var start = new Date();
+          console.log("start date:-"+start);
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
+  console.log("end date:-"+end);
+  var optionalParams = {
+    'requestedFields': ['status']
+  };
+  google.calendar.read.getEvents(
+      eventsCallback,viewer,
+      google.calendar.utils.fromDate(start, timeOffset),
+      google.calendar.utils.fromDate(end, timeOffset),
+      optionalParams);
       </script>
         ]]>
   </Content>
