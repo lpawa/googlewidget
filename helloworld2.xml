@@ -13,9 +13,10 @@
       <div id="Content"></div>
       <script>
           var content = document.getElementById('Content');
-          content.innerHTML = 'Hello World';
+          var html = 'Hello World <br>';
           var start = new Date();
           console.log("start date:-"+start);
+          html = html + "start date : -" + start + "<br>"
   var end = new Date();
   end.setDate(end.getDate() + 14);
   console.log("end date:-"+end);
