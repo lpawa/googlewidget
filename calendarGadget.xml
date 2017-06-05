@@ -7,7 +7,6 @@
     <!-- <Require feature="locked-domain"/> --> //In order to protect userdata from other gadgets
   </ModulePrefs>
   <Content type="html">
-    <!DOCTYPE html>
     <div id="Content"></div>
     <script>
 function setupEventRetrieval() {
