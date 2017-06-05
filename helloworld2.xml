@@ -24,7 +24,20 @@
 
   var viewer ="lakshya.pawa@sproutlogix.com";
   var timeOffset = 0;
-  console.log(google.calendar.time);
+function eventsCallback(events) {
+  if (events && events.length > 0) {
+    storedEvents = events[0].events;
+  } else {
+    storedEvents = [];
+  }
+  console.log("I have reached here");
+  console.log(events);
+}
+
+  google.calendar-0.5.read.getEvents(
+      eventsCallback,viewer,
+      google.calendar.utils.fromDate(start, timeOffset),
+      google.calendar.utils.fromDate(end, timeOffset));
 
 content.innerHTML=html;
       </script>
