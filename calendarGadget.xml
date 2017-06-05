@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module> 
+  <ModulePrefs title="Calendar Integration SL">
+    <Require feature="dynamic-height"/>
+    <Require feature="google.calendar-0.5"/>
+    <Require feature="google.calendar-0.5.read"/>
+    <!-- <Require feature="locked-domain"/> --> //In order to protect userdata from other gadgets
+  </ModulePrefs>
+  <Content type="html">
+    <!DOCTYPE html>
+    <div id="Content"></div>
+    <script>
+function setupEventRetrieval() {
+  // Ask the container for the next few events.
+  getNextEvents();
+
+  // Request that we be called back when the date changes
+  // and then re-fetch the next events.
+  google.calendar.subscribeToDataChange(getNextEvents);
+
+  // Kick off the drawing process.
+  redrawPeriodically();
+}
+
+
+/**
+ * The container has replied with the preferences
+ * @param {Object} prefs The set of preferences.
+ */
+function getPrefsCallback(prefs) {
+  // Store interesting user preferences.
+  timeOffset = prefs.current_time_offset;
+
+  // Continue initialization.
+  setupEventRetrieval();
+}
+
+
+// Start the initialization process.
+google.calendar.getPreferences(getPrefsCallback);
+
+</script>  
+  </Content>
+</Module>
