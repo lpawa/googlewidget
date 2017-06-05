@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="The actual events" height="43" description="__MSG_Labs_Gadget_Next_Description__" author="Lakshya" author_email="lpawa@google.com">
 <Require feature="dynamic-height"/>
