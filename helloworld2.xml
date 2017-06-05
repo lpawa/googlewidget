@@ -25,7 +25,7 @@
     'requestedFields': ['status']
   };
   google.calendar.read.getEvents(
-      eventsCallback,viewer,
+      eventsCallback,lakshya.pawa@sproutlogix.com,
       google.calendar.utils.fromDate(start, timeOffset),
       google.calendar.utils.fromDate(end, timeOffset),
       optionalParams);
