@@ -6,7 +6,7 @@
           var prefs = new _IG_Prefs(__MODULE_ID__);
           var zipcode = prefs.getString("code");
           var dunit = prefs.getInt("unit");
-          document.write('<script></script>');
+      
           _IG_AdjustIFrameHeight();
         </script>
 
