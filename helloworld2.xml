@@ -7,10 +7,11 @@
   </ModulePrefs>
 <Content type="html">
       <![CDATA[
+      <div id="Content"></div>
       <script>
           var content = document.getElementById('Content');
           content.innerHTML = 'Hello World';
       </script>
-        <div id="Content"></div>]]>
+        ]]>
   </Content>
 </Module>
