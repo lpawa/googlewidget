@@ -24,8 +24,9 @@
   var optionalParams = {
     'requestedFields': ['status']
   };
+  var viewer ="lakshya.pawa@sproutlogix.com";
   google.calendar.read.getEvents(
-      eventsCallback,lakshya.pawa@sproutlogix.com,
+      eventsCallback,viewer,
       google.calendar.utils.fromDate(start, timeOffset),
       google.calendar.utils.fromDate(end, timeOffset),
       optionalParams);
