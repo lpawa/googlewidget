@@ -40,5 +40,3 @@
         ]]>
   </Content>
 </Module>
-  console.log(events);
-}
