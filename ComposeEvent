@@ -26,20 +26,20 @@ function eventCallback(response) {
     alert('Something went wrong');
     return;
   }
-
-  var events = response[0]['events'];
+function preferencesCallback(prefs) {
   var out = '';
-  for(var i = 0; i < events.length; ++i) {
-    var e = events[i];
-    if ('title' in e) {
-      out += 'Title = ' + e.title + '\n';
-    }
+  if ('startdow' in prefs) {
+    out += "Day of week = " + prefs.startdow + "\n";
   }
+  if ('military' in prefs) {
+    out += "Military time = " + prefs.military + "\n";
+  }
+  out+= "Viewer = " + prefs.viewer + "\n";
   alert(out);
 }
-var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
-var endDate = {year: 2017, month: 1, date : 1, hour : 0, minute: 0, second: 0};
-google.calendar.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startDate, endDate);
+
+// Ask the calendar for the preferences
+google.calendar.getPreferences(preferencesCallback);
 } </script> 
 <center> <button onclick="compose()">Compose Event</button> </center> 
 </body>
