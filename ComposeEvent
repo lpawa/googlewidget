@@ -80,11 +80,14 @@ function eventCallback(response) {
 var start = new Date();
   var end = new Date();
   end.setDate(end.getDate() + 14);
+  startTime : {year: 20017, month: 12, date : 25};
+        endTime : {year: 2018, month: 12, date : 26};
 function getEvent()
 {
 console.log("Events trying to be fetched");
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"]);
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], start , end);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startTime , endTime);
 console.log("Events should have been fetched");
 }
  </script> 
