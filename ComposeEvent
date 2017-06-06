@@ -17,8 +17,8 @@ location: 'My house',
 allDay: true, 
 startTime: {year: 2017, month: 12, date: 25},
 endTime: {year: 2017, month: 12, date: 26},
-attendees: [ {email: 'davem.gadgets@gmail.com'} ],
-'RRULE:FREQ=YEARLY' };
+attendees: [ {email: 'davem.gadgets@gmail.com'} ]
+}
 google.calendar.composeEvent(eventData); 
 } </script> 
 <center> <button onclick="compose()">Compose Event</button> </center> 
