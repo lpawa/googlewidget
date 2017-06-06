@@ -20,13 +20,7 @@ endTime: {year: 2017, month: 12, date: 26},
 attendees: [ {email: 'davem.gadgets@gmail.com'} ]
 }
 google.calendar.composeEvent(eventData);
-function eventCallback(response) {
-  var myResponse = response[0];
-  if ('error' in response[0]) {
-    alert('Something went wrong');
-    return;
-  }
-  
+
 function preferencesCallback(prefs) {
   var out = '';
   if ('startdow' in prefs) {
@@ -38,14 +32,17 @@ function preferencesCallback(prefs) {
   out+= "Viewer = " + prefs.viewer + "\n";
   alert(out);
 }
-}// Ask the calendar for the preferences
+
+// Ask the calendar for the preferences
 google.calendar.getPreferences(preferencesCallback);
+
 }
-}
-</script> 
+
+ </script> 
 <center> <button onclick="compose()">Compose Event</button> </center> 
 </body>
 </html>
 ]]>
 </Content>
 </Module>
+
