@@ -25,18 +25,28 @@
   var viewer ="lakshya.pawa@sproutlogix.com";
   var timeOffset = 0;
 
-  google.calendar-0.5.read.getEvents(
-      eventsCallback,viewer,
-      google.calendar.utils.fromDate(start, timeOffset),
-      google.calendar.utils.fromDate(end, timeOffset));
-      function eventsCallback(events) {
+function eventsCallback(events) {
+  console.log("Callback called");
   if (events && events.length > 0) {
     storedEvents = events[0].events;
   } else {
     storedEvents = [];
   }
-  console.log("I");
-  console.log(events);
+
+  google.calendar-0.5.read.getEvents(
+      eventsCallback,viewer,
+      google.calendar.utils.fromDate(start, timeOffset),
+      google.calendar.utils.fromDate(end, timeOffset));
+      
+  console.log("HI");
+  console.log(storedEvents);
+
+function getPrefsCallback(prefs) {
+  timeOffset = prefs.current_time_offset;
+  console.log(prefs);
+}
+
+google.calendar-0.5.getPreferences(getPrefsCallback);
 }
 content.innerHTML=html;
       </script>
