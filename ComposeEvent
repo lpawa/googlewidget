@@ -78,7 +78,7 @@ function eventCallback(response) {
 
 }
 var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
-var endDate = {year: 2017, month: 1, date : 1, hour : 0, minute: 0, second: 0};
+var endDate = {year: 2019, month: 1, date : 1, hour : 0, minute: 0, second: 0};
 function getEvent()
 {
 console.log("Events trying to be fetched");
