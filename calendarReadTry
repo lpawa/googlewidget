@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="subscribeToEvents Test" height="200" author="Lakshya" author_email="lakshya.pawa@google.com">
+<Require feature="google.calendar-0.5.read"/></ModulePrefs>
+<Content type="html">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<body>
+<div id="out">No event</div>
+console.log("Start");
+<script>
+function subscribeEventsCallback(e) {
+  console.log("Callback called");
+  var html = 'No event';
+  if (e) {
+    html = gadgets.json.stringify(e);
+  }
+  document.getElementById('out').innerHTML = gadgets.util.escapeString(html);
+}
+
+// The gadget containers request that we do NOT run any JS inline.
+// Instead, register a callback handler.
+gadgets.util.registerOnLoadHandler(function() {
+  google.calendar.read.subscribeToEvents(subscribeEventsCallback);
+});
+
+</script>
+</body>
+</html>
+  </Content></Module>
