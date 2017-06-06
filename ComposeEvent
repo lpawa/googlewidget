@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="composeEvent Test" height="40" author="lakshya" author_email="lakshyapawa@google.com">
+<ModulePrefs title="composeEvent Test" height="80" author="lakshya" author_email="lakshyapawa@google.com">
 <Require feature="google.calendar-0.5"/>
 </ModulePrefs>
 <Content type="html">
