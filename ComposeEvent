@@ -29,7 +29,7 @@ function preferencesCallback(prefs) {
   }
   if ('military' in prefs) {
     out += "Military time = " + prefs.military + "\n";
-  }
+  } 
   out+= "Viewer = " + prefs.viewer + "\n";
   alert(out);
 }
@@ -58,7 +58,32 @@ gadgets.util.registerOnLoadHandler(function() {
   console.log("Event should have been called");
 });
 
+function eventCallback(response) {
+  console.log("Callback Events called");
+  var Response = response[0];
+  if ('error' in response[0]) {
+    alert('Something went wrong');
+    return;
+  }
+  console.log(Response);
+  var events = response[0]['events'];
+  var out = '';
+  for(var i = 0; i < events.length; ++i) {
+    var e = events[i];
+    if ('title' in e) {
+      out += 'Title = ' + e.title + '\n';
+    }
+  }
+  alert(out);
 
+}
+var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
+var endDate = {year: 2017, month: 1, date : 1, hour : 0, minute: 0, second: 0};
+function getEvent(){
+console.log("Event trying to be called");
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startDate, endDate);
+console.log("Event should have been called");
+}
  </script> 
 <center> <button onclick="compose()">Compose Event</button> 
 <div id="out">No event</div>
