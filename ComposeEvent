@@ -38,10 +38,10 @@ function preferencesCallback(prefs) {
   out+= "Viewer = " + prefs.viewer + "\n";
   alert(out);
 }
-}
-// Ask the calendar for the preferences
+}// Ask the calendar for the preferences
 google.calendar.getPreferences(preferencesCallback);
-} 
+}
+}
 </script> 
 <center> <button onclick="compose()">Compose Event</button> </center> 
 </body>
