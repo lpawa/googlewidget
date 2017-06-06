@@ -96,7 +96,7 @@ function showButtons(id)
 {       
       var li = document.getElementById(id);
     html='<button>Click</button>'
-    li.innerHTML += html;
+    li.append += html;
 
 }
  </script> 
