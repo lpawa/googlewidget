@@ -66,7 +66,7 @@ function eventCallback(response) {
   for(var i = 0; i < events.length; ++i) {
     var e = events[i];
     if ('title' in e) {
-      out += '<div id ="div'+ i +'"><li id = "li'+i+'" onclick="showButtons(li'+i+')">' + e.title + '</li></div>\n';
+      out += '<div id ="div'+ i +'"><li id = "li'+i+'" onclick="showButtons(div'+i+')">' + e.title + '</li></div>\n';
     }
   }
   	
