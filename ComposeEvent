@@ -80,8 +80,8 @@ function eventCallback(response) {
 var start = new Date();
   var end = new Date();
   end.setDate(end.getDate() + 14);
-  startTime : {year: 20017, month: 12, date : 25};
-        endTime : {year: 2018, month: 12, date : 26};
+  startTime = {year: 20017, month: 12, date : 25};
+        endTime = {year: 2018, month: 12, date : 26};
 function getEvent()
 {
 console.log("Events trying to be fetched");
