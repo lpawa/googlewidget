@@ -94,10 +94,12 @@ console.log("Events should have been fetched");
 }
 function showButtons(id)
 {       
+        console.log(id);
       var li = document.getElementById(id);
     html='<button>Click</button>'
+    if(li){
     li.innerHTML += html;
-
+    }
 }
  </script> 
 
