@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="composeEvent Test" height="40" author="lakshya" author_email="lakshyapawa@google.com">
+<Require feature="google.calendar-0.5"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<body>
+<script> function compose() 
+{ 
+var eventData = { 
+title: 'Christmas', 
+details: 'Merry Christmas to you!', 
+location: 'My house', 
+allDay: true, 
+startTime: {year: 2017, month: 12, date: 25},
+endTime: {year: 2017, month: 12, date: 26},
+attendees: [ {email: 'davem.gadgets@gmail.com'} ],
+'RRULE:FREQ=YEARLY' };
+google.calendar.composeEvent(eventData); 
+} </script> 
+<center> <button onclick="compose()">Compose Event</button> </center> 
+</body>
+</html>
+]]>
+</Content>
+</Module>
