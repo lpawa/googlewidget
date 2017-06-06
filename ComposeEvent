@@ -19,7 +19,27 @@ startTime: {year: 2017, month: 12, date: 25},
 endTime: {year: 2017, month: 12, date: 26},
 attendees: [ {email: 'davem.gadgets@gmail.com'} ]
 }
-google.calendar.composeEvent(eventData); 
+google.calendar.composeEvent(eventData);
+function eventCallback(response) {
+  var myResponse = response[0];
+  if ('error' in response[0]) {
+    alert('Something went wrong');
+    return;
+  }
+
+  var events = response[0]['events'];
+  var out = '';
+  for(var i = 0; i < events.length; ++i) {
+    var e = events[i];
+    if ('title' in e) {
+      out += 'Title = ' + e.title + '\n';
+    }
+  }
+  alert(out);
+}
+var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
+var endDate = {year: 2017, month: 1, date : 1, hour : 0, minute: 0, second: 0};
+google.calendar.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startDate, endDate);
 } </script> 
 <center> <button onclick="compose()">Compose Event</button> </center> 
 </body>
