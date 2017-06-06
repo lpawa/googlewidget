@@ -76,13 +76,15 @@ function eventCallback(response) {
   }
   alert(out);
 
-}
-var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
-var endDate = {year: 2019, month: 1, date : 1, hour : 0, minute: 0, second: 0};
+}  
+var start = new Date();
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
 function getEvent()
 {
 console.log("Events trying to be fetched");
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"]);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], start , end);
 console.log("Events should have been fetched");
 }
  </script> 
