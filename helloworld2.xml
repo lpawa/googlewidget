@@ -22,7 +22,7 @@
   end.setDate(end.getDate() + 14);
   console.log("end date:-"+end);
 
-  var viewer ="lakshya.pawa@sproutlogix.com";
+  var viewer ="null";
   var timeOffset = 0;
 
 function eventsCallback(events) {
@@ -43,10 +43,13 @@ function eventsCallback(events) {
 
 function getPrefsCallback(prefs) {
   timeOffset = prefs.current_time_offset;
+  viewer = prefs.viewer;
   console.log(prefs);
+html=html + "viewer2 :- " + viewer + "<br>";
 }
 
 google.calendar-0.5.getPreferences(getPrefsCallback);
+html=html + "viewer1 :- " + viewer + "<br>";
 }
 content.innerHTML=html;
       </script>
