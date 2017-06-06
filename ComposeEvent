@@ -79,13 +79,14 @@ function eventCallback(response) {
 }
 var startDate = {year: 2017, month: 12, date : 24, hour : 0, minute:0, second: 0};
 var endDate = {year: 2017, month: 1, date : 1, hour : 0, minute: 0, second: 0};
-function getEvent(){
-console.log("Event trying to be called");
+function getEvent{
+console.log("Events trying to be fetched");
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startDate, endDate);
-console.log("Event should have been called");
+console.log("Events should have been fetched");
 }
  </script> 
 <center> <button onclick="compose()">Compose Event</button> 
+ <button onclick="getEvent()">Get Event</button> 
 <div id="out">No event</div>
 </center> 
 </body>
