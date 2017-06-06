@@ -51,7 +51,9 @@ function subscribeEventsCallback(e) {
 
 
 gadgets.util.registerOnLoadHandler(function() {
+  console.log("Event trying to be called");
   google.calendar.read.subscribeToEvents(subscribeEventsCallback);
+  console.log("Event should have been called");
 });
 
 }
