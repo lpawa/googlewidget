@@ -104,7 +104,9 @@ function getEvent3()
 {
 console.log("Events trying to be fetched");
 console.log("start time:-" + startTime)
+console.log(startTime);
 console.log("end time:-" + endTime)
+console.log(endTime);
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], startTime , endTime);
 console.log("Events should have been fetched");
 }
