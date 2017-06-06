@@ -84,7 +84,7 @@ console.log("Events should have been fetched");
 
  </script> 
 <center>
- <ul id="out">No event</div>
+ <ul id="out">No event</ul>
  <button onclick="getEvent()">Get Events</button> 
 
 </center> 
