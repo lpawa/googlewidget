@@ -131,6 +131,8 @@ function getPrefsCallback(prefs) {
 <!-- // Start the initialization process. -->
 google.calendar.getPreferences(getPrefsCallback);
     </script>
-    <div id="Content"></div>]]>
+    <div id="Content"></div>
+     <button onclick=  "setupEventRetrieval()">Try and try</button>
+      <button onclick = "getNextEvents()"></button>]]>
   </Content>
 </Module>
