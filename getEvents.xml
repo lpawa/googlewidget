@@ -30,5 +30,6 @@ google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], 
 </script>
 </body>
 </html>
+]]>
 </Content>
 </Module>
