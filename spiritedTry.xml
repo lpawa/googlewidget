@@ -95,8 +95,8 @@ console.log("Events should have been fetched");
 function showButtons(id)
 {       
       var li = document.getElementById(id);
-    html="<button>Click</button>"
-    li.innerHTML += gadgets.util.escapeString(html);
+    html='<button>Click</button>'
+    li.innerHTML += html;
 
 }
  </script> 
