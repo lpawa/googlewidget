@@ -36,13 +36,32 @@ function preferencesCallback(prefs) {
 // Ask the calendar for the preferences
 google.calendar.getPreferences(preferencesCallback);
 
+
+
+console.log("Start");
+function subscribeEventsCallback(e) {
+  console.log("Start Callback");
+  var html = 'No event';
+  if (e) {
+    html = gadgets.json.stringify(e);
+  }
+  document.getElementById('out').innerHTML = gadgets.util.escapeString(html);
 }
 
+
+gadgets.util.registerOnLoadHandler(function() {
+  google.calendar.read.subscribeToEvents(subscribeEventsCallback);
+});
+
+}
  </script> 
-<center> <button onclick="compose()">Compose Event</button> </center> 
+<center> <button onclick="compose()">Compose Event</button> 
+<div id="out">No event</div>
+</center> 
 </body>
 </html>
 ]]>
 </Content>
 </Module>
+
 
