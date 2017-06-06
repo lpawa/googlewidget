@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="__MSG_Labs_Gadget_Next_Title__" height="43" description="__MSG_Labs_Gadget_Next_Description__" author="Google" author_email="calendar-gadget-questions@google.com">
 <Require feature="dynamic-height"/>
