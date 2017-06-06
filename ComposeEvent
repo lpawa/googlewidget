@@ -78,8 +78,10 @@ function eventCallback(response) {
 
 }  
 var start = new Date();
+var calendarStartDate = google.calendar.utils.fromDate(start);
   var end = new Date();
   end.setDate(end.getDate() + 14);
+  var calendarEndDate = google.calendar.utils.fromDate(end);
   startTime = {year: 20017, month: 12, date : 25};
         endTime = {year: 2018, month: 12, date : 26};
 function getEvent1()
@@ -92,8 +94,10 @@ function getEvent2()
 {
 console.log("Events trying to be fetched");
 console.log("Start time:-" + start);
+console.log(calendarStartDate)
 console.log("End time:-" + end);
-google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], start , end);
+console.log(calendarEndDate);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
 console.log("Events should have been fetched");
 }
 function getEvent3()
