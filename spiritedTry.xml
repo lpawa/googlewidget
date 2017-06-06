@@ -9,6 +9,18 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
 <html>
 <body>
+<style>
+ul {
+    background: #3399ff;
+    padding: 20px;
+}
+ul li {
+    background: #cce5ff;
+    margin: 5px;
+    font-size: 10px;
+}
+
+</style>
 <script> 
 function preferencesCallback(prefs) {
   var out = '';
@@ -83,8 +95,9 @@ console.log("Events should have been fetched");
 }
 
  </script> 
-<center>
+
  <ul id="out">No event</ul>
+<center>
  <button onclick="getEvent()">Get Events</button> 
 
 </center> 
