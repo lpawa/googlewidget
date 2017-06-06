@@ -82,7 +82,7 @@ var endDate = {year: 2019, month: 1, date : 1, hour : 0, minute: 0, second: 0};
 function getEvent()
 {
 console.log("Events trying to be fetched");
-google.calendar.read.getEvents(function() { console.log("Called"); }, ["lakshya.pawa@sproutlogix.com"], startDate, endDate);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"]);
 console.log("Events should have been fetched");
 }
  </script> 
