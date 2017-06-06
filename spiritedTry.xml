@@ -19,7 +19,7 @@ function preferencesCallback(prefs) {
     out += "Military time = " + prefs.military + "\n";
   } 
   out+= "Viewer = " + prefs.viewer + "\n";
-  alert(out);
+  console.log(out);
 }
 
 // Ask the calendar for the preferences
@@ -55,7 +55,7 @@ function eventCallback(response) {
   for(var i = 0; i < events.length; ++i) {
     var e = events[i];
     if ('title' in e) {
-      out += 'Title = ' + e.title + '\n';
+      out += '<li>Title = ' + e.title + '</li>\n';
     }
   }
   	
@@ -84,7 +84,7 @@ console.log("Events should have been fetched");
 
  </script> 
 <center>
- <div id="out">No event</div>
+ <ul id="out">No event</div>
  <button onclick="getEvent()">Get Events</button> 
 
 </center> 
