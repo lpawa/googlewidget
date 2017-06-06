@@ -106,9 +106,9 @@ console.log("Events should have been fetched");
 }
  </script> 
 <center> <button onclick="compose()">Compose Event</button> 
- <button onclick="getEvent1()">Get Event</button> 
-  <button onclick="getEvent2()">Get Event</button> 
-   <button onclick="getEvent3()">Get Event</button> 
+ <button onclick="getEvent1()">Get Event 1</button> 
+  <button onclick="getEvent2()">Get Event 2</button> 
+   <button onclick="getEvent3()">Get Event 3</button> 
 <div id="out">No event</div>
 </center> 
 </body>
