@@ -11,7 +11,6 @@
 <body>
 <style>
 ul {
-    background: #3399ff;
     padding: 20px;
 }
 ul li {
@@ -67,7 +66,7 @@ function eventCallback(response) {
   for(var i = 0; i < events.length; ++i) {
     var e = events[i];
     if ('title' in e) {
-      out += '<li>Title = ' + e.title + '</li>\n';
+      out += '<li id = '+ i +'onclick="showButtons('+i+')">' + e.title + '</li>\n';
     }
   }
   	
@@ -93,7 +92,13 @@ console.log(calendarEndDate);
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
 console.log("Events should have been fetched");
 }
+function showButtons(id)
+{       
+      var li = document.getElementById(id);
+    html="<button>Click</button>"
+    li.innerHTML += gadgets.util.escapeString(html);
 
+}
  </script> 
 
  <ul id="out">No event</ul>
