@@ -168,6 +168,7 @@ function addToList (form) {
             return;
         }
         console.log("input");
+        }
  </script> 
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
   <INPUT TYPE="date" NAME="startDate" VALUE="">
