@@ -92,12 +92,18 @@ function drawScreen(){
     var e = storedEvents[i];
     if ('title' in e) {
       if(e.startTime.minute<10){
-      min = "0"+e.startTime.minute;
+      minS = "0"+e.startTime.minute;
       }
       else{
-      min=e.startTime.minute;
+      minS=e.startTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+min +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish()">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+         if(e.endTime.minute<10){
+      minE = "0"+e.endTime.minute;
+      }
+      else{
+      minE=e.endTime.minute;
+      }
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish()">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
   }
     
