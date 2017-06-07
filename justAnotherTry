@@ -30,6 +30,7 @@ ul li {
     padding: 5px;
     list-style-type: none;
     float: left;
+    cursor:pointer;
 }
 ul li.active {
       background: #03A9F4;
