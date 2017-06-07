@@ -122,7 +122,7 @@ function eventCallback(response) {
     storedEvents = [];
   }
   console.log(response[0].events);
-  console.log(storedEvents);
+  console.log(ownerEvents);
 
   drawScreen();
   
