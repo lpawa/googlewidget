@@ -57,15 +57,7 @@ button {
 </style>
 </head>
 <body>
- <FORM NAME="myform" ACTION="" METHOD="GET" id="myform"><BR>
-  <label for="startDate">From: </label>
-  <INPUT TYPE="date" NAME="startDate" value id = "startDate">
-  <input type="time" name="startTime" value id="startTime"><br>
-  <label for="startDate">To: </label>
-  <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
-  <input type="time" name="endTime" value id="endTime"><br>
-  </FORM>
- <ul id="out">No event</ul>
+
 <script> 
 
         var viewer = null; 
@@ -181,24 +173,9 @@ function addToList (form) {
         console.log(input);
         }
 
-function setDefaultDate(){
-  var form = document.getElementById("myform");
-  var start = new Date();
-  var calendarStartDate = google.calendar.utils.fromDate(start);
-  var end = new Date();
-  end.setDate(end.getDate() + 14);
-  var calendarEndDate = google.calendar.utils.fromDate(end);
-  var startDateString = '"'+start.getFullYear()+'-'+start.getMonth()+'-'+start.getDate()+'"';
-  console.log(startDateString);
-  form.startDate.value = startDateString;
-  var endDateString = '"'+end.getFullYear()+'-'+end.getMonth()+'-'+end.getDate()+'"';
-  form.endDate.value = endDateString;
-}
-window.onload = function() {
-setDefaultDate();
-};
  </script> 
 
+ <ul id="out">No event</ul>
  
 </body>
 </html>
