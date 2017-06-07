@@ -115,6 +115,8 @@ function eventCallback(response) {
     
     if(e.owner.email==viewer){
     console.log(e);
+    console.log(l);
+    console.log(k);
     ownerEvents[k]=e;
     k++;
     }
