@@ -120,7 +120,7 @@ function showButtons(id)
     var b2 = document.getElementById('butB'+id);
     console.log(b1);
     console.log(b2);
-    if(x){
+    if(b1){
     if (b1.style.display == 'none') {
         b1.style.display = 'block';
         b2.style.display = 'block';
