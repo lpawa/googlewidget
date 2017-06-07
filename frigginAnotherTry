@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Get Events Test" height="500" author="lakshya" author_email="lakshyapawa@google.com">
+<Require feature="google.calendar-0.5"/>
+<Require feature="google.calendar-0.5.read"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic,greek,vietnamese" rel="stylesheet">
+<style>
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+ul {
+    padding: 0px;
+    float: left;
+}
+ul li {
+    margin: 10px 0px;
+    font-size: 15px;
+    border-left: 2px solid #03A9F4;
+    padding: 5px;
+    list-style-type: none;
+    float: left;
+    cursor:pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+ul li.active {
+      background: #03A9F4;
+    color: #fff;
+}
+button {
+  display: block;
+    background: #C0CA33;
+    border: 0px;
+    color: #fff;
+    float: left;
+    padding: 5px;
+    margin: 0px 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+</style>
+</head>
+<body>
+
+<script> 
+
+        var viewer = null; 
+        var curEventId = null;    
+        var storedEvents = null;
+        var refreshEvents = 0;
+        var i =0;
+
+function preferencesCallback(prefs) {
+  var out = '';
+  if ('startdow' in prefs) {
+    out += "Day of week = " + prefs.startdow + "\n";
+  }
+  if ('military' in prefs) {
+    out += "Military time = " + prefs.military + "\n";
+  } 
+  out+= "Viewer = " + prefs.viewer + "\n";
+  console.log(out);
+}
+
+// Ask the calendar for the preferences
+google.calendar.getPreferences(preferencesCallback);
+
+console.log("Start");
+
+function drawScreen(){
+  console.log("drawing begins");
+  var count = (storedEvents && storedEvents.length) || 0;
+  var out = '';
+  for(var i = 0; i < count; ++i) {
+    var e = storedEvents[i];
+    if ('title' in e) {
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + '</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none">Click 1 </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+    }
+  }
+    
+  var html=out;
+ document.getElementById('out').innerHTML = html;
+
+}
+
+function eventCallback(response) {
+  console.log("Callback Events called");
+  var Response = response[0];
+  if ('error' in response[0]) {
+    alert('Something went wrong');
+    return;
+  }
+  if (response && response.length > 0) {
+    storedEvents = response[0].events;
+  } else {
+    storedEvents = [];
+  }
+  
+  console.log(storedEvents);
+
+  drawScreen();
+  
+}  
+var start = new Date();
+var calendarStartDate = google.calendar.utils.fromDate(start);
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
+  var calendarEndDate = google.calendar.utils.fromDate(end);
+  startTime = {year: 20017, month: 12, date : 25};
+        endTime = {year: 2018, month: 12, date : 26};
+
+function getEvent()
+{
+console.log("Events trying to be fetched");
+console.log("Start time:-" + start);
+console.log(calendarStartDate)
+console.log("End time:-" + end);
+console.log(calendarEndDate);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
+console.log("Events should have been fetched");
+}
+function setupEventRetrieval() {
+  <!-- // Ask the container for the next few events. -->
+        getEvent();
+  <!-- // Request that we be called back when the date changes
+  // and then re-fetch the next events. -->
+        google.calendar.subscribeToDataChange(getEvent);
+}
+function showButtons(id)
+{         
+    var b1 = document.getElementById('butA'+id);
+    var b2 = document.getElementById('butB'+id);
+    var li = document.getElementById('li'+id);
+
+    console.log(b1);
+    console.log(b2);
+    if(b1){
+    if (b1.style.display == 'none') {
+        b1.style.display = 'block';
+        b2.style.display = 'block';
+        li.classList.add("active"); 
+    } else {
+        b1.style.display = 'none';
+        b2.style.display = 'none';
+        li.classList.remove("active");
+    }
+    }
+}
+setupEventRetrieval();
+
+function addToList (form) {
+        console.log("form.startDate.value");
+        var input = _trim(form.startDate.value);
+        if (input == "") {
+            return;
+        }
+        console.log(input);
+        }
+ </script> 
+ <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
+  <INPUT TYPE="date" NAME="startDate" VALUE="">
+  <INPUT TYPE="date" NAME="endDate" VALUE="">
+  <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
+  </FORM>
+ <ul id="out">No event</ul>
+ 
+</body>
+</html>
+]]>
+</Content>
+</Module>
