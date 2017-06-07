@@ -184,7 +184,6 @@ function setDefaultDate(){
   <label for="startDate">To: </label>
   <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
   <input type="time" name="endTime" id="endTime"><br>
-  <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
   </FORM>
  <ul id="out">No event</ul>
  
