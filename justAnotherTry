@@ -116,15 +116,16 @@ function setupEventRetrieval() {
 }
 function showButtons(id)
 {         
-    var x = document.getElementsByClassName('but'+id);
+    var b1 = document.getElementByID('butA'+id);
+    var b2 = document.getElementByID('butB'+id);
     console.log(x);
     if(x){
-    if (x[0].style.display === 'none') {
-        x[0].style.display = 'block';
-        x[1].style.display = 'block';
+    if (b1.style.display == 'none') {
+        b1.style.display = 'block';
+        b2.style.display = 'block';
     } else {
-        x[0].style.display = 'none';
-        x[0].style.display = 'none';
+        b1.style.display = 'none';
+        b2.style.display = 'none';
     }
     }
 }
