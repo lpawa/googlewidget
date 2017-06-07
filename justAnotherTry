@@ -66,6 +66,35 @@ button {
         var refreshEvents = 0;
         var i =0;
         var ownerEvents = [];
+        var calendarStartDate=null;
+        var calendarEndDate=null;
+
+        var EventTemplate={
+        "userId":"",
+        "title":"",
+        "hashtag":"",
+        "description":"",
+        "type":"Normal",
+        "startDateTime":"",
+        "endDateTime":"",
+        "linkLiveDate": "",
+        "linkExpiryDate": "",
+        "imageURLId":"",
+        "thankYouNote":"Thank You!",
+        "isReversed":"false",
+        "isOrgEvent":"false",
+        "moods":[{
+          "moodName":"Awesome",
+          "moodType":"HAPPY",
+          "order":"5"
+        },
+        {
+          "moodName":"Nice",
+          "moodType":"Excited",
+          "order":"3"
+        }
+        ]
+        }
 
 function preferencesCallback(prefs) {
   var out = '';
@@ -103,7 +132,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish()">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
   }
     
@@ -111,8 +140,26 @@ function drawScreen(){
  document.getElementById('out').innerHTML = html;
 
 }
-function Publish(){
-  
+function Publish(id){
+  var e = storedEvents[id];
+  var data = EventTemplate;
+  data.title = e.title;
+  data.hashtag = e.title.replace(/\s/g,'');
+  data.description = e.details;
+
+  data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.day+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+  data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.day+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+  var linkStartDay = e.startTime.day - 1;
+  var linkEndDay = e.endTime.day + 1;
+
+  data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+  data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+  console.log(data);
+
 }
 function eventCallback(response) {
   console.log("Callback Events called");
@@ -146,10 +193,10 @@ function eventCallback(response) {
 }  
 var start = new Date();
 start.setDate(start.getDate() - 7);
-var calendarStartDate = google.calendar.utils.fromDate(start);
+calendarStartDate = google.calendar.utils.fromDate(start);
   var end = new Date();
   end.setDate(end.getDate() + 7);
-  var calendarEndDate = google.calendar.utils.fromDate(end);
+calendarEndDate = google.calendar.utils.fromDate(end);
   startTime = {year: 20017, month: 12, date : 25};
         endTime = {year: 2018, month: 12, date : 26};
 
