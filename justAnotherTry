@@ -111,7 +111,7 @@ function eventCallback(response) {
     x = response[0].events;
     var k=0;
     for(l=0;l<x.length;l++){
-    var e = x[i];
+    var e = x[l];
     
     if(e.owner.email==viewer){
     console.log(e);
@@ -126,7 +126,7 @@ function eventCallback(response) {
   }
   console.log(response[0].events);
   console.log(ownerEvents);
-
+  storedEvents=ownerEvents;
   drawScreen();
   
 }  
