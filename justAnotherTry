@@ -8,7 +8,8 @@
 <![CDATA[
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
 <html>
-<body>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic,greek,vietnamese" rel="stylesheet">
 <style>
 
 .noselect {
@@ -22,6 +23,7 @@
 }
 ul {
     padding: 20px;
+    float: left;
 }
 ul li {
     margin: 10px 0px;
@@ -31,6 +33,7 @@ ul li {
     list-style-type: none;
     float: left;
     cursor:pointer;
+    font-family: 'Roboto', sans-serif;
 }
 ul li.active {
       background: #03A9F4;
@@ -44,9 +47,13 @@ button {
     float: left;
     padding: 5px;
     margin: 0px 5px;
+    font-family: 'Roboto', sans-serif;
 }
 
 </style>
+</head>
+<body>
+
 <script> 
 
         var viewer = null; 
