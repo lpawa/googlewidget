@@ -179,9 +179,9 @@ function setDefaultDate(){
  </script> 
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
   <label for="startDate">From: </label>
-  <INPUT TYPE="date" NAME="startDate" VALUE="" id = "startDate">
+  <INPUT TYPE="date" NAME="startDate" VALUE="8/6/17" id = "startDate">
   <label for="startDate">To: </label>
-  <INPUT TYPE="date" NAME="endDate" VALUE="" id="endDate">
+  <INPUT TYPE="date" NAME="endDate" VALUE="9/6/17" id="endDate">
   <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
   </FORM>
  <ul id="out">No event</ul>
