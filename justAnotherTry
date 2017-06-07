@@ -145,14 +145,15 @@ function Publish(id){
   var data = EventTemplate;
   data.title = e.title;
   data.hashtag = e.title.replace(/\s/g,'');
+  if(e.details){
   data.description = e.details;
+  }
+  data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
-  data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.day+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+  data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
-  data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.day+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
-
-  var linkStartDay = e.startTime.day - 1;
-  var linkEndDay = e.endTime.day + 1;
+  var linkStartDay = e.startTime.date - 1;
+  var linkEndDay = e.endTime.date + 1;
 
   data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
