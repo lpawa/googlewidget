@@ -127,12 +127,13 @@ var calendarStartDate = google.calendar.utils.fromDate(start);
 
 function getEvent()
 {
+var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details'] }; 
 console.log("Events trying to be fetched");
 console.log("Start time:-" + start);
 console.log(calendarStartDate)
 console.log("End time:-" + end);
 console.log(calendarEndDate);
-google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate,optionalParams);
 console.log("Events should have been fetched");
 }
 function setupEventRetrieval() {
