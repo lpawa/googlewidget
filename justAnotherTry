@@ -81,8 +81,8 @@ function eventCallback(response) {
     alert('Something went wrong');
     return;
   }
-  if (events && events.length > 0) {
-    storedEvents = events[0].events;
+  if (response && response.length > 0) {
+    storedEvents = response[0].events;
   } else {
     storedEvents = [];
   }
