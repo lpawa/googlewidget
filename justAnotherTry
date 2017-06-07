@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="Get Events Test" height="500" author="lakshya" author_email="lakshyapawa@google.com">
+<Require feature="google.calendar-0.5"/>
+<Require feature="google.calendar-0.5.read"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<body>
+<style>
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+ul {
+    padding: 20px;
+}
+ul li {
+    background: #cce5ff;
+    margin: 5px;
+    font-size: 15px;
+}
+</style>
+<script> 
+        var viewer = null; 
+        var curEventId = null;    
+        var storedEvents = null;
+        var refreshEvents = 0;
+function preferencesCallback(prefs) {
+  var out = '';
+  if ('startdow' in prefs) {
+    out += "Day of week = " + prefs.startdow + "\n";
+  }
+  if ('military' in prefs) {
+    out += "Military time = " + prefs.military + "\n";
+  } 
+  out+= "Viewer = " + prefs.viewer + "\n";
+  console.log(out);
+}
+// Ask the calendar for the preferences
+google.calendar.getPreferences(preferencesCallback);
+console.log("Start");
+function subscribeEventsCallback(e) {
+  console.log("Start Callback");
+  var html = 'No event';
+  if (e) {
+    html = gadgets.json.stringify(e);
+  }
+  document.getElementById('out').innerHTML = gadgets.util.escapeString(html);
+}
+gadgets.util.registerOnLoadHandler(function() {
+  console.log("Event trying to be called");
+  google.calendar.read.subscribeToEvents(subscribeEventsCallback);
+  console.log("Event should have been called");
+});
+function drawScreen(){
+  console.log("drawing begins");
+  var count = (storedEvents && storedEvents.length) || 0;
+  var out = '';
+  for(var i = 0; i < count; ++i) {
+    var e = storedEvents[i];
+    if ('title' in e) {
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons(div'+i+')">' + e.title + '</li></div>\n';
+    }
+  }
+  	
+  var html=out;
+ document.getElementById('out').innerHTML = html;
+}
+function eventCallback(response) {
+  console.log("Callback Events called");
+  var Response = response[0];
+  if ('error' in response[0]) {
+    alert('Something went wrong');
+    return;
+  }
+  if (events && events.length > 0) {
+    storedEvents = events[0].events;
+  } else {
+    storedEvents = [];
+  }
+  
+  console.log(storedEvents);
+  drawScreen();
+  
+}  
+var start = new Date();
+var calendarStartDate = google.calendar.utils.fromDate(start);
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
+  var calendarEndDate = google.calendar.utils.fromDate(end);
+  startTime = {year: 20017, month: 12, date : 25};
+        endTime = {year: 2018, month: 12, date : 26};
+function getEvent()
+{
+console.log("Events trying to be fetched");
+console.log("Start time:-" + start);
+console.log(calendarStartDate)
+console.log("End time:-" + end);
+console.log(calendarEndDate);
+google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
+console.log("Events should have been fetched");
+}
+<!-- function setupEventRetrieval() {
+  <!-- // Ask the container for the next few events. -->
+        getEvent();
+  <!-- // Request that we be called back when the date changes
+  // and then re-fetch the next events. -->
+        google.calendar.subscribeToDataChange(getEvent);
+} -->
+function showButtons(id)
+{       
+        console.log(id);
+    
+    html='<button>Click</button>'
+    if(id){
+    id.innerHTML += html;
+    }
+}
+ </script> 
+ <ul id="out">No event</ul>
+<center>
+ <button onclick="getEvent()">Get Events</button> 
+</center> 
+</body>
+</html>
+]]>
+</Content>
+</Module>
