@@ -174,16 +174,26 @@ function addToList (form) {
         }
 
 function setDefaultDate(){
-  
+  var form = document.getElementById("myform");
+  var start = new Date();
+  var calendarStartDate = google.calendar.utils.fromDate(start);
+  var end = new Date();
+  end.setDate(end.getDate() + 14);
+  var calendarEndDate = google.calendar.utils.fromDate(end);
+  var startDateString = '"'+start.getFullyear()+'-'+start.getMonth()+'-'+start.getDate()+'"';
+  form.startDate.value = startDateString;
+  var endDateString = '"'+end.getFullyear()+'-'+end.getMonth()+'-'+end.getDate()+'"';
+  form.endDate.value = endDateString;
 }
+setDefaultDate();
  </script> 
- <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
+ <FORM NAME="myform" ACTION="" METHOD="GET" id="myform"><BR>
   <label for="startDate">From: </label>
-  <INPUT TYPE="date" NAME="startDate" VALUE="2017-06-05" id = "startDate">
-  <input type="time" name="startTime" id="startTime"><br>
+  <INPUT TYPE="date" NAME="startDate" value id = "startDate">
+  <input type="time" name="startTime" value id="startTime"><br>
   <label for="startDate">To: </label>
   <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
-  <input type="time" name="endTime" id="endTime"><br>
+  <input type="time" name="endTime" value id="endTime"><br>
   </FORM>
  <ul id="out">No event</ul>
  
