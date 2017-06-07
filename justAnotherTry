@@ -119,7 +119,7 @@ function showButtons(id)
     var x = document.getElementsByClassName('but'+id);
     console.log(x);
     if(x){
-    if (x.style.display === 'none') {
+    if (x[0].style.display === 'none') {
         x[0].style.display = 'block';
         x[1].style.display = 'block';
     } else {
