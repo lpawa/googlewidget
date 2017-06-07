@@ -116,8 +116,8 @@ function setupEventRetrieval() {
 }
 function showButtons(id)
 {         
-    var b1 = document.getElementByID('butA'+id);
-    var b2 = document.getElementByID('butB'+id);
+    var b1 = document.getElementById('butA'+id);
+    var b2 = document.getElementById('butB'+id);
     console.log(x);
     if(x){
     if (b1.style.display == 'none') {
