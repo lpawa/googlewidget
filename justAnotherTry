@@ -65,6 +65,7 @@ button {
         var storedEvents = null;
         var refreshEvents = 0;
         var i =0;
+        var ownerEvents = [];
 
 function preferencesCallback(prefs) {
   var out = '';
@@ -111,9 +112,9 @@ function eventCallback(response) {
     var k=0;
     for(l=0;l<x.length;l++){
     var e = x[i];
-    storedEvents = [];
+    
     if(e.owner.email==viewer){
-    storedEvents[k]=e;
+    ownerEvents[k]=e;
     k++;
     }
     }
