@@ -161,6 +161,12 @@ function Publish(id){
 
   console.log(data);
 
+  $.post("http://staging.cavantics.com/api/moodCaptureEvent",
+    data,
+    function(resp, status){
+        alert("Data: " + resp + "\nStatus: " + status);
+    });
+
 }
 
 function eventCallback(response) {
@@ -254,7 +260,7 @@ function addToList (form) {
  </script> 
 
  <ul id="out">No event</ul>
- 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
 ]]>
