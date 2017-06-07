@@ -193,7 +193,7 @@ function setDefaultDate(){
   var endDateString = '"'+end.getFullYear()+'-'+end.getMonth()+'-'+end.getDate()+'"';
   form.endDate.value = endDateString;
 }
-setDefaultDate();
+window.onload(setDefaultDate());
  </script> 
 
  
