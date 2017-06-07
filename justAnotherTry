@@ -24,9 +24,20 @@ ul {
     padding: 20px;
 }
 ul li {
-    background: #cce5ff;
-    margin: 5px;
+    margin: 10px 0px;
     font-size: 15px;
+    border-left: 2px solid #03A9F4;
+    padding-left: 5px;
+    list-style-type: none;
+}
+button {
+  display: block;
+    background: #C0CA33;
+    border: 0px;
+    color: #fff;
+    float: left;
+    padding: 5px;
+    margin: 0px 5px;
 }
 
 </style>
@@ -65,7 +76,7 @@ function drawScreen(){
       out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + '</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none">Click 1 </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
   }
-  	
+    
   var html=out;
  document.getElementById('out').innerHTML = html;
 
