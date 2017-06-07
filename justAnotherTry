@@ -29,6 +29,7 @@ ul li {
     border-left: 2px solid #03A9F4;
     padding-left: 5px;
     list-style-type: none;
+    float: left;
 }
 button {
   display: block;
@@ -129,15 +130,19 @@ function showButtons(id)
 {         
     var b1 = document.getElementById('butA'+id);
     var b2 = document.getElementById('butB'+id);
+    var li = document.getElementById('li'+id);
+
     console.log(b1);
     console.log(b2);
     if(b1){
     if (b1.style.display == 'none') {
         b1.style.display = 'block';
         b2.style.display = 'block';
+        li.classList.add("active"); 
     } else {
         b1.style.display = 'none';
         b2.style.display = 'none';
+        li.classList.remove("active");
     }
     }
 }
