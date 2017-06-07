@@ -74,7 +74,7 @@ function preferencesCallback(prefs) {
   if ('military' in prefs) {
     out += "Military time = " + prefs.military + "\n";
   } 
-  out+= "Viewer = " + prefs.viewer + "\n";
+  viewer=prefs.viewer;
   console.log(out);
 }
 
@@ -107,11 +107,19 @@ function eventCallback(response) {
     return;
   }
   if (response && response.length > 0) {
-    storedEvents = response[0].events;
+    x = response[0].events;
+    int k=0;
+    for(l=0;l<x.length;l++){
+    var e = x[i];
+    if(e.owner.email==viewer){
+    storedEvents[k]=e;
+    k++;
+    }
+    }
   } else {
     storedEvents = [];
   }
-  
+  console.log(response[0].events);
   console.log(storedEvents);
 
   drawScreen();
