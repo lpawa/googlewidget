@@ -165,19 +165,23 @@ function showButtons(id)
 setupEventRetrieval();
 
 function addToList (form) {
-        console.log("form.startDate.value");
+        console.log(form.startDate.value);
         var input = _trim(form.startDate.value);
         if (input == "") {
             return;
         }
         console.log(input);
         }
+
+function setDefaultDate(){
+  
+}
  </script> 
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
   <label for="startDate">From: </label>
-  <INPUT TYPE="date" NAME="startDate" VALUE="">
+  <INPUT TYPE="date" NAME="startDate" VALUE="" id = "startDate">
   <label for="startDate">To: </label>
-  <INPUT TYPE="date" NAME="endDate" VALUE="">
+  <INPUT TYPE="date" NAME="endDate" VALUE="" id="endDate">
   <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
   </FORM>
  <ul id="out">No event</ul>
