@@ -163,11 +163,11 @@ function showButtons(id)
 setupEventRetrieval();
 
 function addToList (form) {
-        var input = _trim(form.inputbox.value);
+        var input = _trim(form.startDate.value);
         if (input == "") {
             return;
         }
-        console.log("input");
+        console.log(input);
         }
  </script> 
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
