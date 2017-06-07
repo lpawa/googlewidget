@@ -174,7 +174,9 @@ function addToList (form) {
         }
  </script> 
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
+  <label for="startDate">From: </label>
   <INPUT TYPE="date" NAME="startDate" VALUE="">
+  <label for="startDate">To: </label>
   <INPUT TYPE="date" NAME="endDate" VALUE="">
   <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
   </FORM>
