@@ -180,9 +180,9 @@ function setDefaultDate(){
   var end = new Date();
   end.setDate(end.getDate() + 14);
   var calendarEndDate = google.calendar.utils.fromDate(end);
-  var startDateString = '"'+start.getFullyear()+'-'+start.getMonth()+'-'+start.getDate()+'"';
+  var startDateString = '"'+start.getFullYear()+'-'+start.getMonth()+'-'+start.getDate()+'"';
   form.startDate.value = startDateString;
-  var endDateString = '"'+end.getFullyear()+'-'+end.getMonth()+'-'+end.getDate()+'"';
+  var endDateString = '"'+end.getFullYear()+'-'+end.getMonth()+'-'+end.getDate()+'"';
   form.endDate.value = endDateString;
 }
 setDefaultDate();
