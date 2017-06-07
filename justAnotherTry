@@ -34,6 +34,7 @@ ul li {
     float: left;
     cursor:pointer;
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 ul li.active {
       background: #03A9F4;
@@ -48,6 +49,7 @@ button {
     padding: 5px;
     margin: 0px 5px;
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 </style>
