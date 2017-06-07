@@ -22,7 +22,7 @@
                                   supported by Chrome and Opera */
 }
 ul {
-    padding: 20px;
+    padding: 0px;
     float: left;
 }
 ul li {
