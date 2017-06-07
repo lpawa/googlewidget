@@ -162,6 +162,7 @@ function Publish(id){
   console.log(data);
 
 }
+
 function eventCallback(response) {
   console.log("Callback Events called");
   var Response = response[0];
@@ -174,7 +175,7 @@ function eventCallback(response) {
     var k=0;
     for(l=0;l<x.length;l++){
     var e = x[l];
-    
+    ownerEvents=[];
     if(e.owner.email==viewer){
     console.log(e);
     console.log(l);
