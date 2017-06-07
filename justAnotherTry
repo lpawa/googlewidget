@@ -36,6 +36,7 @@ ul li {
         var curEventId = null;    
         var storedEvents = null;
         var refreshEvents = 0;
+        var i =0;
 
 function preferencesCallback(prefs) {
   var out = '';
