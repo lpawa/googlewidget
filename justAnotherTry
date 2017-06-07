@@ -91,7 +91,7 @@ function drawScreen(){
   for(var i = 0; i < count; ++i) {
     var e = storedEvents[i];
     if ('title' in e) {
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + '</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none">Click 1 </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + e.startTime '</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none">Click 1 </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
   }
     
