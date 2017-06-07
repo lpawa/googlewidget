@@ -116,7 +116,7 @@ function setupEventRetrieval() {
 }
 function showButtons(id)
 {         
-    var x = document.getElementByClassName('but'+id);
+    var x = document.getElementsByClassName('but'+id);
     if (x.style.display === 'none') {
         x.style.display = 'block';
     } else {
