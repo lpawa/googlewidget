@@ -121,13 +121,13 @@ console.log(calendarEndDate);
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
 console.log("Events should have been fetched");
 }
-function setupEventRetrieval() {
+<!-- function setupEventRetrieval() {
   <!-- // Ask the container for the next few events. -->
         getEvent();
   <!-- // Request that we be called back when the date changes
   // and then re-fetch the next events. -->
         google.calendar.subscribeToDataChange(getEvent);
-}
+} -->
 function showButtons(id)
 {       
         console.log(id);
