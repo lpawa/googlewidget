@@ -114,9 +114,7 @@ function showButtons(id)
 setupEventRetrieval();
  </script> 
  <ul id="out">No event</ul>
-<center>
- <button onclick="getEvent()">Get Events</button> 
-</center> 
+
 </body>
 </html>
 ]]>
