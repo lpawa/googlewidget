@@ -161,7 +161,7 @@ function Publish(id){
 
   console.log(data);
 
-  $.post("http://staging.cavantics.com/api/moodCaptureEvent",
+  $.post("https://app.cavantics.com/api/moodCaptureEvent",
     data,
     function(resp, status){
         alert("Data: " + resp + "\nStatus: " + status);
