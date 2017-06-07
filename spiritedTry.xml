@@ -1,3 +1,4 @@
+//spirited try
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="Get Events Test" height="500" author="lakshya" author_email="lakshyapawa@google.com">
@@ -30,6 +31,12 @@ ul li {
 
 </style>
 <script> 
+
+        var viewer = null; 
+        var curEventId = null;    
+        var storedEvents = null;
+        var refreshEvents = 0;
+
 function preferencesCallback(prefs) {
   var out = '';
   if ('startdow' in prefs) {
@@ -62,18 +69,12 @@ gadgets.util.registerOnLoadHandler(function() {
   console.log("Event should have been called");
 });
 
-function eventCallback(response) {
-  console.log("Callback Events called");
-  var Response = response[0];
-  if ('error' in response[0]) {
-    alert('Something went wrong');
-    return;
-  }
-  console.log(Response);
-  var events = response[0]['events'];
+function drawScreen(){
+  console.log("drawing begins");
+  var count = (storedEvents && storedEvents.length) || 0;
   var out = '';
-  for(var i = 0; i < events.length; ++i) {
-    var e = events[i];
+  for(var i = 0; i < count; ++i) {
+    var e = storedEvents[i];
     if ('title' in e) {
       out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons(div'+i+')">' + e.title + '</li></div>\n';
     }
@@ -82,6 +83,25 @@ function eventCallback(response) {
   var html=out;
  document.getElementById('out').innerHTML = html;
 
+}
+
+function eventCallback(response) {
+  console.log("Callback Events called");
+  var Response = response[0];
+  if ('error' in response[0]) {
+    alert('Something went wrong');
+    return;
+  }
+  if (events && events.length > 0) {
+    storedEvents = events[0].events;
+  } else {
+    storedEvents = [];
+  }
+  
+  console.log(storedEvents);
+
+  drawScreen();
+  
 }  
 var start = new Date();
 var calendarStartDate = google.calendar.utils.fromDate(start);
@@ -100,6 +120,13 @@ console.log("End time:-" + end);
 console.log(calendarEndDate);
 google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate);
 console.log("Events should have been fetched");
+}
+function setupEventRetrieval() {
+  <!-- // Ask the container for the next few events. -->
+        getEvent();
+  <!-- // Request that we be called back when the date changes
+  // and then re-fetch the next events. -->
+        google.calendar.subscribeToDataChange(getEvent);
 }
 function showButtons(id)
 {       
