@@ -180,8 +180,10 @@ function setDefaultDate(){
  <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
   <label for="startDate">From: </label>
   <INPUT TYPE="date" NAME="startDate" VALUE="2017-06-05" id = "startDate">
+  <input type="time" name="startTime" id="startTime"> 
   <label for="startDate">To: </label>
   <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
+  <input type="time" name="endTime" id="endTime">
   <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
   </FORM>
  <ul id="out">No event</ul>
