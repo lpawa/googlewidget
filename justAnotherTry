@@ -108,7 +108,7 @@ function eventCallback(response) {
   }
   if (response && response.length > 0) {
     x = response[0].events;
-    int k=0;
+    var k=0;
     for(l=0;l<x.length;l++){
     var e = x[i];
     if(e.owner.email==viewer){
