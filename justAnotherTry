@@ -91,7 +91,7 @@ function drawScreen(){
   for(var i = 0; i < count; ++i) {
     var e = storedEvents[i];
     if ('title' in e) {
-      if(e.startTime.minute){
+      if(e.startTime.minute<10){
       min = "0"+e.startTime.minute;
       }
       else{
