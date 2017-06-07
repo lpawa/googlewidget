@@ -161,8 +161,18 @@ function showButtons(id)
     }
 }
 setupEventRetrieval();
- </script> 
 
+function addToList (form) {
+        var input = _trim(form.inputbox.value);
+        if (input == "") {
+            return;
+        }
+        console.log("input");
+ </script> 
+ <FORM NAME="myform" ACTION="" METHOD="GET"><BR>
+  <INPUT TYPE="date" NAME="startDate" VALUE="">
+  <INPUT TYPE="button" NAME="button" Value="Add" onClick="addToList(this.form)">
+  </FORM>
  <ul id="out">No event</ul>
  
 </body>
