@@ -124,6 +124,7 @@ function showButtons(id)
     id.innerHTML += html;
     }
 }
+setupEventRetrieval();
  </script> 
  <ul id="out">No event</ul>
 <center>
