@@ -57,7 +57,15 @@ button {
 </style>
 </head>
 <body>
-
+ <FORM NAME="myform" ACTION="" METHOD="GET" id="myform"><BR>
+  <label for="startDate">From: </label>
+  <INPUT TYPE="date" NAME="startDate" value id = "startDate">
+  <input type="time" name="startTime" value id="startTime"><br>
+  <label for="startDate">To: </label>
+  <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
+  <input type="time" name="endTime" value id="endTime"><br>
+  </FORM>
+ <ul id="out">No event</ul>
 <script> 
 
         var viewer = null; 
@@ -187,15 +195,7 @@ function setDefaultDate(){
 }
 setDefaultDate();
  </script> 
- <FORM NAME="myform" ACTION="" METHOD="GET" id="myform"><BR>
-  <label for="startDate">From: </label>
-  <INPUT TYPE="date" NAME="startDate" value id = "startDate">
-  <input type="time" name="startTime" value id="startTime"><br>
-  <label for="startDate">To: </label>
-  <INPUT TYPE="date" NAME="endDate" VALUE="2017-06-09" id="endDate">
-  <input type="time" name="endTime" value id="endTime"><br>
-  </FORM>
- <ul id="out">No event</ul>
+
  
 </body>
 </html>
