@@ -117,7 +117,7 @@ button {
 
         }
 
-        vat TestTemplate2 = {
+        var TestTemplate2 = {
   "userId":"68",
   "title":"Idris Event7",
   "hashtag":"IdrisEvent7",
