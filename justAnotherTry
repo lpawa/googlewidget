@@ -70,7 +70,7 @@ button {
         var calendarEndDate=null;
 
         var EventTemplate={
-        "userId":"68",
+        "userId":"143",
         "title":"",
         "hashtag":"",
         "description":"",
@@ -83,17 +83,13 @@ button {
         "thankYouNote":"Thank You!",
         "isReversed":"false",
         "isOrgEvent":"false",
-        "moods":[{
-          "moodName":"Awesome",
-          "moodType":"HAPPY",
-          "order":"5"
-        },
-        {
-          "moodName":"Nice",
-          "moodType":"Excited",
-          "order":"3"
-        }
-        ]
+        "moods":[
+        {"moodName":"Excited","moodType":"EXCITED","order":1},
+        {"moodName":"Indifferent","moodType":"INDIFFERENT","order":3},
+        {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
+        {"moodName":"Happy","moodType":"HAPPY","order":2},
+        {"moodName":"Bored","moodType":"BORED","order":4},
+        {"moodName":"Angry","moodType":"ANGRY","order":6}]
         }
 
 function preferencesCallback(prefs) {
@@ -168,9 +164,9 @@ function Publish(id){
   console.log(data);
 
   $.ajax({
-    url: 'https://app.cavantics.com/api/moodCaptureEvent',
+    url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
     headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY4NDkyODAsImlhdCI6MTQ5NjgxMzI4MH0.yZunKkI7zPAGQm5njbl_QQsWhJK6OWtteYfJi4lXmBs',
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY5NTQxOTYsImlhdCI6MTQ5NjkxODE5Nn0.OZPHOBdInR-Bo3_DCkN2fTeEqdR0YwQvv2r349J5A_8',
         'Content-Type':'application/json'
     },
     method: 'POST',
