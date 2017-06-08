@@ -222,6 +222,7 @@ function Publish(id){
         'content-type':'application/json'
     },
     method: 'POST',
+    dataType: "json",
     data:TestTemplate2 ,
     success: function(datas){
       console.log('success: '+datas);
