@@ -170,10 +170,9 @@ function Publish(id){
         'Content-Type':'application/json'
     },
     method: 'POST',
-    dataType: 'json',
-    data: data,
+    data: data ,
     success: function(datas){
-      console.log('succes: '+datas);
+      console.log('success: '+datas);
     }
   });
 }
