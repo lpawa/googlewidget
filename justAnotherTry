@@ -70,7 +70,7 @@ button {
         var calendarEndDate=null;
 
         var EventTemplate={
-        "userId":"",
+        "userId":"68",
         "title":"",
         "hashtag":"",
         "description":"",
@@ -167,12 +167,19 @@ function Publish(id){
 
   console.log(data);
 
-  $.post("https://staging.cavantics.com/api/moodCaptureEvent",
-    data,
-    function(resp, status){
-        alert("Data: " + resp + "\nStatus: " + status);
-    });
-
+  $.ajax({
+    url: 'https://app.cavantics.com/api/moodCaptureEvent',
+    headers: {
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY4NDkyODAsImlhdCI6MTQ5NjgxMzI4MH0.yZunKkI7zPAGQm5njbl_QQsWhJK6OWtteYfJi4lXmBs',
+        'Content-Type':'application/json'
+    },
+    method: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function(datas){
+      console.log('succes: '+datas);
+    }
+  });
 }
 
 function eventCallback(response) {
