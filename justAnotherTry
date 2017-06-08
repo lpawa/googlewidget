@@ -117,6 +117,33 @@ button {
 
         }
 
+        vat TestTemplate2 = {
+  "userId":"68",
+  "title":"Idris Event7",
+  "hashtag":"IdrisEvent7",
+  "description":"Let's make this event big!",
+  "type":"Normal",
+  "startDateTime":"2017-03-10 07:10:10",
+    "endDateTime":"2017-05-24 10:10:10",
+  "linkLiveDate": "2017-03-10 07:10:10",
+    "linkExpiryDate": "2017-05-24 10:10:10",
+  "imageURLId":"2",
+  "thankYouNote":"Thank You!",
+  "isReversed":"false",
+  "isOrgEvent":"true",
+  "moods":[{
+    "moodName":"Awesome",
+    "moodType":"HAPPY",
+    "order":"5"
+  },
+  {
+    "moodName":"Nice",
+    "moodType":"Excited",
+    "order":"3"
+  }
+  ]
+}
+
 function preferencesCallback(prefs) {
   var out = '';
   if ('startdow' in prefs) {
@@ -194,7 +221,7 @@ function Publish(id){
         'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY5NTQxOTYsImlhdCI6MTQ5NjkxODE5Nn0.OZPHOBdInR-Bo3_DCkN2fTeEqdR0YwQvv2r349J5A_8'
     },
     method: 'POST',
-    data: JSON.parse(TestTemplate) ,
+    data:TestTemplate2 ,
     success: function(datas){
       console.log('success: '+datas);
     }
