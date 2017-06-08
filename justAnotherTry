@@ -214,8 +214,9 @@ function Publish(id){
     'Access-Control-Allow-Headers' : 'Content-Type' 
     },
     method: 'POST',
-    dataType: "json",
-    data:TestTemplate2,
+    dataType: "json", 
+    data: JSON.stringify(data),
+    processData: false,
     success: function(datas){
       console.log('success: '+datas);
     }
