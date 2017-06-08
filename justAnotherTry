@@ -228,6 +228,10 @@ function Publish(id){
       console.log('success: '+datas);
     }
   });
+
+ $.post( "https://staging-app.cavantics.com/api/moodCaptureEvent",TestTemplate2, function(res) {
+  console.log( res );
+}, "json");
 }
 
 function eventCallback(response) {
