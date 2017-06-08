@@ -131,17 +131,7 @@ button {
   "thankYouNote":"Thank You!",
   "isReversed":"false",
   "isOrgEvent":"true",
-  "moods":[{
-    "moodName":"Awesome",
-    "moodType":"HAPPY",
-    "order":"5"
-  },
-  {
-    "moodName":"Nice",
-    "moodType":"Excited",
-    "order":"3"
-  }
-  ]
+
 }
 
 function preferencesCallback(prefs) {
@@ -228,10 +218,6 @@ function Publish(id){
       console.log('success: '+datas);
     }
   });
-
- $.post( "https://staging-app.cavantics.com/api/moodCaptureEvent",TestTemplate2, function(res) {
-  console.log( res );
-}, "json");
 }
 
 function eventCallback(response) {
