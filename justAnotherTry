@@ -140,7 +140,7 @@ function drawScreen(){
     else{
     out='No events in next 7 days';
     }
-  }
+  
     
   var html=out;
  document.getElementById('out').innerHTML = html;
