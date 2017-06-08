@@ -117,6 +117,7 @@ function drawScreen(){
   console.log("drawing begins");
   var count = (storedEvents && storedEvents.length) || 0;
   var out = '';
+  if(storedEvents.length>0){
   for(var i = 0; i < count; ++i) {
     var e = storedEvents[i];
     if ('title' in e) {
@@ -133,6 +134,10 @@ function drawScreen(){
       minE=e.endTime.minute;
       }
       out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+    }
+    }
+    else{
+    out='No events in next 7 days';
     }
   }
     
@@ -259,7 +264,7 @@ function addToList (form) {
 
  </script> 
 
- <ul id="out">No event</ul>
+ <ul id="out">loading</ul>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
