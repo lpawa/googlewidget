@@ -210,8 +210,8 @@ function Publish(id){
     headers: {
         'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY5NTQxOTYsImlhdCI6MTQ5NjkxODE5Nn0.OZPHOBdInR-Bo3_DCkN2fTeEqdR0YwQvv2r349J5A_8',
         'content-type':'application/json',
-        Access-Control-Allow-Origin  : '*', 
-    Access-Control-Allow-Headers : 'Content-Type' 
+        'Access-Control-Allow-Origin'  : '*', 
+    'Access-Control-Allow-Headers' : 'Content-Type' 
     },
     method: 'POST',
     dataType: "json",
