@@ -90,6 +90,31 @@ button {
         {"moodName":"Happy","moodType":"HAPPY","order":2},
         {"moodName":"Bored","moodType":"BORED","order":4},
         {"moodName":"Angry","moodType":"ANGRY","order":6}]
+
+        }
+
+        var TestTemplate={
+        "userId":"143",
+        "title":"a test data",
+        "hashtag":"atestdata",
+        "description":"something cool",
+        "type":"Normal",
+        "startDateTime":"2017-03-01 07:10:00",
+        "endDateTime":"2017-05-24 07:10:00",
+        "linkLiveDate": "2017-03-01 07:10:00",
+        "linkExpiryDate": "2017-05-24 07:10:00",
+        "imageURLId":"",
+        "thankYouNote":"Thank You!",
+        "isReversed":"false",
+        "isOrgEvent":"false",
+        "moods":[
+        {"moodName":"Excited","moodType":"EXCITED","order":1},
+        {"moodName":"Indifferent","moodType":"INDIFFERENT","order":3},
+        {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
+        {"moodName":"Happy","moodType":"HAPPY","order":2},
+        {"moodName":"Bored","moodType":"BORED","order":4},
+        {"moodName":"Angry","moodType":"ANGRY","order":6}]
+
         }
 
 function preferencesCallback(prefs) {
@@ -169,7 +194,7 @@ function Publish(id){
         'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTY5NTQxOTYsImlhdCI6MTQ5NjkxODE5Nn0.OZPHOBdInR-Bo3_DCkN2fTeEqdR0YwQvv2r349J5A_8'
     },
     method: 'POST',
-    data: data ,
+    data: TestTemplate ,
     success: function(datas){
       console.log('success: '+datas);
     }
