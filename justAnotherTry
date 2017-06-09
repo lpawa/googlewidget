@@ -21,6 +21,11 @@
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+
+iframe{
+width:170px;
+}
+
 ul {
     padding: 0px;
     float: left;
