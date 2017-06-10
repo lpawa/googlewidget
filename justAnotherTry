@@ -302,7 +302,7 @@ function showButtons(id)
     }
 }
 setupEventRetrieval();
-signIn(){
+function signIn(){
   document.forms.getStorageDataForm.submit();
 }
   
