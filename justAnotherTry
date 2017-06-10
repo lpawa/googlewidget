@@ -22,10 +22,6 @@
                                   supported by Chrome and Opera */
 }
 
-iframe{
-width:170px;
-}
-
 ul {
     padding: 0px;
     float: left;
@@ -307,19 +303,29 @@ function showButtons(id)
 }
 setupEventRetrieval();
 
-function addToList (form) {
-        console.log(form.startDate.value);
-        var input = _trim(form.startDate.value);
-        if (input == "") {
-            return;
-        }
-        console.log(input);
-        }
+  function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
 
  </script> 
-  <iframe src="https://staging-app.cavantics.com"></iframe> 
+ <form action="https://staging.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
+    <input type="hidden" name="type" value="login" />
+    <input type="hidden" name="email" value="" />
+    <input type="hidden" id="signinCallback" name="callbackURL" value="https://calendar.google.com"/>
+</form>
+ <div id="my-signin2"></div>
  <ul id="out">loading</ul>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
 </body>
 </html>
 ]]>
