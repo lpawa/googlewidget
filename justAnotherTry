@@ -9,7 +9,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
 <html>
 <head>
-  <meta name="google-signin-client_id" content="1007240448791-e34hqf1ji6ltfkleg4mvecq0am26i31s.apps.googleusercontent.com">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic,greek,vietnamese" rel="stylesheet">
 <style>
 
@@ -303,31 +302,17 @@ function showButtons(id)
     }
 }
 setupEventRetrieval();
-
-  function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 170,
-        'height': 40,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
+signIn(){
+  document.forms.getStorageDataForm.submit();
+}
+  
  </script> 
  <form action="https://staging.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
     <input type="hidden" name="type" value="login" />
     <input type="hidden" name="email" value="" />
     <input type="hidden" id="signinCallback" name="callbackURL" value="https://calendar.google.com"/>
 </form>
- <div id="my-signin2"></div>
+ <button id= "signin" onclick="signIn()">Sign In With Google</button>
  <ul id="out">loading</ul>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
