@@ -307,7 +307,7 @@ setupEventRetrieval();
   function renderButton() {
       gapi.signin2.render('my-signin2', {
         'scope': 'profile email',
-        'width': 120,
+        'width': 170,
         'height': 40,
         'longtitle': true,
         'theme': 'dark',
