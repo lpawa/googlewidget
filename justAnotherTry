@@ -189,7 +189,9 @@ function Publish(id){
   var e = storedEvents[id];
   var data = EventTemplate;
   data.title = e.title;
-  data.hashtag = e.title.replace(/\s/g,'');
+  var str = e.title.replace(/\s/g,'');
+  str = str.replace(/[^a-zA-Z ]/g, "");
+  data.hashtag = str;
   if(e.details){
   data.description = e.details;
   }
