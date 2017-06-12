@@ -222,9 +222,7 @@ function Publish(id){
   data.title = e.title;
   var str = e.title.replace(/\s/g,'');
   str = str.replace(/[^a-zA-Z ]/g, "");
-  var HashFlag = CheckHashtag(str);
-  console.log("HashFlag Status" + HashFlag);
-  if(HashFlag){
+  if(CheckHashtag(str)){
     Popup(id);
   }
   else{
