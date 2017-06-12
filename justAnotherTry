@@ -388,7 +388,14 @@ function showButtons(id)
 }
 setupEventRetrieval();
 function signIn(){
-  document.forms.getStorageDataForm.submit();
+  $.get(https://weetingstage.auth0.com/authorize?
+  response_type=token&
+  client_id=I2O3p1D2PfcUFjpitixm47zcwkmhz8S3&
+  connection=google-oauth2&
+  redirect_uri=https://calendar.google.com);
+
+  <!-- document.forms.getStorageDataForm.submit(); -->
+  
 }
   
  </script> 
@@ -400,7 +407,7 @@ function signIn(){
  <button id= "signin" onclick="signIn()">Sign In With Google</button>
  <ul id="out">loading</ul>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+ <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
 </body>
 </html>
 ]]>
