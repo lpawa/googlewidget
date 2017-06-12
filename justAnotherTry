@@ -172,7 +172,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
     }
     }
@@ -198,21 +198,31 @@ function CheckHashtag(hashtag){
     method: 'GET',
     dataType: "json", 
     processData: false,
-    success: function(datas){
+    success: function(result){
       console.log("Status of hashtag:- ");
-      console.log(datas);
+      console.log(result);
+      return result.status;
     }
   });
 }
-
-
+}
+function Popup(id){
+  var e = storedEvents[id];
+  var html = "";
+  html = "The hashtag is not unique";
+  document.getElementById('pop'+id).innerHTML = html;
+ }
 function Publish(id){
   var e = storedEvents[id];
   var data = EventTemplate;
   data.title = e.title;
   var str = e.title.replace(/\s/g,'');
   str = str.replace(/[^a-zA-Z ]/g, "");
-  CheckHashtag(str);
+  var HashFlag = CheckHashtag(str);
+  if(HashFlag){
+    Popup(id);
+  }
+  else{
   data.hashtag = str;
   if(e.details){
   data.description = e.details;
@@ -246,6 +256,7 @@ function Publish(id){
       console.log('success: '+datas);
     }
   });
+  }
 }
 
 function eventCallback(response) {
