@@ -395,7 +395,6 @@ function signIn(){
          type: "GET",
          success: function() { alert('Success!' + authHeader); }
       });
-  $.get("
   <!-- document.forms.getStorageDataForm.submit(); -->
   
 }
