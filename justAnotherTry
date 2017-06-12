@@ -187,6 +187,7 @@ function drawScreen(){
 }
 
 function CheckHashtag(hashtag){
+    var status;
     $.ajax({
     url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + hashtag,
     headers: {
@@ -201,10 +202,11 @@ function CheckHashtag(hashtag){
     success: function(result){
       console.log("Status of hashtag:- ");
       console.log(result);
-      var status= result.status;
-      return (status);
+      status= result.status;
+      console.log(status);
     }
   });
+  returm status;
 }
 
 function Popup(id){
