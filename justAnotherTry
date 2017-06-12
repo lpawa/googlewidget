@@ -54,6 +54,18 @@ button {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
 }
+p {
+  display: block;
+    background:F7B583;
+    border: 0px;
+    color: #fff;
+    float: left;
+    padding: 5px;
+    margin: 0px 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
 
 </style>
 </head>
@@ -202,11 +214,13 @@ function CheckHashtag(hashtag){
     success: function(result){
       console.log("Status of hashtag:- ");
       console.log(result);
-      status= result.status;
-      console.log(status);
     }
-  });
-  return status;
+  })
+    .done(function(result){
+      status= result.status;
+      return status;
+    })
+  
 }
 
 function Popup(id){
