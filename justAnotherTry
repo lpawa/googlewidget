@@ -238,8 +238,7 @@ function Publish(id){
   var str = e.title.replace(/\s/g,'');
   str = str.replace(/[^a-zA-Z ]/g, "");
   CheckHashtag(str).then(
-    Popup(id),else
-  {
+    Popup(id),function(){
   data.hashtag = str;
   if(e.details){
   data.description = e.details;
