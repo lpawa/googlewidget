@@ -239,11 +239,11 @@ function Popup(id){
   if(publishFlag>-1 && publishFlag!=id)
   {
     var p2 = document.getElementById('pop'+publishFlag);
-    $(p2).toggle(1000);
+    $(p2).toggle();
   }
   console.log("Popup called")
   var p1 = document.getElementById('pop'+id);
-  $(p1).toggle(1000);
+  $(p1).toggle();
   if(publishFlag!=id){
     publishFlag= id;
     }
@@ -355,6 +355,11 @@ function showButtons(id)
     var b1 = document.getElementById('butA'+id);
     var b2 = document.getElementById('butB'+id);
     var li = document.getElementById('li'+id);
+    if(publishFlag>-1){
+    var p2 = document.getElementById('pop'+publishFlag);
+    $(p2).toggle();
+    publishFlag=-1;
+    }
     if(curEventId>-1&&curEventId!=id){
       var b3 = document.getElementById('butA'+curEventId);
     var b4 = document.getElementById('butB'+curEventId);
