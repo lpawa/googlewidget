@@ -218,10 +218,9 @@ function CheckHashtag(hashtag){
   })
     .done(function(result){
       status= result.status;
-      console.log(status);
-      return status;
+      console.log(status);      
     })
-  
+  return status;
 }
 
 function Popup(id){
