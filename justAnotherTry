@@ -401,7 +401,8 @@ function signIn(){
   <!-- document.forms.getStorageDataForm.submit(); -->
   var webAuth = new auth0.WebAuth({
     domain:       'weetingstage.auth0.com',
-    clientID:     'I2O3p1D2PfcUFjpitixm47zcwkmhz8S3'
+    clientID:     'I2O3p1D2PfcUFjpitixm47zcwkmhz8S3',
+    response_type : 'token'
   });
   
   // Trigger login with google
