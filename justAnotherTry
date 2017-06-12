@@ -185,7 +185,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+') style="display:none">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
     }
     }
@@ -351,15 +351,9 @@ function showButtons(id)
     console.log(b1);
     console.log(b2);
     if(b1){
-    if (b1.style.display == 'none') {
-        b1.style.display = 'block';
-        b2.style.display = 'block';
-        li.classList.add("active"); 
-    } else {
-        b1.style.display = 'none';
-        b2.style.display = 'none';
-        li.classList.remove("active");
-    }
+    $(b1).toggle(slow);
+    $(b2).toggle(slow);
+
     }
 }
 setupEventRetrieval();
@@ -376,7 +370,6 @@ function signIn(){
  <button id= "signin" onclick="signIn()">Sign In With Google</button>
  <ul id="out">loading</ul>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </body>
 </html>
