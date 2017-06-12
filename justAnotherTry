@@ -232,7 +232,6 @@ function CheckHashtag(id){
       CreateActivity(id);
       }
     })
-  return status;
 }
 
 function Popup(id){
