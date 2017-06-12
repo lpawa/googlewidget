@@ -235,15 +235,20 @@ function CheckHashtag(id){
 }
 
 function Popup(id){
-  if(publishFlag>-1)
+  if(publishFlag>-1 && publishFlag!=id)
   {
-    var e = storedEvents[publishFlag];
-    $(e).toggle(1000);
+    var p2 = document.getElementById('pop'+publishFlag);
+    $(p2).toggle(1000);
   }
   console.log("Popup called")
-  var e = storedEvents[id];
-  $(e).toggle(1000);
-  publishFlag = id;
+  var p1 = document.getElementById('pop'+publishFlag);
+  $(p1).toggle(1000);
+  if(publishFlag!=id){
+    publishFlag= id;
+    }
+    else{
+    publishFlag = -1;
+    }
  }
 
 function CreateActivity(id){
