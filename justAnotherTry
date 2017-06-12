@@ -205,7 +205,7 @@ function CheckHashtag(hashtag){
     }
   });
 }
-}
+
 function Popup(id){
   var e = storedEvents[id];
   var html = "";
