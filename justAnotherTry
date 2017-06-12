@@ -351,8 +351,8 @@ function showButtons(id)
     console.log(b1);
     console.log(b2);
     if(b1){
-    $(b1).toggle(slow);
-    $(b2).toggle(slow);
+    $(b1).toggle(1000);
+    $(b2).toggle(1000);
 
     }
 }
