@@ -350,7 +350,7 @@ function showButtons(id)
     var b1 = document.getElementById('butA'+id);
     var b2 = document.getElementById('butB'+id);
     var li = document.getElementById('li'+id);
-    if(curEventId>-1){
+    if(curEventId>-1 && curEventId!=id){
       var b3 = document.getElementById('butA'+curEventId);
     var b4 = document.getElementById('butB'+curEventId);
     $(b3).toggle(1000);
