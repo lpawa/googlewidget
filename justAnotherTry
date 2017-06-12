@@ -388,11 +388,7 @@ function showButtons(id)
 }
 setupEventRetrieval();
 function signIn(){
-  $.get(https://weetingstage.auth0.com/authorize?
-  response_type=token&
-  client_id=I2O3p1D2PfcUFjpitixm47zcwkmhz8S3&
-  connection=google-oauth2&
-  redirect_uri=https://calendar.google.com);
+  $.get(https://weetingstage.auth0.com/authorize?response_type=token&client_id=I2O3p1D2PfcUFjpitixm47zcwkmhz8S3&connection=google-oauth2&redirect_uri=https://calendar.google.com);
 
   <!-- document.forms.getStorageDataForm.submit(); -->
   
