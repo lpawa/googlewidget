@@ -44,7 +44,8 @@ ul li.active {
     color: #fff;
 }
 button {
-  display: block;
+    cursor:pointer;
+    display: block;
     background: #C0CA33;
     border: 0px;
     color: #fff;
@@ -57,7 +58,7 @@ button {
 p {
     cursor:pointer;
     display: block;
-    background:#F7B583;
+    background:#D44937;
     border: 0px;
     color: #fff;
     float: left;
