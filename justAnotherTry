@@ -56,7 +56,7 @@ button {
 }
 p {
   display: block;
-    background: #F7B583;
+    background:#F7B583;
     border: 0px;
     color: #fff;
     float: left;
@@ -64,6 +64,7 @@ p {
     margin: 0px 5px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    font-size:10px;
 }
 
 
@@ -81,7 +82,6 @@ p {
         var ownerEvents = [];
         var calendarStartDate=null;
         var calendarEndDate=null;
-        var status;
 
         var EventTemplate={
         "userId":"143",
@@ -199,10 +199,16 @@ function drawScreen(){
 
 }
 
-function CheckHashtag(hashtag){
-    
+function CheckHashtag(id){
+    var status;
+
+    var e = storedEvents[id];
+    var data = EventTemplate;
+    var str = e.title.replace(/\s/g,'');
+    str = str.replace(/[^a-zA-Z ]/g, "");
+
     $.ajax({
-    url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + hashtag,
+    url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + str,
     headers: {
         'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTcyODEzNzUsImlhdCI6MTQ5NzI0NTM3NX0.DAz08drJlK0cDgAfZ-a1N6H7GJX5L13rgRv-iQtpOh0',
         'content-type':'application/json',
@@ -219,7 +225,13 @@ function CheckHashtag(hashtag){
   })
     .done(function(result){
       status= result.status;
-      console.log(status);      
+      console.log(status);
+      if(status){
+        Popup(id);
+      }
+      else{
+      CreateActivity(id);
+      }
     })
   return status;
 }
@@ -231,14 +243,13 @@ function Popup(id){
   html = "The hashtag is not unique";
   document.getElementById('pop'+id).innerHTML = html;
  }
-function Publish(id){
+
+function CreateActivity(id){
   var e = storedEvents[id];
   var data = EventTemplate;
   data.title = e.title;
   var str = e.title.replace(/\s/g,'');
   str = str.replace(/[^a-zA-Z ]/g, "");
-  CheckHashtag(str).then(
-    Popup(id),function(){
   data.hashtag = str;
   if(e.details){
   data.description = e.details;
@@ -272,7 +283,9 @@ function Publish(id){
       console.log('success: '+datas);
     }
   });
-  });
+}
+function Publish(id){
+  CheckHashtag(id);  
 }
 
 function eventCallback(response) {
