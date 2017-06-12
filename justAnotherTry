@@ -339,7 +339,7 @@ calendarEndDate = google.calendar.utils.fromDate(end);
 
 function getEvent()
 {
-var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details'] }; 
+var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details', 'attendees'] }; 
 console.log("Events trying to be fetched");
 console.log("Start time:-" + start);
 console.log(calendarStartDate)
