@@ -218,7 +218,7 @@ function CheckHashtag(id){
     'Access-Control-Allow-Headers' : 'Content-Type' 
     },
     method: 'GET',
-    dataType: "json", 
+    dataType: "jsonp", 
     processData: false,
     success: function(result){
       console.log("Status of hashtag:- ");
