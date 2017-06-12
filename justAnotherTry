@@ -81,6 +81,7 @@ p {
         var ownerEvents = [];
         var calendarStartDate=null;
         var calendarEndDate=null;
+        var status;
 
         var EventTemplate={
         "userId":"143",
@@ -199,7 +200,7 @@ function drawScreen(){
 }
 
 function CheckHashtag(hashtag){
-    var status;
+    
     $.ajax({
     url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + hashtag,
     headers: {
@@ -236,10 +237,9 @@ function Publish(id){
   data.title = e.title;
   var str = e.title.replace(/\s/g,'');
   str = str.replace(/[^a-zA-Z ]/g, "");
-  if(CheckHashtag(str)){
-    Popup(id);
-  }
-  else{
+  CheckHashtag(str).then(
+    Popup(id),else
+  {
   data.hashtag = str;
   if(e.details){
   data.description = e.details;
@@ -273,7 +273,7 @@ function Publish(id){
       console.log('success: '+datas);
     }
   });
-  }
+  });
 }
 
 function eventCallback(response) {
