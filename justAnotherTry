@@ -56,7 +56,7 @@ button {
 }
 p {
   display: block;
-    background:F7B583;
+    background: #F7B583;
     border: 0px;
     color: #fff;
     float: left;
