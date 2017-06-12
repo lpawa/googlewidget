@@ -185,7 +185,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="Publish('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
     }
     }
@@ -283,9 +283,6 @@ function CreateActivity(id){
       console.log('success: '+datas);
     }
   });
-}
-function Publish(id){
-  CheckHashtag(id);  
 }
 
 function eventCallback(response) {
