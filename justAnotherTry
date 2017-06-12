@@ -80,6 +80,7 @@ p {
         var ownerEvents = [];
         var calendarStartDate=null;
         var calendarEndDate=null;
+        var publishFlag = -1;
 
         var EventTemplate={
         "userId":"143",
@@ -183,7 +184,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'"></p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+') style="display:none">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><p id = "pop'+i+'">The hashtag is not unique.Click to change</p><button class="but'+ i +'" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+') style="display:none">Publish </button > <button class="but'+ i +'" id ="butB'+ i +'" style="display:none">Click 2</button></div>\n';
     }
     }
     }
@@ -235,11 +236,15 @@ function CheckHashtag(id){
 }
 
 function Popup(id){
+  if(publishFlag>-1)
+  {
+    var e = storedEvents[publishFlag];
+    $(e).toggle(1000);
+  }
   console.log("Popup called")
   var e = storedEvents[id];
-  var html = "";
-  html = "The hashtag is not unique";
-  document.getElementById('pop'+id).innerHTML = html;
+  $(e).toggle(1000);
+  publishFlag = id;
  }
 
 function CreateActivity(id){
