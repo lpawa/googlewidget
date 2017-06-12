@@ -201,12 +201,13 @@ function CheckHashtag(hashtag){
     success: function(result){
       console.log("Status of hashtag:- ");
       console.log(result);
-      return result.status;
+      return (result.status);
     }
   });
 }
 
 function Popup(id){
+  console.log("Popup called")
   var e = storedEvents[id];
   var html = "";
   html = "The hashtag is not unique";
