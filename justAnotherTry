@@ -204,7 +204,7 @@ function CheckHashtag(hashtag){
     }
   });
 }
-}
+
 
 function Publish(id){
   var e = storedEvents[id];
