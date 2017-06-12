@@ -206,7 +206,7 @@ function CheckHashtag(hashtag){
       console.log(status);
     }
   });
-  returm status;
+  return status;
 }
 
 function Popup(id){
