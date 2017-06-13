@@ -331,7 +331,7 @@ function CreateActivity(id){
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
-      
+
     }
   });
 }
