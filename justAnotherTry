@@ -68,6 +68,7 @@ p {
     font-size:10px;
 }
 .check{
+  font-size:13px
   cursor:pointer;
     display: block;
         float: left;
