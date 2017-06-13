@@ -416,14 +416,14 @@ function showButtons(id)
     if(curEventId>-1&&curEventId!=id){
       var b3 = document.getElementById('butA'+curEventId);
     var b4 = document.getElementById('butB'+curEventId);
-    $(b3).toggle(1000);
-    $(b4).toggle(1000);
+    $(b3).toggle();
+    $(b4).toggle();
     }
     console.log(b1);
     console.log(b2);
     if(b1){
-    $(b1).toggle(1000);
-    $(b2).toggle(1000);
+    $(b1).toggle();
+    $(b2).toggle();
     $(check).toggle();
     if(curEventId!=id){
     curEventId= id;
