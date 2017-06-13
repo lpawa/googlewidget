@@ -258,7 +258,7 @@ function CheckHashtag(id){
     
   },
   success: function (data){
-    alert(data.status); 
+    console.log("data.status"); 
   }
 })
     .done(function(result){
