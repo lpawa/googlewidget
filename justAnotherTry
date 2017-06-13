@@ -248,23 +248,19 @@ function CheckHashtag(id){
     var data = EventTemplate;
     var str = e.title.replace(/\s/g,'');
     str = str.replace(/[^a-zA-Z ]/g, "");
-
-    $.ajax({
-    url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + str,
-    headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczOTYyMjgsImlhdCI6MTQ5NzM2MDIyOH0.6EYyDsKUREUbkr4Lzwpr6sYu6Wg10k9Q9SJsffFyYnI',
-        'content-type':'application/json',
-        'Access-Control-Allow-Origin'  : '*', 
-    'Access-Control-Allow-Headers' : 'Content-Type' 
-    },
-    method: 'GET',
-    dataType: "jsonp", 
-    processData: false,
-    success: function(result){
-      console.log("Status of hashtag:- ");
-      console.log(result);
-    }
-  })
+    $.ajax
+({
+  type: "GET",
+  url: "https://staging-app.cavantics.com/api/checkHashtagExist/asdfgh",
+  dataType: 'json',
+  headers: {
+    'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczOTYyMjgsImlhdCI6MTQ5NzM2MDIyOH0.6EYyDsKUREUbkr4Lzwpr6sYu6Wg10k9Q9SJsffFyYnI'
+    
+  },
+  success: function (data){
+    alert(data.status); 
+  }
+})
     .done(function(result){
       status= result.status;
       console.log(status);
@@ -452,7 +448,7 @@ function signIn(){
 </form>
  <button id= "signin" onclick="signIn()">Sign In With Google</button>
  <ul id="out">loading</ul>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
 </body>
 </html>
