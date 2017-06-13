@@ -120,9 +120,7 @@ margin:0px;
         {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
         {"moodName":"Happy","moodType":"HAPPY","order":2},
         {"moodName":"Bored","moodType":"BORED","order":4},
-        {"moodName":"Angry","moodType":"ANGRY","order":6}],
-        "attendees":[]
-
+        {"moodName":"Angry","moodType":"ANGRY","order":6}]
         }
 
         var TestTemplate={
@@ -236,8 +234,6 @@ function PublishandEdit(id){
   data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
-  
-  data.attendees=e.attendees;
   console.log("Publish and Edit:- ");
   console.log(data);
   
@@ -318,8 +314,6 @@ function CreateActivity(id){
 
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
-  data.attendees = e.attendees;
-
   console.log(data);
 
   $.ajax({
@@ -328,7 +322,7 @@ function CreateActivity(id){
         'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczNzAyNTAsImlhdCI6MTQ5NzMzNDI1MH0.btcYmtrXoAJ7ojLXIBffv7kjg8m0r4mwrP6oufkr2vQ',
         'content-type':'application/json',
         'Access-Control-Allow-Origin'  : '*', 
-    'Access-Control-Allow-Headers' : 'Content-Type' 
+    'Access-Control-Allow-Headers' : 'Content-Type'   
     },
     method: 'POST',
     dataType: "json", 
