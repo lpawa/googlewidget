@@ -424,7 +424,7 @@ function showButtons(id)
     if(b1){
     $(b1).toggle(1000);
     $(b2).toggle(1000);
-    $(check).toggle(1000);
+    $(check).toggle();
     if(curEventId!=id){
     curEventId= id;
     }
