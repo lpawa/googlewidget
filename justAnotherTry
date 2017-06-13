@@ -105,7 +105,8 @@ p {
         {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
         {"moodName":"Happy","moodType":"HAPPY","order":2},
         {"moodName":"Bored","moodType":"BORED","order":4},
-        {"moodName":"Angry","moodType":"ANGRY","order":6}]
+        {"moodName":"Angry","moodType":"ANGRY","order":6}],
+        "attendees":[]
 
         }
 
@@ -201,6 +202,30 @@ function drawScreen(){
 
 }
 function PublishandEdit(id){
+  var e = storedEvents[id];
+  var data = EventTemplate;
+  data.title = e.title;
+  var str = e.title.replace(/\s/g,'');
+  str = str.replace(/[^a-zA-Z ]/g, "");
+  data.hashtag = str;
+  if(e.details){
+  data.description = e.details;
+  }
+  data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+  data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+  var linkStartDay = e.startTime.date - 1;
+  var linkEndDay = e.endTime.date + 1;
+
+  data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+  data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+  
+  data.attendees=e.attendees;
+  console.log("Publish and Edit:- ");
+  console.log(data);
+  
   window.open('http://www.google.com', '_blank');
 
 }
@@ -278,6 +303,8 @@ function CreateActivity(id){
 
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
+  data.attendees = e.attendees;
+
   console.log(data);
 
   $.ajax({
@@ -339,7 +366,7 @@ calendarEndDate = google.calendar.utils.fromDate(end);
 
 function getEvent()
 {
-var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details'] }; 
+var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details', 'attendees'] }; 
 console.log("Events trying to be fetched");
 console.log("Start time:-" + start);
 console.log(calendarStartDate)
@@ -399,16 +426,7 @@ function signIn(){
          type: "GET"
         });
   <!-- document.forms.getStorageDataForm.submit(); -->
-  var webAuth = new auth0.WebAuth({
-    domain:       'weetingstage.auth0.com',
-    clientID:     'I2O3p1D2PfcUFjpitixm47zcwkmhz8S3',
-    response_type : 'token'
-  });
   
-  // Trigger login with google
-  webAuth.popup.authorize({
-    connection: 'google-oauth2'
-  });
 }
   
  </script> 
