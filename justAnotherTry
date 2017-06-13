@@ -429,14 +429,17 @@ function showButtons(id)
 }
 setupEventRetrieval();
 function signIn(){
-  $.ajax({
+<!--   $.ajax({
          url:"https://staging-app.cavantics.com/api/signInGoogle",
          
          headers: { 'Access-Control-Allow-Origin'  : '*', 
     'Access-Control-Allow-Headers' : 'Content-Type' },
          type: "GET"
-        });
+        }); -->
   <!-- document.forms.getStorageDataForm.submit(); -->
+
+    var childWin = window.open("https://www.google.com", "_blank", "height=400, width=550, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+
   
 }
   
