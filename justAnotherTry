@@ -121,6 +121,7 @@ margin:0px;
         {"moodName":"Happy","moodType":"HAPPY","order":2},
         {"moodName":"Bored","moodType":"BORED","order":4},
         {"moodName":"Angry","moodType":"ANGRY","order":6}]
+
         }
 
         var TestTemplate={
@@ -251,7 +252,7 @@ function CheckHashtag(id){
     $.ajax({
     url: 'https://staging-app.cavantics.com/api/checkHashtagExist/' + str,
     headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczNzAyNTAsImlhdCI6MTQ5NzMzNDI1MH0.btcYmtrXoAJ7ojLXIBffv7kjg8m0r4mwrP6oufkr2vQ',
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczOTI3NzEsImlhdCI6MTQ5NzM1Njc3MX0.8InbzPKKouoab6uZdw6MDEEJcnq1mPqRBIsm-pVeg0s',
         'content-type':'application/json',
         'Access-Control-Allow-Origin'  : '*', 
     'Access-Control-Allow-Headers' : 'Content-Type' 
@@ -315,11 +316,11 @@ function CreateActivity(id){
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
   console.log(data);
-
+  var attendee = e.attendees;
   $.ajax({
     url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
     headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczNzAyNTAsImlhdCI6MTQ5NzMzNDI1MH0.btcYmtrXoAJ7ojLXIBffv7kjg8m0r4mwrP6oufkr2vQ',
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTczOTI3NzEsImlhdCI6MTQ5NzM1Njc3MX0.8InbzPKKouoab6uZdw6MDEEJcnq1mPqRBIsm-pVeg0s',
         'content-type':'application/json',
         'Access-Control-Allow-Origin'  : '*', 
     'Access-Control-Allow-Headers' : 'Content-Type'   
@@ -330,6 +331,7 @@ function CreateActivity(id){
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
+      
     }
   });
 }
