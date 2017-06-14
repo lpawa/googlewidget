@@ -288,10 +288,7 @@ function Popup(id){
     else{
     publishFlag = -1;
     }
-     if($("#cb"+id).is(':checked')){
-        var attendee = e.attendees;
-        console.log("Call Invite function");
-    }
+   
  }
 
 function CreateActivity(id){
