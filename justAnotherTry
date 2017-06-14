@@ -440,6 +440,18 @@ function signIn(){
 
   
 }
+function receiveMessage(e) {
+    // Check to make sure that this message came from the correct domain
+
+    // Update the div element to display the message.
+    console.log("Message Received: " + e.data);
+  }
+
+  // Setup an event listener that calls receiveMessage() when the window
+  // receives a new MessageEvent.
+  window.addEventListener('message', receiveMessage);
+}
+
   function setData(data) {
         console.log(data);
         var strData = JSON.stringify(data);
