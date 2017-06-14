@@ -436,7 +436,7 @@ function showButtons(id)
 setupEventRetrieval();
 function signIn(){
 
-    var childWin = window.open("https://www.google.com", "_blank", "height=400, width=550, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+    var childWin = window.open("https://raw.githubusercontent.com/lpawa/googlewidget/master/popup.html", "_blank", "height=400, width=350, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
 
   
 }
