@@ -312,7 +312,12 @@ function CreateActivity(id){
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
   console.log(data);
-  var attendee = e.attendees;
+  
+     if($("#cb"+id).is(':checked')){
+        var attendee = e.attendees;
+        console.log("Call Invite function");
+    }
+
   $.ajax({
     url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
     headers: {
