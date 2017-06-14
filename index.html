@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	var data = { "token":"12354"};
 	 function OKClicked(){
-		 	postMessage('Hello Treehouse!', 'https://calendar.google.com');
+		 	window.opener.postMessage('Hello Treehouse!', 'https://calendar.google.com');
                             window.close(); //Close this child window  
             }
 	
