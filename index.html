@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Popup window</h1>
-<button onclick="OKClicked()">Click me!</button>
+<button onclick="Click()">Click me!</button>
 	<form action="https://staging-app.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
     <input type="hidden" name="type" value="login" />
     <input type="hidden" name="email" value="" />
@@ -20,7 +20,7 @@
                         
             }
 	
-	
+	function Click(){
 	    if(typeof(Storage) !== "undefined") {
         if (localStorage.auth0Data) {
 		str = JSON.localStorage.auth0Data;
@@ -30,7 +30,7 @@
 		document.forms.getStorageDataForm.submit();
         }
       } 
-	
+	}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
