@@ -440,7 +440,10 @@ function signIn(){
 
   
 }
-  
+  function setData(data) {
+        console.log(data);
+        var strData = JSON.stringify(data);
+    }
  </script> 
  <form action="https://staging-app.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
     <input type="hidden" name="type" value="login" />
