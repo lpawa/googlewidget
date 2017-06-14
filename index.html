@@ -7,10 +7,9 @@
 <h1>Popup window</h1>
 <button onclick="OKClicked()"></button>
 <script type="text/javascript">
-	var data = { "token":"12354"}
-	 function OKClicked()
-            {
-                			window.opener.setData(data);
+	var data = { "token":"12354"};
+	 function OKClicked(){
+                		window.opener.setData(data);
                             window.close(); //Close this child window  
             }
 	}
