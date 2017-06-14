@@ -9,22 +9,27 @@
 	<form action="https://staging-app.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
     <input type="hidden" name="type" value="login" />
     <input type="hidden" name="email" value="" />
-    <input type="hidden" id="signinCallback" name="callbackURL" value="https://lpawa.github.io/googlewidget/index.html?7898788"/>
+    <input type="hidden" id="signinCallback" name="callbackURL" value="https://lpawa.github.io/googlewidget/index.html?7898742"/>
 </form>
 <script type="text/javascript">
 	var str=""
-	if(localStorage.auth0Data){
-		str = JSON.localStorage.auth0Data;
-		OKClicked(str)
-	}
-	else{
-	document.forms.getStorageDataForm.submit()
-	}
+
 	 function OKClicked(str){
 		 	console.log(str);
 		 	window.opener.postMessage(str,"https://*.googleusercontent.com");
                         
             }
+	
+	
+	    if(typeof(Storage) !== "undefined") {
+        if (localStorage.auth0Data) {
+		str = JSON.localStorage.auth0Data;
+		OKClicked(str);
+        } else {
+		
+		document.forms.getStorageDataForm.submit();
+        }
+      } 
 	
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
