@@ -436,7 +436,7 @@ function showButtons(id)
 setupEventRetrieval();
 function signIn(){
 
-    var childWin = window.open("https://lpawa.github.io/googlewidget/index.html?782", "_blank", "height=500, width=400, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+    var childWin = window.open("https://lpawa.github.io/googlewidget/index.html?9999989898912", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
 
   
 }
