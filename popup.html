@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pop up window</title>
+</head>
+<body>
+<h1>Popup window</h1>
+<button onclick="OKClicked()"></button>
+<script type="text/javascript">
+	var data = { "token":"12354"}
+	 function OKClicked()
+            {
+                			window.opener.setData(data);
+                            window.close(); //Close this child window  
+            }
+	}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+</html>
