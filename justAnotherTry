@@ -254,7 +254,7 @@ function CheckHashtag(id){
   url: "https://staging-app.cavantics.com/api/checkHashtagExist/"+str,
   dataType: 'json',
   headers: {
-    'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTc0NTY0NDIsImlhdCI6MTQ5NzQyMDQ0Mn0.gDuWqZusKwrXEi6tdroUUAWcYVuVnAZP5AH5LhJMy0Q'
+    'Authorization':'Bearer '+ localStorage.getItem("token")
     
   },
   success: function (data){
@@ -322,7 +322,7 @@ function CreateActivity(id){
   $.ajax({
     url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
     headers: {
-        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3dlZXRpbmdzdGFnZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NThhMTVjOTUyMzMzY2I1NTBjMjNhZDk0IiwiYXVkIjoiSTJPM3AxRDJQZmNVRmpwaXRpeG00N3pjd2ttaHo4UzMiLCJleHAiOjE0OTc0NTY0NDIsImlhdCI6MTQ5NzQyMDQ0Mn0.gDuWqZusKwrXEi6tdroUUAWcYVuVnAZP5AH5LhJMy0Q',
+        'Authorization':'Bearer ' + localStorage.getItem("token"),
         'content-type':'application/json',
         'Access-Control-Allow-Origin'  : '*', 
     'Access-Control-Allow-Headers' : 'Content-Type'   
@@ -442,11 +442,14 @@ function signIn(){
 }
 function receiveMessage(e) {
     // Check to make sure that this message came from the correct domain
-
+    if (event.origin !== "https://staging-app.cavantics.com/#/signingoogle")
+    return;
     // Update the div element to display the message.
     console.log("Message Received: ");
     console.log(e.data);
-
+    var data = JSON.parse(e.data);
+    localStorage.setItem("userdata",data.user);
+    localStorage.setItem("jwt",data.token);
   }
 
   // Setup an event listener that calls receiveMessage() when the window
