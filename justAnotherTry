@@ -442,8 +442,11 @@ function signIn(){
 }
 function receiveMessage(e) {
     // Check to make sure that this message came from the correct domain
-    if (event.origin !== "https://staging-app.cavantics.com/#/signingoogle")
+    if (event.origin !== "https://staging-app.cavantics.com/#/signingoogle"){
+    console.log(event.origin);
+    console.log("Some other origin");
     return;
+    }
     // Update the div element to display the message.
     console.log("Message Received: ");
     console.log(e.data);
