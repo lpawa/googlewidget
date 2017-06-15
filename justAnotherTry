@@ -254,7 +254,7 @@ function CheckHashtag(id){
   url: "https://staging-app.cavantics.com/api/checkHashtagExist/"+str,
   dataType: 'json',
   headers: {
-    'Authorization':'Bearer '+ localStorage.getItem("token")
+    'Authorization':'Bearer '+ localStorage.getItem("jwt")
     
   },
   success: function (data){
@@ -450,7 +450,7 @@ function receiveMessage(e) {
     // Update the div element to display the message.
     console.log("Message Received: ");
     console.log(e.data);
-    localStorage.setItem("userdata",e.data.user);
+    localStorage.setItem("userdata",JSON.stringify(e.data.user);
     localStorage.setItem("jwt",e.data.token);
   }
 
