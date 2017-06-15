@@ -322,7 +322,7 @@ function CreateActivity(id){
   $.ajax({
     url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
     headers: {
-        'Authorization':'Bearer ' + localStorage.getItem("token"),
+        'Authorization':'Bearer ' + localStorage.getItem("jwt"),
         'content-type':'application/json',
         'Access-Control-Allow-Origin'  : '*', 
     'Access-Control-Allow-Headers' : 'Content-Type'   
