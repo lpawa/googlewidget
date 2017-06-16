@@ -302,7 +302,7 @@ function CreateActivity(id){
   data.description = e.details;
   }
   else{
-  data.description = "Random description" 
+  data.description = e.title;
   }
   data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
