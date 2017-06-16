@@ -310,7 +310,7 @@ function CreateActivity(id){
 
   var linkStartDay = e.startTime.date - 1;
   var linkEndDay = e.endTime.date + 1;
-
+  var attendee = null;
   data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
@@ -318,7 +318,7 @@ function CreateActivity(id){
   console.log(data);
   
      if($("#cb"+id).is(':checked')){
-        var attendee = e.attendees;
+        attendee = e.attendees;
         console.log("Call Invite function");
     }
 
@@ -336,9 +336,27 @@ function CreateActivity(id){
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
-
+      if(attendee){
+        sendInvites(datas , attendee);
+      }
     }
   });
+}
+
+function sendInvites(data, attendee){
+  var template = { "eventId":data.responseData[0].eventId,
+"userId":localStorage.getItem("userdata").id,
+"flag":"emailIds",
+"emailIds":[],
+"mobileNos":[]
+}
+
+for(var i=0;i< attendee.length;i++){
+  template.emailIds.push({
+    "email" : attendee[i].email;
+  });
+}
+
 }
 
 function eventCallback(response) {
