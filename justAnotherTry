@@ -329,7 +329,7 @@ function CreateActivity(id){
     },
     method: 'POST',
     dataType: "json", 
-    data: JSON.stringify(data),
+    data: JSON.stringify(TestTemplate2),
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
