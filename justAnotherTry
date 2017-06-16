@@ -112,8 +112,8 @@ margin:0px;
         "linkExpiryDate": "",
         "imageURLId":"",
         "thankYouNote":"Thank You!",
-        "isReversed":"false",
-        "isOrgEvent":"false",
+        "isReversed":false,
+        "isOrgEvent":false,
         "moods":[
         {"moodName":"Excited","moodType":"EXCITED","order":1},
         {"moodName":"Indifferent","moodType":"INDIFFERENT","order":3},
@@ -329,7 +329,7 @@ function CreateActivity(id){
     },
     method: 'POST',
     dataType: "json", 
-    data: JSON.stringify(TestTemplate2),
+    data: JSON.stringify(data),
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
