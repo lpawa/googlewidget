@@ -440,7 +440,7 @@ function signIn(){
 
   
 }
-function receiveMessage(e) {
+function receiveMessage(event) {
     // Check to make sure that this message came from the correct domain
     if (event.origin !== "https://staging-app.cavantics.com"){
     console.log(event.origin);
@@ -449,9 +449,9 @@ function receiveMessage(e) {
     }
     // Update the div element to display the message.
     console.log("Message Received: ");
-    console.log(e.data);
-    localStorage.setItem("userdata",JSON.stringify(e.data.user));
-    localStorage.setItem("jwt",e.data.token);
+    console.log(event.data);
+    localStorage.setItem("userdata",JSON.stringify(event.data.user));
+    localStorage.setItem("jwt",event.data.token);
   }
 
   // Setup an event listener that calls receiveMessage() when the window
