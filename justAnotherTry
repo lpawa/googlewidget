@@ -357,6 +357,24 @@ for(var i=0;i< attendee.length;i++){
     "userId" : ""
   });
 }
+console.log(template);
+$.ajax({
+    url: 'https://staging-app.cavantics.com/api/moodCaptureInvitees',
+    headers: {
+        'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+        'content-type':'application/json',
+        'Access-Control-Allow-Origin'  : '*', 
+    'Access-Control-Allow-Headers' : 'Content-Type'   
+    },
+    method: 'POST',
+    dataType: "json", 
+    data: JSON.stringify(template),
+    processData: false,
+    success: function(datas){
+      console.log('success: '+datas.status);
+     
+    }
+  });
 
 }
 
