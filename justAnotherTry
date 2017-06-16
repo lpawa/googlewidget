@@ -301,6 +301,9 @@ function CreateActivity(id){
   if(e.details){
   data.description = e.details;
   }
+  else{
+  data.description = "Random description" 
+  }
   data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
   data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
