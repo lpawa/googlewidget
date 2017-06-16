@@ -353,7 +353,8 @@ function sendInvites(data, attendee){
 
 for(var i=0;i< attendee.length;i++){
   template.emailIds.push({
-    "email" : attendee[i].email;
+    "email" : attendee[i].email,
+    "userId" : ""
   });
 }
 
