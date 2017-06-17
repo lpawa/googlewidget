@@ -238,7 +238,7 @@ function PublishandEdit(id){
   console.log("Publish and Edit:- ");
   console.log(data);
   
-  window.open('http://www.google.com', '_blank');
+  window.open('https://www.google.com', '_blank');
 
 }
 function CheckHashtag(id){
