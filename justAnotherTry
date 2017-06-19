@@ -248,7 +248,30 @@ function PublishandEdit(id){
   console.log(data);
   str = JSON.stringify(data);
   console.log(str);
-  window.open('https://staging-app.cavantics.com/#/admin/moodcapture/add', '_blank');
+
+   $.ajax({
+    url: 'https://staging-app.cavantics.com/api/preEventData',
+    headers: {
+        'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+        'content-type':'application/json',
+        'Access-Control-Allow-Origin'  : '*', 
+    'Access-Control-Allow-Headers' : 'Content-Type'   
+    },
+    method: 'POST',
+    dataType: "json", 
+    data: str,
+    processData: false,
+    success: function(datas){
+      console.log('success: '+datas);
+      if(datas.status=true){
+        console.log(datas.responsedata);
+      <!-- window.open('https://staging-app.cavantics.com/#/admin/moodcapture/add', '_blank'); -->
+      }
+    }
+  });
+
+
+  
 
 }
 function CheckHashtag(id){
