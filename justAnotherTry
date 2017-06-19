@@ -235,9 +235,16 @@ function PublishandEdit(id){
   data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
   data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+  if($("#cb"+id).is(':checked')){
+        data.attendee = e.attendees;
+        console.log("Call Invite function");
+    }
   console.log("Publish and Edit:- ");
+
   console.log(data);
-  
+  str = JSON.stringify(data);
+  console.log(str);
   window.open('https://staging-app.cavantics.com/#/admin/moodcapture/add', '_blank');
 
 }
