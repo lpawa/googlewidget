@@ -249,6 +249,7 @@ function PublishandEdit(id){
   
   var obj = {};
   obj.data = str;
+  obj = JSON.stringify(obj);
   console.log(obj);
 
    $.ajax({
