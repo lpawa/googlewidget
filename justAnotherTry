@@ -271,7 +271,7 @@ function PublishandEdit(id){
         var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
         console.log(url);
         window.open(url);
-        var childWin = window.open("https://staging-app.cavantics.com); 
+        var childWin = window.open("https://staging-app.cavantics.com"); 
       }
     }
   });
