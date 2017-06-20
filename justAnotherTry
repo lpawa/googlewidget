@@ -270,7 +270,7 @@ function PublishandEdit(id){
         console.log(datas.responseData);
         var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
         console.log(url);
-      window.open(url, '_blank');
+      window.open(url);
       }
     }
   });
