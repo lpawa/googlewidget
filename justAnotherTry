@@ -281,7 +281,7 @@ function PublishandEdit(id){
 }
 
 function openWindow(url){
-  var childWin = window.open(url, "_blank", "status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+  var childWin = window.open(url, "_blank", "height=600, width=450,status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
 }
 function CheckHashtag(id){
     var status;
