@@ -237,6 +237,7 @@ function PublishandEdit(id){
 
   data.linkLiveDate.date = e.startTime.date - 1;
   data.linkExpiryDate.date = e.endTime.date + 1;
+  console.log(e.startTime);
   console.log(data.startDateTime);
   console.log(data.endDateTime);
   console.log(data.linkLiveDate);
