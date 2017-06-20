@@ -220,7 +220,7 @@ function PublishandEdit(id){
   var data = EventTemplate;
   data.title = e.title;
   var str = e.title.replace(/\s/g,'');
-  str = str.replace(/[^a-zA-Z ]/g, "");
+  str = str.replace(/\W/g, '');
   data.hashtag = str;
    if(e.details){
   data.description = e.details;
