@@ -237,6 +237,10 @@ function PublishandEdit(id){
 
   data.linkLiveDate.date = e.startTime.date - 1;
   data.linkExpiryDate.date = e.endTime.date + 1;
+  console.log(data.startDateTime);
+  console.log(data.endDateTime);
+  console.log(data.linkLiveDate);
+  console.log(data.linkExpiryDate);
 
   if($("#cb"+id).is(':checked')){
         data.attendee = e.attendees;
@@ -456,7 +460,7 @@ calendarStartDate = google.calendar.utils.fromDate(start);
   var end = new Date();
   end.setDate(end.getDate() + 7);
 calendarEndDate = google.calendar.utils.fromDate(end);
-  startTime = {year: 20017, month: 12, date : 25};
+  startTime = {year: 2017, month: 12, date : 25};
         endTime = {year: 2018, month: 12, date : 26};
 
 function getEvent()
