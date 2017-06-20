@@ -270,8 +270,7 @@ function PublishandEdit(id){
         console.log(datas.responseData);
         var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
         console.log(url);
-        window.open(url);
-        var childWin = window.open("https://staging-app.cavantics.com"); 
+        openWindow(url);
       }
     }
   });
@@ -279,6 +278,10 @@ function PublishandEdit(id){
 
   
 
+}
+
+function openWindow(url){
+  window.open(url);
 }
 function CheckHashtag(id){
     var status;
