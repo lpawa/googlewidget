@@ -229,16 +229,22 @@ function PublishandEdit(id){
   data.description = e.title;
   }
   console.log(e.startTime);
+
+  var tempLive =  e.startTime;
+  var tempExpire =  e.endTime;
+
+  console.log(tempLive);
+
+  tempLive.date = tempLive.date -1;
+  tempExpire.date = tempExpire.date + 1;
+
   data.startDateTime=e.startTime;
 
   data.endDateTime=e.endTime;
 
-  data.linkLiveDate= e.startTime;
-  data.linkExpiryDate = e.endTime;
-
-  data.linkLiveDate.date = data.startDateTime.date - 1;
-  data.linkExpiryDate.date = data.startDateTime.date + 1;
-  console.log(e.startTime);
+  data.linkLiveDate = tempLive;
+  data.linkExpiryDate = tempExpire;
+  console.log(tempLive);
   console.log(data.startDateTime);
   console.log(data.endDateTime);
   console.log(data.linkLiveDate);
