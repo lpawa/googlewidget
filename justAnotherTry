@@ -247,7 +247,7 @@ function PublishandEdit(id){
   console.log(data);
   str = JSON.stringify(data);
   console.log(str);
-  var obj;
+  var obj = {};
   obj.data = str;
 
    $.ajax({
