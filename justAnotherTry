@@ -246,9 +246,10 @@ function PublishandEdit(id){
 
   console.log(data);
   str = JSON.stringify(data);
-  console.log(str);
+  
   var obj = {};
   obj.data = str;
+  console.log(obj);
 
    $.ajax({
     url: 'https://staging-app.cavantics.com/api/preEventData',
@@ -260,7 +261,7 @@ function PublishandEdit(id){
     },
     method: 'POST',
     dataType: "json", 
-    data: str,
+    data: obj,
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
