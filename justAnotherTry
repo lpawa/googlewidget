@@ -230,25 +230,13 @@ function PublishandEdit(id){
   }
   console.log(e.startTime);
 
-  var tempLive =  e.startTime;
-  var tempExpire =  e.endTime;
-
-  console.log(tempLive);
-
-  tempLive.date = tempLive.date -1;
-  tempExpire.date = tempExpire.date + 1;
+ 
 
   data.startDateTime=e.startTime;
 
   data.endDateTime=e.endTime;
 
-  data.linkLiveDate = tempLive;
-  data.linkExpiryDate = tempExpire;
-  console.log(tempLive);
-  console.log(data.startDateTime);
-  console.log(data.endDateTime);
-  console.log(data.linkLiveDate);
-  console.log(data.linkExpiryDate);
+
 
   if($("#cb"+id).is(':checked')){
         data.attendee = e.attendees;
@@ -293,7 +281,7 @@ function PublishandEdit(id){
 }
 
 function openWindow(url){
-  var childWin = window.open(url, "_blank", "height=600, width=450,status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+  var childWin = window.open(url, "_blank"); 
 }
 function CheckHashtag(id){
     var status;
