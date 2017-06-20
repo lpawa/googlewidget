@@ -228,6 +228,7 @@ function PublishandEdit(id){
   else{
   data.description = e.title;
   }
+  console.log(e.startTime);
   data.startDateTime=e.startTime;
 
   data.endDateTime=e.endTime;
