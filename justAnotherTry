@@ -228,16 +228,15 @@ function PublishandEdit(id){
   else{
   data.description = e.title;
   }
-  data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+  data.startDateTime=e.startTime;
 
-  data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+  data.endDateTime=e.endTime;
 
-  var linkStartDay = e.startTime.date - 1;
-  var linkEndDay = e.endTime.date + 1;
+  data.linkLiveDate= e.startTime;
+  data.linkExpiryDate = e.endTime;
 
-  data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
-
-  data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+  data.linkLiveDate.date = e.startTime.date - 1;
+  data.linkExpiryDate.date = e.endTime.date + 1;
 
   if($("#cb"+id).is(':checked')){
         data.attendee = e.attendees;
@@ -265,7 +264,8 @@ function PublishandEdit(id){
       console.log('success: '+datas);
       if(datas.status=true){
         console.log(datas.responseData);
-      <!-- window.open('https://staging-app.cavantics.com/#/admin/moodcapture/add', '_blank'); -->
+        var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/add?' +datas.responseData.id;
+      window.open(url, '_blank');
       }
     }
   });
