@@ -598,7 +598,7 @@ function receiveMessage(event) {
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
   <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Google</button>
  </div>
- <span class = "noselect" id="popup" style="display:none"></span>
+ <span class = "noselect pop" id="popup" style="display:none"></span>
  <ul id="out">loading</ul>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
