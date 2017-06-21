@@ -588,7 +588,8 @@ function receiveMessage(event) {
       var userdata = localStorage.getItem("userdata");
       userdata = JSON.parse(userdata);
       $(signin).hide();
-      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>"; 
+      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+      $(welcome).show();
     }
   }
 
