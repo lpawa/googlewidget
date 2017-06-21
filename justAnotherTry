@@ -25,11 +25,12 @@
 ul {
     padding: 0px;
     float: left;
+    text-align: center;
 }
 ul li {
     margin: 10px 0px;
     font-size: 14px;
-    border-left: 2px solid #03A9F4;
+    border-left: 2px solid #C0CA33;
     padding: 5px;
     list-style-type: none;
     float: left;
@@ -38,6 +39,7 @@ ul li {
     font-weight: 300;
     width: 100%;
     word-wrap: break-word;
+    text-align: left;
 }
 ul li.active {
       background: #03A9F4;
@@ -51,16 +53,19 @@ button {
     margin: 0px 5px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    font-style: italic;
 }
 .blue-btn {
-  background: #03a9f4 !important;
+  background: #03a9f4;
 }
 .green-btn {
-  background: #C0CA33 !important;
+  background: #C0CA33;
+  border: 2px solid #C0CA33;
 }
 .green-btn:hover {
   background: #fff;
   border: 2px solid #C0CA33;
+  color: #C0CA33;
 }
 .pull-left {
   float: left !important;
@@ -90,8 +95,14 @@ button {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
 }
+.check input {
+  float: left;
+}
 .sendInvite{
-font-size:12px;
+    font-size: 12px;
+    font-weight: 300;
+    float: left;
+    line-height: 20px;
 }
 p{
 padding:0px;
@@ -225,7 +236,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><p class = "noselect pop" id = "pop'+i+'" style="display:none" onclick="ShowEvent('+i+')">The hashtag is not unique.Click to change</p><button class="but'+ i +' green-btn pull-left block-display" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn pull-left block-display" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')">' + e.title + "<br> From-" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+"  "+e.startTime.hour+":"+minS+ "<br> To-" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+"  "+e.endTime.hour+":"+minE +'</li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><p class = "noselect pop" id = "pop'+i+'" style="display:none" onclick="ShowEvent('+i+')">The hashtag is not unique.Click to change</p><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button></div>\n';
     }
     }
     }
