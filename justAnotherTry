@@ -582,6 +582,14 @@ function receiveMessage(event) {
     console.log(event.data);
     localStorage.setItem("userdata",JSON.stringify(event.data.user));
     localStorage.setItem("jwt",event.data.token);
+    if(localStorage.getItem("userdata")){
+      var signin = document.getElementById("signin");
+      var welcome = document.getElementById("welcome");
+      var userdata = localStorage.getItem("userdata");
+      userdata = JSON.parse(userdata);
+      $(signin).hide();
+      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>"; 
+    }
   }
 
   // Setup an event listener that calls receiveMessage() when the window
@@ -597,6 +605,7 @@ function receiveMessage(event) {
  <div class="logo-box">
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
   <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Google</button>
+  <span id="welcome" style="display:none"></span>
  </div>
  <span class = "noselect pop" id="popup" style="display:none"></span>
  <ul id="out">loading</ul>
