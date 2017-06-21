@@ -373,7 +373,7 @@ function Popup(id,status){
      var popup = document.getElementById("popup");
      if(status=="hashtag"){
       popup.innerHTML = "<span>The hashtag is not unique.Click on Edit to change the hashtag</span>";
-       $(popup).css("background-color", "#D44937");
+       $(popup).css("background-color", "#a94442");
      }
      else if(status=="successful"){
       popup.innerHTML = "<span>The Activity Vibe was created successfully</span>";
@@ -381,7 +381,7 @@ function Popup(id,status){
      }
      else if(status=="login"){
       popup.innerHTML = "<span>Kindly login to Cavantics first</span>";
-      $(popup).css("background-color", "#D44937");
+      $(popup).css("background-color", "#a94442");
      }
      $(popup).show();
      setTimeout(function(){
