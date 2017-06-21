@@ -97,6 +97,10 @@ button {
     font-size:12px;
     padding: 5px;
 }
+#welcome {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+}
 .check{
   
   cursor:pointer;
@@ -373,15 +377,15 @@ function CheckHashtag(id){
 function Popup(id,status){
      var popup = document.getElementById("popup");
      if(status=="hashtag"){
-      popup.innerHTML = "<span>The hashtag is not unique.Click on Edit to change the hashtag</span>";
+      popup.innerHTML = "<span>The hashtag is not unique! Click on Edit to change the hashtag</span>";
        $(popup).css("background-color", "#eb6e47");
      }
      else if(status=="successful"){
-      popup.innerHTML = "<span>The Activity Vibe was created successfully</span>";
+      popup.innerHTML = "<span>Activity Vibe created!</span>";
       $(popup).css("background-color", "#C0CA33");
      }
      else if(status=="login"){
-      popup.innerHTML = "<span>Kindly login to Cavantics first</span>";
+      popup.innerHTML = "<span>Kindly login to Cavantics</span>";
       $(popup).css("background-color", "#eb6e47");
      }
      $(popup).show();
@@ -619,7 +623,7 @@ function receiveMessage(event) {
  <div class="logo-box">
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
   <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Google</button>
-  <span id="welcome" style="display:none"></span>
+  <span id="welcome" style="display:none;"></span>
  </div>
  <span class = "noselect pop" id="popup" style="display:none"></span>
  <ul id="out">loading</ul>
