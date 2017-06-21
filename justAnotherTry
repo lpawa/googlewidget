@@ -546,11 +546,7 @@ function receiveMessage(event) {
         var strData = JSON.stringify(data);
     }
  </script> 
- <form action="https://staging-app.cavantics.com/sso/auth0Library" method="post" name="getStorageDataForm">
-    <input type="hidden" name="type" value="login" />
-    <input type="hidden" name="email" value="" />
-    <input type="hidden" id="signinCallback" name="callbackURL" value="https://calendar.google.com"/>
-</form>
+<img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
  <button id= "signin" onclick="signIn()">Sign In With Google</button>
  <ul id="out">loading</ul>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
