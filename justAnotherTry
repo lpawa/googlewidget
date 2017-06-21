@@ -145,6 +145,7 @@ margin:0px;
         var calendarStartDate=null;
         var calendarEndDate=null;
         var publishFlag = -1;
+        var childWin;
 
         var EventTemplate={
         "userId":"143",
@@ -570,7 +571,7 @@ function showButtons(id)
 setupEventRetrieval();
 function signIn(){
 
-    var childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
+    childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
 
   
 }
@@ -594,6 +595,11 @@ function receiveMessage(event) {
       $(signin).hide();
       welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
       $(welcome).show();
+      childWin.close();
+    }
+    else{
+      childWin.close();
+      signIn();
     }
   }
 
