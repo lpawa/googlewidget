@@ -376,6 +376,9 @@ function Popup(id,status){
      else if(status=="login"){
       popup.innerHTML = "<span>Kindly login to Cavantics first</span>"
      }
+     setTimeout(function(){
+        $(popup).show();
+      },5000);
  }
 
 function CreateActivity(id){
