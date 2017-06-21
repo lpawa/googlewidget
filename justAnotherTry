@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="Get Events Test" height="200" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
+<ModulePrefs title="Get Events Test" height="500" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
 <Require feature="google.calendar-0.5"/>
 <Require feature="google.calendar-0.5.read"/>
 </ModulePrefs>
