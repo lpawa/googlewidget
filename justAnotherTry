@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="Get Events Test" height="500" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
+<ModulePrefs title="Get Events Test" height="200" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
 <Require feature="google.calendar-0.5"/>
 <Require feature="google.calendar-0.5.read"/>
 </ModulePrefs>
@@ -45,12 +45,24 @@ ul li.active {
       background: #03A9F4;
     color: #fff;
 }
+ul li .title {
+  color: #C0CA33;
+  font-weight: 500;
+  font-size: 13px;
+}
+ul li p {
+  font-style: italic;
+  font-size: 12px;
+}
+ul li strong {
+  font-weight: 400;
+}
 button {
     cursor:pointer;
     border: 0px;
     color: #fff;
     padding: 5px;
-    margin: 0px 5px;
+    margin: 0px 0px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-style: italic;
