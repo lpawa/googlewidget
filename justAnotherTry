@@ -367,7 +367,7 @@ function CheckHashtag(id){
     .done(function(result){
       status= result.status;
       console.log(status);
-      if(status){
+      if(!status){
         Popup(id,"hashtag");
       }
       else{
