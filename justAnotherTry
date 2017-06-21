@@ -248,7 +248,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><p class = "noselect pop" id = "pop'+i+'" style="display:none" onclick="ShowEvent('+i+')">The hashtag is not unique.Click to change</p><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button></div>\n';
     }
     }
     }
@@ -331,7 +331,10 @@ function openWindow(url){
 }
 function CheckHashtag(id){
     var status;
-
+    if(!localStorage.getItem("userdata")){
+      Popup(id,"login");
+    }
+    else{
     var e = storedEvents[id];
     var data = EventTemplate;
     var str = e.title;
@@ -353,30 +356,26 @@ function CheckHashtag(id){
       status= result.status;
       console.log(status);
       if(status){
-        Popup(id);
+        Popup(id,"hashtag");
       }
       else{
       CreateActivity(id);
       }
     })
+  }
 }
 
-function Popup(id){
-  if(publishFlag>-1 && publishFlag!=id)
-  {
-    var p2 = document.getElementById('pop'+publishFlag);
-    $(p2).toggle();
-  }
-  console.log("Popup called")
-  var p1 = document.getElementById('pop'+id);
-  $(p1).toggle();
-  if(publishFlag!=id){
-    publishFlag= id;
-    }
-    else{
-    publishFlag = -1;
-    }
-   
+function Popup(id,status){
+     var popup = document.getElementById("popup");
+     if(status=="hashtag"){
+      popup.innerHTML = "<span>The hashtag is not unique.Click on Edit to change the hashtag</span>"
+     }
+     else if(status=="successful"){
+      popup.innerHTML = "<span>The Activity Vibe was created successfully</span>"
+     }
+     else if(status=="login"){
+      popup.innerHTML = "<span>Kindly login to Cavantics first</span>"
+     }
  }
 
 function CreateActivity(id){
@@ -424,8 +423,11 @@ function CreateActivity(id){
     processData: false,
     success: function(datas){
       console.log('success: '+datas);
-      if(attendee){
-        sendInvites(datas , attendee);
+      if(datas.status){
+        Popup(id,"successful");
+        if(attendee){
+          sendInvites(datas , attendee);
+        }
       }
     }
   });
@@ -534,11 +536,7 @@ function showButtons(id)
     var b2 = document.getElementById('butB'+id);
     var li = document.getElementById('li'+id);
     var check = document.getElementById('check'+id);
-    if(publishFlag>-1){
-    var p2 = document.getElementById('pop'+publishFlag);
-    $(p2).toggle();
-    publishFlag=-1;
-    }
+    
     if(curEventId>-1&&curEventId!=id){
       var b3 = document.getElementById('butA'+curEventId);
     var b4 = document.getElementById('butB'+curEventId);
@@ -596,7 +594,7 @@ function receiveMessage(event) {
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
   <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Google</button>
  </div>
- 
+ <span class = "noselect" id="popup" style="display:none"></span>
  <ul id="out">loading</ul>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
