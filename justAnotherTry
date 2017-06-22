@@ -427,12 +427,16 @@ function CreateActivity(id){
 
   data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
-  var linkStartDay = e.startTime.date - 1;
-  var linkEndDay = e.endTime.date + 1;
+  var m1 = moment(e.startTime);
+  var m2 = moment(e.endTime);
+  m1.subtract(1,'days');
+  m2.add(1,'days');
+  var linkStart = m1._i;
+  var linkEnd = m2._i;
   var attendee = null;
-  data.linkLiveDate=e.startTime.year+"-"+e.startTime.month+"-"+linkStartDay+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+  data.linkLiveDate=linkStart.year+"-"+linkStart.month+"-"+linkStart.date+" " +linkStart.hour+":" + linkStart.minute+ ":" + linkStart.second;
 
-  data.linkExpiryDate=e.endTime.year+"-"+e.endTime.month+"-"+linkEndDay+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+  data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second;
 
   console.log(data);
   
@@ -647,7 +651,9 @@ function receiveMessage(event) {
  </div>
  <span class = "noselect pop" id="popup" style="display:none"></span>
  <ul id="out">loading</ul>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
  <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
 </body>
 </html>
