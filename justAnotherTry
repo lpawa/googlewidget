@@ -154,6 +154,7 @@ margin:0px;
         var calendarEndDate=null;
         var publishFlag = -1;
         var childWin;
+        var prevLen = 0;
 
         var EventTemplate={
         "userId":"143",
@@ -268,7 +269,10 @@ function drawScreen(){
     
   var html=out;
  document.getElementById('out').innerHTML = html;
+ if(storedEvents.length!=prevLen){
  curEventId = -1;
+ }
+ prevLen=storedEvents.length;
  gadgets.window.adjustHeight();
 }
 function PublishandEdit(id){
