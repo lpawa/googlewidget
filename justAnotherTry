@@ -438,14 +438,17 @@ function CreateActivity(id){
   var m2 = moment(endDateTime);
   m1.subtract(1,'days');
   m2.add(1,'days');
-  var linkStart = m1._i;
-  var linkEnd = m2._i;
+  var linkStart = m1._d;
+  var linkEnd = m2._d;
   console.log(linkStart);
   console.log(linkEnd);
   var attendee = null;
-  data.linkLiveDate=linkStart.year+"-"+linkStart.month+"-"+linkStart.date+" " +linkStart.hour+":" + linkStart.minute+ ":" + linkStart.second;
+  <!-- data.linkLiveDate=linkStart.year+"-"+linkStart.month+"-"+linkStart.date+" " +linkStart.hour+":" + linkStart.minute+ ":" + linkStart.second; -->
 
-  data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second;
+  <!-- data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second; -->
+
+  data.linkLiveDate = linkStart;
+  data.linkExpiryDate = linkEnd;
 
   console.log(data);
   
