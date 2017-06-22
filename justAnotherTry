@@ -228,11 +228,11 @@ function preferencesCallback(prefs) {
     out += "Military time = " + prefs.military + "\n";
   } 
   viewer=prefs.viewer;
+  setupEventRetrieval();
   console.log(out);
 }
 
-// Ask the calendar for the preferences
-google.calendar.getPreferences(preferencesCallback);
+
 
 console.log("Start");
 
@@ -567,8 +567,14 @@ console.log("Start time:-" + start);
 console.log(calendarStartDate)
 console.log("End time:-" + end);
 console.log(calendarEndDate);
-google.calendar.read.getEvents(eventCallback, ["lakshya.pawa@sproutlogix.com"], calendarStartDate ,calendarEndDate,optionalParams);
+if(!viewer){
+google.calendar.getPreferences(preferencesCallback);
+  return;
+}
+else{
+google.calendar.read.getEvents(eventCallback, viewer, calendarStartDate ,calendarEndDate,optionalParams);
 console.log("Events should have been fetched");
+}
 }
 function setupEventRetrieval() {
   <!-- // Ask the container for the next few events. -->
@@ -611,7 +617,7 @@ function showButtons(id)
     }
     }
 }
-setupEventRetrieval();
+
 function signIn(){
 
     childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no"); 
@@ -649,6 +655,10 @@ function receiveMessage(event) {
   // Setup an event listener that calls receiveMessage() when the window
   // receives a new MessageEvent.
   window.addEventListener('message', receiveMessage);
+
+  // Ask the calendar for the preferences
+  google.calendar.getPreferences(preferencesCallback);
+
 
 
   function setData(data) {
