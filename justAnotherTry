@@ -568,12 +568,16 @@ console.log(calendarStartDate)
 console.log("End time:-" + end);
 console.log(calendarEndDate);
 console.log(viewer);
+
 if(!viewer){
 google.calendar.getPreferences(preferencesCallback);
   return;
 }
 else{
-google.calendar.read.getEvents(eventCallback, viewer, calendarStartDate ,calendarEndDate,optionalParams);
+var x = [];
+x[0] = viewer;
+console.log(x);
+google.calendar.read.getEvents(eventCallback,x, calendarStartDate ,calendarEndDate,optionalParams);
 console.log("Events should have been fetched");
 }
 }
