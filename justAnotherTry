@@ -144,7 +144,7 @@ margin:0px;
 <script> 
 
         var viewer = null; 
-        var curEventId = null;    
+        var curEventId = -1;    
         var storedEvents = null;
         var refreshEvents = 0;
         var i =0;
