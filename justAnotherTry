@@ -567,6 +567,7 @@ console.log("Start time:-" + start);
 console.log(calendarStartDate)
 console.log("End time:-" + end);
 console.log(calendarEndDate);
+console.log(viewer);
 if(!viewer){
 google.calendar.getPreferences(preferencesCallback);
   return;
