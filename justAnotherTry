@@ -457,7 +457,7 @@ function CreateActivity(id){
       if(datas.status){
         Popup(id,"successful");
         if(attendee){
-          console.log(Sending Mail);
+          console.log("Sending Mail");
           console.log(attendee);
           sendInvites(datas , attendee);
         }
