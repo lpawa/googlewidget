@@ -622,6 +622,8 @@ function showButtons(id)
     curEventId = -1;
     }
     }
+
+     gadgets.window.adjustHeight();
 }
 
 function signIn(){
