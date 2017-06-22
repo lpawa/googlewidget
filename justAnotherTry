@@ -3,6 +3,7 @@
 <ModulePrefs title="Get Events Test" height="500" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
 <Require feature="google.calendar-0.5"/>
 <Require feature="google.calendar-0.5.read"/>
+<Require feature="dynamic-height"/>
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
@@ -267,7 +268,7 @@ function drawScreen(){
     
   var html=out;
  document.getElementById('out').innerHTML = html;
-
+ gadgets.window.adjustHeight();
 }
 function PublishandEdit(id){
   if(!localStorage.getItem("userdata")){
