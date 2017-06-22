@@ -423,12 +423,19 @@ function CreateActivity(id){
   else{
   data.description = e.title;
   }
+
+
+
   data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
   data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
-  var m1 = moment(e.startTime);
-  var m2 = moment(e.endTime);
+  var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second); 
+  var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
+
+
+  var m1 = moment(startDateTime);
+  var m2 = moment(endDateTime);
   m1.subtract(1,'days');
   m2.add(1,'days');
   var linkStart = m1._i;
