@@ -297,8 +297,20 @@ function PublishandEdit(id){
 
 
   if($("#cb"+id).is(':checked')){
-        data.attendee = e.attendees;
+        var attendee = e.attendees;
+        var temp=[];
+        for(var i=0;i< attendee.length;i++){
+        if(attendee[i].email!=viewer){
+          temp.push({
+          "email" : attendee[i].email,
+          "userId" : ""
+          });
+        }
+        data.attendee = temp;
         console.log("Call Invite function");
+        console.log(attendee);
+        console.log(temp);
+
     }
   console.log("Publish and Edit:- ");
 
@@ -445,6 +457,8 @@ function CreateActivity(id){
       if(datas.status){
         Popup(id,"successful");
         if(attendee){
+          console.log(Sending Mail);
+          console.log(attendee);
           sendInvites(datas , attendee);
         }
       }
@@ -461,10 +475,12 @@ function sendInvites(data, attendee){
 }
 
 for(var i=0;i< attendee.length;i++){
+  if(attendee[i].email!=viewer){
   template.emailIds.push({
     "email" : attendee[i].email,
     "userId" : ""
-  });
+    });
+  }
 }
 console.log(template);
 $.ajax({
