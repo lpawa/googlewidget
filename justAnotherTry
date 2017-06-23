@@ -303,6 +303,7 @@ function PublishandEdit(id){
 
 
   if($("#cb"+id).is(':checked')){
+        if(e.attendees){
         var attendee = e.attendees;
         var temp=[];
         for(var i=0;i< attendee.length;i++){
@@ -316,6 +317,7 @@ function PublishandEdit(id){
         console.log("Call Invite function");
         console.log(attendee);
         console.log(temp);
+        }
 
     }
   console.log("Publish and Edit:- ");
