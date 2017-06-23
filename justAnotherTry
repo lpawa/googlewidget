@@ -670,19 +670,20 @@ function getPublishedEvents(){
     console.log(str);
 
     $.ajax
-({
-  type: "GET",
-  url: "https://staging-app.cavantics.com/api/publishedGoogleEvents?"+str,
-  dataType: 'json',
-  headers: {
-    'Authorization':'Bearer '+ localStorage.getItem("jwt")
-    
-  },
-  success: function (data){
-    console.log("data.status"); 
-    console.log(data);
-  }
-})
+      ({
+        type: "GET",
+        url: "https://staging-app.cavantics.com/api/publishedGoogleEvents?"+str,
+        dataType: 'json',
+        headers: {
+          'Authorization':'Bearer '+ localStorage.getItem("jwt")
+          
+        },
+        success: function (data){
+          console.log("data.status"); 
+          console.log(data);
+          }
+      })
+    }
 }
 function receiveMessage(event) {
     // Check to make sure that this message came from the correct domain
