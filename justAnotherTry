@@ -565,9 +565,11 @@ function eventCallback(response) {
 var start = new Date();
 start.setDate(start.getDate() - 7);
 calendarStartDate = google.calendar.utils.fromDate(start);
+console.log(calendarStartDate);
   var end = new Date();
   end.setDate(end.getDate() + 7);
 calendarEndDate = google.calendar.utils.fromDate(end);
+console.log(calendarEndDate);
   startTime = {year: 2017, month: 12, date : 25};
         endTime = {year: 2018, month: 12, date : 26};
 
