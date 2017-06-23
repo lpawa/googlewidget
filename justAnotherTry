@@ -413,6 +413,7 @@ function Popup(id,status){
       $(popup).css("background-color", "#eb6e47");
      }
      $(popup).show();
+     gadgets.window.adjustHeight();
      setTimeout(function(){
         $(popup).fadeOut(2000);
       },3000);
