@@ -667,7 +667,7 @@ function getPublishedEvents(){
 
     var enddate = calendarEndDate.year+"-"+ calendarEndDate.month+"-"+ calendarEndDate.date+" " +calendarEndDate.hour+":" +   calendarEndDate.minute+ ":" + calendarEndDate.second;
 
-    var str = '"userId='+userId+'&startDate="'+ startdate+'"&endDate="'+enddate+'"';
+    var str = 'userId='+userId+'&startDate="'+ startdate+'"&endDate="'+enddate+'"';
     console.log(str);
 
     $.ajax
