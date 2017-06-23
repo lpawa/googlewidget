@@ -157,7 +157,7 @@ margin:0px;
         var prevLen = 0;
 
         var EventTemplate={
-        "userId":"143",
+        "userId":"",
         "title":"",
         "hashtag":"",
         "description":"",
@@ -422,6 +422,9 @@ function Popup(id,status){
 function CreateActivity(id){
   var e = storedEvents[id];
   var data = EventTemplate;
+  var userdata = localStorage.getItem("userdata");
+  userdata = JSON.parse(userdata);
+  data.userId = userdata.id;
   data.title = e.title;
   var str = e.title;
   str = str.replace(/\W/g, '');
