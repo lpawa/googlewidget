@@ -645,6 +645,45 @@ function signIn(){
 
   
 }
+function getPublishedEvents(){
+  var status;
+    if(!localStorage.getItem("userdata")){
+      Popup(id,"login");
+    }
+    else{
+    var userData = localStorage.getItem("userdata");
+    var userId = userData.id;
+    var start = new Date();
+    start.setDate(start.getDate() - 7);
+    calendarStartDate = google.calendar.utils.fromDate(start);
+    console.log(calendarStartDate);
+    var end = new Date();
+    end.setDate(end.getDate() + 7);
+    calendarEndDate = google.calendar.utils.fromDate(end);
+    console.log(calendarEndDate);
+
+    var startdate = calendarStartDate.year+"-"+ calendarStartDate.month+"-"+ calendarStartDate.date+" " +calendarStartDate.hour+":" +   calendarStartDate.minute+ ":" + calendarStartDate.second;
+
+    var enddate = calendarEndDate.year+"-"+ calendarEndDate.month+"-"+ calendarEndDate.date+" " +calendarEndDate.hour+":" +   calendarEndDate.minute+ ":" + calendarEndDate.second;
+
+    var str = '"userId='+userId+'&startDate="'+ startdate+'"&endDate="'+enddate+'"';
+    console.log(str);
+
+    $.ajax
+({
+  type: "GET",
+  url: "https://staging-app.cavantics.com/api/publishedGoogleEvents?"+str,
+  dataType: 'json',
+  headers: {
+    'Authorization':'Bearer '+ localStorage.getItem("jwt")
+    
+  },
+  success: function (data){
+    console.log("data.status"); 
+    console.log(data);
+  }
+})
+}
 function receiveMessage(event) {
     // Check to make sure that this message came from the correct domain
     if (event.origin !== "https://staging-app.cavantics.com"){
@@ -666,6 +705,7 @@ function receiveMessage(event) {
       welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
       $(welcome).show();
       childWin.close();
+      getPublishedEvents();
     }
     else{
       childWin.close();
