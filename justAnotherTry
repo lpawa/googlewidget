@@ -652,6 +652,7 @@ function getPublishedEvents(){
     }
     else{
     var userData = localStorage.getItem("userdata");
+    userdata = JSON.parse(userdata);
     var userId = userData.id;
     var start = new Date();
     start.setDate(start.getDate() - 7);
