@@ -271,6 +271,7 @@ function drawScreen(){
   var html=out;
  document.getElementById('out').innerHTML = html;
  if(storedEvents.length!=prevLen){
+
  curEventId = -1;
  }
  prevLen=storedEvents.length;
@@ -636,6 +637,7 @@ function eventCallback(response) {
   console.log(response[0].events);
   console.log(ownerEvents);
   storedEvents=ownerEvents;
+  compareEvents();
   drawScreen();
   
 }  
