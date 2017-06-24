@@ -259,7 +259,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button> <button class="but'+ i +' green-btn" id ="butC'+ i +'" style="display:none">Show Graph</button></div>\n';
     }
     }
     }
@@ -347,6 +347,7 @@ function PublishandEdit(id){
     success: function(datas){
       console.log('success: '+datas);
       if(datas.status=true){
+        hideButtons(id);
         console.log(datas.responseData);
         var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
         console.log(url);
@@ -487,6 +488,7 @@ function CreateActivity(id){
       console.log('success: '+datas);
       if(datas.status){
         Popup(id,"successful");
+        hideButtons(id);
         storePublishedEvent(id);
         if(attendee){
           console.log("Sending Mail");
@@ -686,42 +688,67 @@ function ShowEvent(id){
   var eid = e.id;
   google.calendar.showEvent(eid);
 }
+
+function hideButtons(id){
+
+            var b1 = document.getElementById('butA'+id);
+            var b2 = document.getElementById('butB'+id);
+            var li = document.getElementById('li'+id);
+            var check = document.getElementById('check'+id);
+
+            $(b1).hide();
+              $(b2).hide();
+              $(check).hide();
+              curEventId = -1;
+              
+  
+}
+
 function showButtons(id)
 {         
     if(localStorage.getItem("userdata")){
 
-        if(storedEvents.published==null || storedEvents.published==false){
+        
 
             var b1 = document.getElementById('butA'+id);
             var b2 = document.getElementById('butB'+id);
+            var b5 = document.getElementById('butC'+id);
             var li = document.getElementById('li'+id);
             var check = document.getElementById('check'+id);
             
             if(curEventId>-1&&curEventId!=id){
               var b3 = document.getElementById('butA'+curEventId);
               var b4 = document.getElementById('butB'+curEventId);
+              var b6 = document.getElementById('butC'+curEventId);
               var check2 = document.getElementById('check'+curEventId);
-              $(b3).toggle();
-              $(b4).toggle();
-              $(check2).toggle();
+              if(storedEvents[curEventId].published){
+                $(b6).toggle();
+                }
+              else{  
+                $(b3).toggle();
+                $(b4).toggle();
+                $(check2).toggle();
+                }
               }
             console.log(b1);
             console.log(b2);
-              if(b1){
-              $(b1).toggle();
-              $(b2).toggle();
-              $(check).toggle();
-              if(curEventId!=id){
-              curEventId= id;
-              }
-              else{
-              curEventId = -1;
-              }
+              if(storedEvents[id].published){
+                $(b5).toggle();
+                }
+              else{  
+                $(b1).toggle();
+                $(b2).toggle();
+                $(check).toggle();
+                }
+                if(curEventId!=id){
+                curEventId= id;
+                }
+                else{
+                curEventId = -1;
+                }
             }
-        }
-        else{
-          console.log("This event is published");
-        }
+        
+     
      gadgets.window.adjustHeight();
 
      }
