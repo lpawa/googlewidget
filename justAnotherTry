@@ -542,7 +542,7 @@ function storePublishedEvent(id) {
 
 function sendInvites(data, attendee){
   var template = { "eventId":data.responseData[0].eventId,
-"userId":,
+"userId":null,
 "flag":"emailIds",
 "emailIds":[],
 "mobileNos":[]
