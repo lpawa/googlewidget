@@ -517,6 +517,7 @@ function storePublishedEvent(id) {
     userData = JSON.parse(userData);
     data.userId = userData.id;
     data.emailId = userData.email;
+    data=JSON.stringify(data);
 
    $.ajax({
     url: 'https://staging-app.cavantics.com/api/publishedGoogleEvents',
