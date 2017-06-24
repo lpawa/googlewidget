@@ -539,7 +539,7 @@ function storePublishedEvent(id) {
       console.log('success: '+datas);
       if(datas.status=true){
         console.log(datas.responseData);
-        publishedEvents.push(data);
+        publishedEvents.push(JSON.parse(data));
         compareEvents();
       }
     }
