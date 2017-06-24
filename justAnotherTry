@@ -544,7 +544,9 @@ function storePublishedEvent(id) {
 }
 
 function compareEvents(){
-  if(publishedEvents && publishedEvents.length>0){
+  console.log("Comparing Events")
+  if(publishedEvents){
+    if(publishedEvents.length>0){
     for(var i=0; i<publishedEvents.length ; i++){
       for(var j=0;j<storedEvents.length;j++){
         if(publishedEvents[i].eventId == storedEvents[j].id){
@@ -556,6 +558,7 @@ function compareEvents(){
           storedEvents[j].published = false;
         }
       }
+    }
     }
   }
   
