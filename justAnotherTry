@@ -546,7 +546,10 @@ function storePublishedEvent(id) {
 function compareEvents(){
   console.log("Comparing Events")
   if(publishedEvents){
+    console.log(publishedEvents)
     if(publishedEvents.length>0){
+    console.log(publishedEvents.length);
+    console.log(storedEvents);
     for(var i=0; i<publishedEvents.length ; i++){
       for(var j=0;j<storedEvents.length;j++){
         if(publishedEvents[i].eventId == storedEvents[j].id){
