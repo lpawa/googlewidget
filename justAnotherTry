@@ -564,7 +564,9 @@ function compareEvents(){
         }
         else{
           console.log("not compared");
+          if(storedEvents[j].published!=true){
           storedEvents[j].published = false;
+          }
         }
       }
     }
