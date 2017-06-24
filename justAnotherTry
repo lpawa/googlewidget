@@ -155,6 +155,7 @@ margin:0px;
         var publishFlag = -1;
         var childWin;
         var prevLen = 0;
+        var publishedEvents = null; 
 
         var EventTemplate={
         "userId":"",
@@ -535,10 +536,29 @@ function storePublishedEvent(id) {
       console.log('success: '+datas);
       if(datas.status=true){
         console.log(datas.responseData);
-        
+        publishedEvents.push(data);
+        compareEvents();
       }
     }
   });
+}
+
+function compareEvents(){
+  if(publishedEvents.length>0){
+    for(var i=0; i<publishedEvents.length ; i++){
+      for(var j=0;j<storedEvents.length;j++){
+        if(publishedEvents[i].eventId == storedEvents[j].id){
+          storedEvents[j].published = true;
+          console.log(storedEvents[j]);
+          break;
+        }
+        else{
+          storedEvents[j].published = false;
+        }
+      }
+    }
+  }
+  
 }
 
 function sendInvites(data, attendee){
@@ -657,6 +677,7 @@ function ShowEvent(id){
 }
 function showButtons(id)
 {         
+    if()
     var b1 = document.getElementById('butA'+id);
     var b2 = document.getElementById('butB'+id);
     var li = document.getElementById('li'+id);
@@ -730,6 +751,7 @@ function getPublishedEvents(){
         success: function (data){
           console.log("data.status"); 
           console.log(data);
+          compareEvents();
           }
       })
     }
