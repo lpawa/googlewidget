@@ -677,35 +677,46 @@ function ShowEvent(id){
 }
 function showButtons(id)
 {         
-    if()
-    var b1 = document.getElementById('butA'+id);
-    var b2 = document.getElementById('butB'+id);
-    var li = document.getElementById('li'+id);
-    var check = document.getElementById('check'+id);
-    
-    if(curEventId>-1&&curEventId!=id){
-      var b3 = document.getElementById('butA'+curEventId);
-    var b4 = document.getElementById('butB'+curEventId);
-    var check2 = document.getElementById('check'+curEventId);
-    $(b3).toggle();
-    $(b4).toggle();
-    $(check2).toggle();
-    }
-    console.log(b1);
-    console.log(b2);
-    if(b1){
-    $(b1).toggle();
-    $(b2).toggle();
-    $(check).toggle();
-    if(curEventId!=id){
-    curEventId= id;
-    }
-    else{
-    curEventId = -1;
-    }
-    }
+    if(localStorage.getItem("userdata")){
 
+        if(!storedEvents.published){
+
+            var b1 = document.getElementById('butA'+id);
+            var b2 = document.getElementById('butB'+id);
+            var li = document.getElementById('li'+id);
+            var check = document.getElementById('check'+id);
+            
+            if(curEventId>-1&&curEventId!=id){
+              var b3 = document.getElementById('butA'+curEventId);
+              var b4 = document.getElementById('butB'+curEventId);
+              var check2 = document.getElementById('check'+curEventId);
+              $(b3).toggle();
+              $(b4).toggle();
+              $(check2).toggle();
+              }
+            console.log(b1);
+            console.log(b2);
+              if(b1){
+              $(b1).toggle();
+              $(b2).toggle();
+              $(check).toggle();
+              if(curEventId!=id){
+              curEventId= id;
+              }
+              else{
+              curEventId = -1;
+              }
+            }
+        }
+        else{
+          console.log("This event is published");
+        }
      gadgets.window.adjustHeight();
+
+     }
+     else{
+      Popup(id,"login");
+     }
 }
 
 function signIn(){
