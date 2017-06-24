@@ -679,7 +679,7 @@ function showButtons(id)
 {         
     if(localStorage.getItem("userdata")){
 
-        if(!storedEvents.published){
+        if(storedEvents.published==null || storedEvents.published==false){
 
             var b1 = document.getElementById('butA'+id);
             var b2 = document.getElementById('butB'+id);
