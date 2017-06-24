@@ -155,7 +155,7 @@ margin:0px;
         var publishFlag = -1;
         var childWin;
         var prevLen = 0;
-        var publishedEvents = null; 
+        var publishedEvents = []; 
 
         var EventTemplate={
         "userId":"",
@@ -762,6 +762,7 @@ function getPublishedEvents(){
         success: function (data){
           console.log("data.status"); 
           console.log(data);
+          publishedEvents = data;
           compareEvents();
           }
       })
