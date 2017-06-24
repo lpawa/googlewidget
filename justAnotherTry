@@ -705,57 +705,59 @@ function hideButtons(id){
 }
 
 function showButtons(id)
-{         
-    if(localStorage.getItem("userdata")){
+{
+    if(localStorage.getItem("userdata"))
+    {
 
-        
 
-            var b1 = document.getElementById('butA'+id);
-            var b2 = document.getElementById('butB'+id);
-            var b5 = document.getElementById('butC'+id);
-            var li = document.getElementById('li'+id);
-            var check = document.getElementById('check'+id);
-            
-            if(curEventId>-1&&curEventId!=id){
-              var b3 = document.getElementById('butA'+curEventId);
-              var b4 = document.getElementById('butB'+curEventId);
-              var b6 = document.getElementById('butC'+curEventId);
-              var check2 = document.getElementById('check'+curEventId);
-              if(storedEvents[curEventId].published){
+
+        var b1 = document.getElementById('butA'+id);
+        var b2 = document.getElementById('butB'+id);
+        var b5 = document.getElementById('butC'+id);
+        var li = document.getElementById('li'+id);
+        var check = document.getElementById('check'+id);
+
+        if(curEventId>-1&&curEventId!=id){
+            var b3 = document.getElementById('butA'+curEventId);
+            var b4 = document.getElementById('butB'+curEventId);
+            var b6 = document.getElementById('butC'+curEventId);
+            var check2 = document.getElementById('check'+curEventId);
+            if(storedEvents[curEventId].published){
                 $(b6).toggle();
-                }
-              else{  
+            }
+            else{
                 $(b3).toggle();
                 $(b4).toggle();
                 $(check2).toggle();
-                }
-              }
-            console.log(b1);
-            console.log(b2);
-              if(storedEvents[id].published){
-                $(b5).toggle();
-                }
-              else{  
-                $(b1).toggle();
-                $(b2).toggle();
-                $(check).toggle();
-                }
-                if(curEventId!=id){
-                curEventId= id;
-                }
-                else{
-                curEventId = -1;
-                }
             }
-        
-     
-     gadgets.window.adjustHeight();
+        }
+        console.log(b1);
+        console.log(b2);
+        if(storedEvents[id].published){
+            $(b5).toggle();
+        }
+        else{
+            $(b1).toggle();
+            $(b2).toggle();
+            $(check).toggle();
+        }
+        if(curEventId!=id){
+            curEventId= id;
+        }
+        else{
+            curEventId = -1;
+        }
+    }
 
-     }
-     else{
-      Popup(id,"login");
-     }
+    else{
+        Popup(id,"login");
+    }
+    gadgets.window.adjustHeight();
+
+
+
 }
+
 
 function signIn(){
 
