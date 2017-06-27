@@ -259,7 +259,7 @@ function drawScreen(){
       else{
       minE=e.endTime.minute;
       }
-      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button> <button class="but'+ i +' green-btn" id ="butC'+ i +'" style="display:none">Show Graph</button></div>\n';
+      out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button> <button class="but'+ i +' green-btn" id ="butC'+ i +'" style="display:none" onclick="ShowGraph('+i+')">Show Graph</button></div>\n';
     }
     }
     }
@@ -277,6 +277,12 @@ function drawScreen(){
  prevLen=storedEvents.length;
  gadgets.window.adjustHeight();
 }
+
+function ShowGraph(id,eventId){
+  
+}
+
+
 function PublishandEdit(id){
   if(!localStorage.getItem("userdata")){
       Popup(id,"login");
@@ -485,7 +491,7 @@ function CreateActivity(id){
     data: JSON.stringify(data),
     processData: false,
     success: function(datas){
-      console.log('success: '+datas);
+      console.log(datas);
       if(datas.status){
         Popup(id,"successful");
         hideButtons(id);
