@@ -495,7 +495,7 @@ function CreateActivity(id){
       if(datas.status){
         Popup(id,"successful");
         hideButtons(id);
-        storePublishedEvent(id);
+        storePublishedEvent(id,datas.responseData[0]);
         if(attendee){
           console.log("Sending Mail");
           console.log(attendee);
@@ -506,7 +506,7 @@ function CreateActivity(id){
   });
 }
 
-function storePublishedEvent(id) {
+function storePublishedEvent(id,respData) {
     var e = storedEvents[id];
     var data = {
       
@@ -514,10 +514,13 @@ function storePublishedEvent(id) {
         "startDate":"",
         "endDate":"",
         "userId" :"",
-        "emailId":""
+        "emailId":"",
+        "url":"",
+        "activityId":""
 
     }
-
+     data.url =  respData.urlKey;
+     data.activityId =respData.eventId;
     data.eventId = e.id;
     data.startDate = e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
@@ -564,6 +567,7 @@ function compareEvents(){
       for(var j=0;j<storedEvents.length;j++){
         if(publishedEvents[i].eventId == storedEvents[j].id){
           storedEvents[j].published = true;
+          storedEvents[j].activityId = publishedEvents[i].activityId;
           console.log(storedEvents[j]);
           console.log("compared");
           break;
