@@ -278,8 +278,10 @@ function drawScreen(){
  gadgets.window.adjustHeight();
 }
 
-function ShowGraph(id,eventId){
-  
+function ShowGraph(id){
+  var e = storedEvents[id];
+  var activityId = e.activityId;
+  var url = "localhost:8081/#/moodTrends/" + activityId;
 }
 
 
