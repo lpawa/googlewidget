@@ -296,7 +296,7 @@ function PublishandEdit(id){
   }
   console.log(e.startTime);
 
- 
+  data.eventId = e.id;
 
   data.startDateTime=e.startTime;
 
