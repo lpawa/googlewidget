@@ -272,7 +272,7 @@ function drawScreen(){
   var html=out;
  document.getElementById('out').innerHTML = html;
  if(storedEvents.length!=prevLen){
-
+ hideButtons(curEventId);
  curEventId = -1;
  }
  prevLen=storedEvents.length;
@@ -707,11 +707,13 @@ function hideButtons(id){
 
             var b1 = document.getElementById('butA'+id);
             var b2 = document.getElementById('butB'+id);
+            var b3 = document.getElementById('butC'+id);
             var li = document.getElementById('li'+id);
             var check = document.getElementById('check'+id);
 
             $(b1).hide();
               $(b2).hide();
+              $(b3).hide();
               $(check).hide();
               curEventId = -1;
               
@@ -860,7 +862,17 @@ function receiveMessage(event) {
   // Ask the calendar for the preferences
   google.calendar.getPreferences(preferencesCallback);
 
-
+  if(localStorage.getItem("userdata")){
+      var signin = document.getElementById("signin");
+      var welcome = document.getElementById("welcome");
+      var userdata = localStorage.getItem("userdata");
+      userdata = JSON.parse(userdata);
+      $(signin).hide();
+      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+      $(welcome).show();
+      loginButtonDisabled=1;
+      getPublishedEvents();
+    }
 
   function setData(data) {
         console.log(data);
