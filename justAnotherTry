@@ -850,7 +850,7 @@ function setData(data) {
     var strData = JSON.stringify(data);
 }
 
-$(document).ready(function() {
+window.onload = function() {
     
     if(localStorage.getItem("userdata")){
         var signin = document.getElementById("signin");
@@ -870,7 +870,7 @@ $(document).ready(function() {
     // Setup an event listener that calls receiveMessage() when the window
 // receives a new MessageEvent.
     window.addEventListener('message', receiveMessage);
-});
+};
  </script> 
  <div class="logo-box">
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
