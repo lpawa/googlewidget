@@ -518,9 +518,7 @@ function storePublishedEvent(id,respData) {
         "endDate":"",
         "userId" :"",
         "emailId":"",
-        "url":"",
-        "activityId":""
-
+       
     }
      data.url =  respData.urlKey;
      data.activityId =respData.eventId;
