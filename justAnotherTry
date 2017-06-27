@@ -156,6 +156,7 @@ margin:0px;
         var childWin;
         var prevLen = 0;
         var publishedEvents = []; 
+        var loginButtonDisabled = 0;
 
         var EventTemplate={
         "userId":"",
@@ -525,7 +526,7 @@ function storePublishedEvent(id,respData) {
     data.eventId = e.id;
     data.startDate = e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
 
-    data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+    data.endDate=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
 
     var userData = localStorage.getItem("userdata");
     userData = JSON.parse(userData);
@@ -718,8 +719,9 @@ function hideButtons(id){
 }
 
 function showButtons(id)
-{
-    if(localStorage.getItem("userdata"))
+{   
+
+    if(localStorage.getItem("userdata")&&loginButtonDisabled)
     {
 
 
@@ -841,6 +843,7 @@ function receiveMessage(event) {
       $(signin).hide();
       welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
       $(welcome).show();
+      loginButtonDisabled=1;
       childWin.close();
       getPublishedEvents();
     }
@@ -880,3 +883,4 @@ function receiveMessage(event) {
 ]]>
 </Content>
 </Module>
+  
