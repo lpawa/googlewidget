@@ -841,12 +841,13 @@ function receiveMessage(event) {
         var welcome = document.getElementById("welcome");
         var userdata = localStorage.getItem("userdata");
         userdata = JSON.parse(userdata);
+        childWin.close();
         if(userdata.email == viewer){
           $(signin).hide();
           welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
           $(welcome).show();
           loginButtonDisabled=1;
-          childWin.close();
+          
           getPublishedEvents();
         }
         else{
