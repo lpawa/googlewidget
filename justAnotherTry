@@ -293,6 +293,12 @@ function ShowGraph(id){
     openWindow(url);
 }
 
+funcyion AdjustHeight{
+  var out = document.getElementById('out');
+  var h = $(out).height();
+
+}
+
 
 function PublishandEdit(id){
     if(!localStorage.getItem("userdata")){
@@ -834,12 +840,17 @@ function receiveMessage(event) {
         var welcome = document.getElementById("welcome");
         var userdata = localStorage.getItem("userdata");
         userdata = JSON.parse(userdata);
-        $(signin).hide();
-        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
-        $(welcome).show();
-        loginButtonDisabled=1;
-        childWin.close();
-        getPublishedEvents();
+        if(userdata.email == viewer){
+          $(signin).hide();
+          welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+          $(welcome).show();
+          loginButtonDisabled=1;
+          childWin.close();
+          getPublishedEvents();
+        }
+        else{
+          console.log("Different Mail Id's")
+        }
     }
     else{
         childWin.close();
@@ -855,6 +866,7 @@ function setData(data) {
 window.onload = function() {
     
     if(localStorage.getItem("userdata")){
+        if(userdata.email == viewer){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
         var userdata = localStorage.getItem("userdata");
@@ -864,6 +876,11 @@ window.onload = function() {
         $(welcome).show();
         loginButtonDisabled=1;
         getPublishedEvents();
+        }
+        else{
+          console.log("Different Mail Id's");
+
+        }
     }
 
     // Ask the calendar for the preferences
