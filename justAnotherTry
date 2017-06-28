@@ -874,12 +874,62 @@ function receiveMessage(event) {
         else{
           console.log("Different Mail Id's");
           Popup(1,"DifferentId");
+          checkEmailIds(userdata.email,viewer);
         }
     }
     else{
         childWin.close();
         signIn();
     }
+}
+
+function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
+  
+  var str = "cavanticsEmailId = " + cavanticsEmailId;
+
+  $.ajax
+        ({
+            type: "GET",
+            url: "https://staging-app.cavantics.com/api/googleEmailLinkingController?"+str,
+            dataType: 'json',
+            headers: {
+                'Authorization':'Bearer '+ localStorage.getItem("jwt")
+
+            },
+            success: function (data){
+                console.log("data.status");
+            }
+        })
+            .done(function(result){
+                status= result.status;
+                console.log(status);
+                console.log(result)
+            })
+}
+
+function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
+
+  $.ajax({
+        url: 'https://staging-app.cavantics.com/api/googleEmailLinkingController',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: data,
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas);
+            if(datas.status=true){
+                console.log(datas.responseData);
+                publishedEvents.push(JSON.parse(data));
+                compareEvents();
+            }
+        }
+    });
 }
 
 function setData(data) {
