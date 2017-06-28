@@ -781,6 +781,7 @@ function getPublishedEvents(){
         Popup(id,"login");
     }
     else{
+        fetchPublishFlag = 0;
         var userData = localStorage.getItem("userdata");
         userData = JSON.parse(userData);
         var userId = userData.id;
@@ -810,6 +811,7 @@ function getPublishedEvents(){
                 console.log("data.status");
                 console.log(data);
                 publishedEvents = data;
+                fetchPublishFlag = 1;
                 compareEvents();
             }
         })
@@ -874,7 +876,7 @@ window.onload = function() {
  </script> 
  <div class="logo-box">
 <img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
-  <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Google</button>
+  <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Cavantics</button>
   <span id="welcome" style="display:none;"></span>
  </div>
  <span class = "noselect pop" id="popup" style="display:none"></span>
