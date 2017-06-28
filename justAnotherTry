@@ -946,6 +946,7 @@ function setData(data) {
 window.onload = function() {
     
     if(localStorage.getItem("userdata")){
+        userdata=JSON.parse(userdata);
         if(userdata.email == viewer){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
