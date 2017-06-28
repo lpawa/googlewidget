@@ -27,6 +27,11 @@ ul {
     padding: 0px;
     float: left;
     text-align: center;
+        margin: 10px 0px 0px 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 260px;
+    width: 100%;
 }
 ul li {
     margin: 10px 0px;
@@ -92,11 +97,12 @@ button {
     border: 0px;
     color: #fff;
     float: left;
-    margin: 5px 5px;
+    margin: 5px 0px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size:12px;
     padding: 5px;
+    width: 100%;
 }
 #welcome {
   font-size: 12px;
@@ -284,7 +290,7 @@ function drawScreen(){
     }
     prevLen=storedEvents.length;
     gadgets.window.adjustHeight();
-    AdjustHeight();
+    
 }
 
 function ShowGraph(id){
@@ -297,7 +303,6 @@ function ShowGraph(id){
 function AdjustHeight(){
   var out = document.getElementById('out');
   var h = $(out).height();
-  console.log(h)
 }
 
 
