@@ -284,6 +284,7 @@ function drawScreen(){
     }
     prevLen=storedEvents.length;
     gadgets.window.adjustHeight();
+    AdjustHeight();
 }
 
 function ShowGraph(id){
@@ -293,10 +294,10 @@ function ShowGraph(id){
     openWindow(url);
 }
 
-funcyion AdjustHeight{
+function AdjustHeight(){
   var out = document.getElementById('out');
   var h = $(out).height();
-
+  console.log(h)
 }
 
 
