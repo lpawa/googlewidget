@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="" height="" scrolling="true" author="lakshya" author_email="lakshyapawa@google.com">
+<Require feature="google.calendar-0.5"/>
+<Require feature="google.calendar-0.5.read"/>
+<Require feature="dynamic-height"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&amp;subset=cyrillic,greek,vietnamese" rel="stylesheet">
+<style>
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+ul {
+    padding: 0px;
+    float: left;
+    text-align: center;
+        margin: 10px 0px 0px 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 260px;
+    width: 100%;
+}
+ul li {
+    margin: 10px 0px;
+    font-size: 14px;
+    border-left: 2px solid #C0CA33;
+    padding: 5px;
+    list-style-type: none;
+    float: left;
+    cursor:pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    width: 100%;
+    word-wrap: break-word;
+    text-align: left;
+}
+ul li.active {
+      background: #03A9F4;
+    color: #fff;
+}
+ul li .title {
+  color: #C0CA33;
+  font-weight: 500;
+  font-size: 13px;
+}
+ul li p {
+  font-style: italic;
+  font-size: 12px;
+}
+ul li strong {
+  font-weight: 400;
+}
+button {
+    cursor:pointer;
+    border: 0px;
+    color: #fff;
+    padding: 5px;
+    margin: 0px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+.blue-btn {
+  background: #03a9f4;
+}
+.green-btn {
+  background: #C0CA33;
+  border: 2px solid #C0CA33;
+}
+.green-btn:hover {
+  background: #fff;
+  border: 2px solid #C0CA33;
+  color: #C0CA33;
+}
+.pull-left {
+  float: left !important;
+}
+.block-display {
+  display: block;
+}
+.pop {
+    cursor:pointer;
+    display: block;
+    border: 0px;
+    color: #fff;
+    float: left;
+    margin: 5px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size:12px;
+    padding: 5px;
+    width: 100%;
+}
+#welcome {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+      float: left;
+    text-align: center;
+    width: 100%;
+}
+.check{
+  
+  cursor:pointer;
+    display: block;
+        float: left;
+    padding: 1px;
+    margin-bottom: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+.check input {
+  float: left;
+}
+.sendInvite{
+    font-size: 12px;
+    font-weight: 300;
+    float: left;
+    line-height: 20px;
+}
+p{
+padding:0px;
+margin:0px;
+}
+.logo-box {
+  width: 100%;
+  height: auto;
+  float: left;
+  text-align: center;
+}
+.logo-box img{
+  width: 100px;
+  height: 100px
+}
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+ 
+ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+ul::-webkit-scrollbar-thumb {
+  background-color: #eb6e47;
+  outline: 1px solid #eb6e47;
+}
+</style>
+</head>
+<body>
+
+<script> 
+
+var viewer = null;
+var curEventId = -1;
+var storedEvents = null;
+var ownerEvents = [];
+var calendarStartDate=null;
+var calendarEndDate=null;
+var childWin;
+var prevLen = 0;
+var publishedEvents = [];
+var loginButtonDisabled = 0;
+var start = new Date();
+start.setDate(start.getDate() - 7);
+calendarStartDate = google.calendar.utils.fromDate(start);
+console.log(calendarStartDate);
+var end = new Date();
+end.setDate(end.getDate() + 7);
+calendarEndDate = google.calendar.utils.fromDate(end);
+console.log(calendarEndDate);
+startTime = {year: 2017, month: 12, date : 25};
+endTime = {year: 2018, month: 12, date : 26};
+
+
+
+var EventTemplate={
+    "userId":"",
+    "title":"",
+    "hashtag":"",
+    "description":"",
+    "type":"Normal",
+    "startDateTime":"",
+    "endDateTime":"",
+    "linkLiveDate": "",
+    "linkExpiryDate": "",
+    "imageURLId":"",
+    "thankYouNote":"Thank You!",
+    "isReversed":false,
+    "isOrgEvent":false,
+    "moods":[
+        {"moodName":"Excited","moodType":"EXCITED","order":1},
+        {"moodName":"Indifferent","moodType":"INDIFFERENT","order":3},
+        {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
+        {"moodName":"Happy","moodType":"HAPPY","order":2},
+        {"moodName":"Bored","moodType":"BORED","order":4},
+        {"moodName":"Angry","moodType":"ANGRY","order":6}]
+
+};
+
+var TestTemplate={
+    "userId":"143",
+    "title":"a test data",
+    "hashtag":"atestdata",
+    "description":"something cool",
+    "type":"Normal",
+    "startDateTime":"2017-03-01 07:10:00",
+    "endDateTime":"2017-05-24 07:10:00",
+    "linkLiveDate": "2017-03-01 07:10:00",
+    "linkExpiryDate": "2017-05-24 07:10:00",
+    "imageURLId":"",
+    "thankYouNote":"Thank You!",
+    "isReversed":"false",
+    "isOrgEvent":"false",
+    "moods":[
+        {"moodName":"Excited","moodType":"EXCITED","order":1},
+        {"moodName":"Indifferent","moodType":"INDIFFERENT","order":3},
+        {"moodName":"Unhappy","moodType":"UNHAPPY","order":5},
+        {"moodName":"Happy","moodType":"HAPPY","order":2},
+        {"moodName":"Bored","moodType":"BORED","order":4},
+        {"moodName":"Angry","moodType":"ANGRY","order":6}]
+
+};
+
+var TestTemplate2 = {
+    "userId":"68",
+    "title":"Idris Event7",
+    "hashtag":"IdrisEvent7",
+    "description":"Let's make this event big!",
+    "type":"Normal",
+    "startDateTime":"2017-03-10 07:10:10",
+    "endDateTime":"2017-05-24 10:10:10",
+    "linkLiveDate": "2017-03-10 07:10:10",
+    "linkExpiryDate": "2017-05-24 10:10:10",
+    "imageURLId":"2",
+    "thankYouNote":"Thank You!",
+    "isReversed":"false",
+    "isOrgEvent":"true",
+
+};
+
+
+function preferencesCallback(prefs) {
+    var out = '';
+    if ('startdow' in prefs) {
+        out += "Day of week = " + prefs.startdow + "\n";
+    }
+    if ('military' in prefs) {
+        out += "Military time = " + prefs.military + "\n";
+    }
+    viewer=prefs.viewer;
+    setupEventRetrieval();
+    console.log(out);
+}
+
+
+function drawScreen(){
+    console.log("drawing begins");
+    var count = (storedEvents && storedEvents.length) || 0;
+    var out = '';
+    if(storedEvents.length>0){
+        for(var i = 0; i < count; ++i) {
+            var e = storedEvents[i];
+            if ('title' in e) {
+                if(e.startTime.minute<10){
+                    minS = "0"+e.startTime.minute;
+                }
+                else{
+                    minS=e.startTime.minute;
+                }
+                if(e.endTime.minute<10){
+                    minE = "0"+e.endTime.minute;
+                }
+                else{
+                    minE=e.endTime.minute;
+                }
+                out += '<div id ="div'+ i +'"><li class = "noselect" id = "li'+i+'" onclick="showButtons('+i+')"><span class="title">' + e.title + "</span><br><p>From-<strong>" +e.startTime.date+"/"+e.startTime.month+"/"+e.startTime.year+", "+e.startTime.hour+":"+minS+ "</strong><br> To-<strong>" +e.endTime.date+"/"+e.endTime.month+"/"+e.endTime.year+", "+e.endTime.hour+":"+minE +'</strong></p></li><div class = "noselect check" id = "check'+i+'" style="display:none"><input id="cb'+i+'" type="checkbox" name="Send Invites" value="sendInvites" checked="checked"><label class = "sendInvite">Send Invites to attendees</label><br></div><button class="but'+ i +' green-btn" id ="butA'+ i +'" style="display:none" onclick="CheckHashtag('+i+')" style="display:none">Publish </button > <button class="but'+ i +' green-btn" id ="butB'+ i +'" style="display:none" onclick="PublishandEdit('+i+')">Edit</button> <button class="but'+ i +' green-btn" id ="butC'+ i +'" style="display:none" onclick="ShowGraph('+i+')">Show Graph</button></div>\n';
+            }
+        }
+    }
+    else{
+        out='No events in next 7 days';
+    }
+
+
+    var html=out;
+    document.getElementById('out').innerHTML = html;
+    if(storedEvents.length!=prevLen){
+        hideButtons(curEventId);
+        curEventId = -1;
+    }
+    prevLen=storedEvents.length;
+    gadgets.window.adjustHeight();
+    
+}
+
+function ShowGraph(id){
+    var e = storedEvents[id];
+    var activityId = e.activityId;
+    var url = "https://staging-app.cavantics.com/#/moodTrends/" + activityId;
+    openWindow(url);
+}
+
+function AdjustHeight(){
+  var out = document.getElementById('out');
+  var h = $(out).height();
+}
+
+
+function PublishandEdit(id){
+    if(!localStorage.getItem("userdata")){
+        Popup(id,"login");
+    }
+    else{
+        var e = storedEvents[id];
+        var data = EventTemplate;
+        data.title = e.title;
+        var str = e.title.replace(/\s/g,'');
+        str = str.replace(/\W/g, '');
+        data.hashtag = str;
+        if(e.details){
+            data.description = e.details;
+        }
+        else{
+            data.description = e.title;
+        }
+        console.log(e.startTime);
+
+        data.eventId = e.id;
+
+        data.startDateTime=e.startTime;
+
+        data.endDateTime=e.endTime;
+
+
+
+        if($("#cb"+id).is(':checked')){
+            if(e.attendees){
+                var attendee = e.attendees;
+                var temp=[];
+                for(var i=0;i< attendee.length;i++){
+                    if(attendee[i].email!=viewer){
+                        temp.push({
+                            "email" : attendee[i].email,
+                            "userId" : ""
+                        });
+                    }
+                    data.attendee = temp;
+                    console.log("Call Invite function");
+                    console.log(attendee);
+                    console.log(temp);
+                }
+
+            }
+            console.log("Publish and Edit:- ");
+
+            console.log(data);
+            str = JSON.stringify(data);
+
+            var obj = {};
+            obj.data = str;
+            obj = JSON.stringify(obj);
+            console.log(obj);
+
+            $.ajax({
+                url: 'https://staging-app.cavantics.com/api/preEventData',
+                headers: {
+                    'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+                    'content-type':'application/json',
+                    'Access-Control-Allow-Origin'  : '*',
+                    'Access-Control-Allow-Headers' : 'Content-Type'
+                },
+                method: 'POST',
+                dataType: "json",
+                data: obj,
+                processData: false,
+                success: function(datas){
+                    console.log('success: '+datas);
+                    if(datas.status=true){
+                        hideButtons(id);
+                        console.log(datas.responseData);
+                        var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
+                        console.log(url);
+                        openWindow(url);
+                    }
+                }
+            });
+
+
+        }
+
+    }
+}
+
+function openWindow(url){
+    var childWin = window.open(url, "_blank");
+}
+function CheckHashtag(id){
+    var status;
+    if(!localStorage.getItem("userdata")){
+        Popup(id,"login");
+    }
+    else{
+        var e = storedEvents[id];
+        var data = EventTemplate;
+        var str = e.title;
+        str = str.replace(/\W/g, '');
+        $.ajax
+        ({
+            type: "GET",
+            url: "https://staging-app.cavantics.com/api/checkHashtagExist/"+str,
+            dataType: 'json',
+            headers: {
+                'Authorization':'Bearer '+ localStorage.getItem("jwt")
+
+            },
+            success: function (data){
+                console.log("data.status");
+            }
+        })
+            .done(function(result){
+                status= result.status;
+                console.log(status);
+                if(status){
+                    Popup(id,"hashtag");
+                }
+                else{
+                    CreateActivity(id);
+                }
+            })
+    }
+}
+
+function Popup(id,status){
+    var popup = document.getElementById("popup");
+    if(status=="hashtag"){
+        popup.innerHTML = "<span>The hashtag is not unique! Click on Edit to change the hashtag</span>";
+        $(popup).css("background-color", "#eb6e47");
+    }
+    else if(status=="successful"){
+        popup.innerHTML = "<span>Activity Vibe created!</span>";
+        $(popup).css("background-color", "#C0CA33");
+    }
+    else if(status=="login"){
+        popup.innerHTML = "<span>Kindly login to Cavantics</span>";
+        $(popup).css("background-color", "#eb6e47");
+    }
+    else if(status=="DifferentId"){
+        popup.innerHTML = "<span>Kindly login with your Google Calendar Id</span>";
+        $(popup).css("background-color", "#eb6e47");
+    }
+    $(popup).show();
+    gadgets.window.adjustHeight();
+    setTimeout(function(){
+        $(popup).fadeOut(2000);
+    },3000);
+}
+
+function CreateActivity(id){
+    var e = storedEvents[id];
+    var data = EventTemplate;
+    var userdata = localStorage.getItem("userdata");
+    userdata = JSON.parse(userdata);
+    data.userId = userdata.id;
+    data.title = e.title;
+    var str = e.title;
+    str = str.replace(/\W/g, '');
+    data.hashtag = str;
+    if(e.details){
+        data.description = e.details;
+    }
+    else{
+        data.description = e.title;
+    }
+
+
+
+    data.startDateTime=e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+    data.endDateTime=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+    var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second);
+    var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
+
+
+    var m1 = moment(startDateTime);
+    var m2 = moment(endDateTime);
+    m1.subtract(1,'days');
+    m2.add(1,'days');
+    var linkStart = m1._d;
+    var linkEnd = m2._d;
+    console.log(linkStart);
+    console.log(linkEnd);
+    var attendee = null;
+    <!-- data.linkLiveDate=linkStart.year+"-"+linkStart.month+"-"+linkStart.date+" " +linkStart.hour+":" + linkStart.minute+ ":" + linkStart.second; -->
+
+    <!-- data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second; -->
+
+    data.linkLiveDate = linkStart;
+    data.linkExpiryDate = linkEnd;
+
+    console.log(data);
+
+    if($("#cb"+id).is(':checked')){
+        attendee = e.attendees;
+        console.log("Call Invite function");
+    }
+
+    $.ajax({
+        url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: JSON.stringify(data),
+        processData: false,
+        success: function(datas){
+            console.log(datas);
+            if(datas.status){
+                Popup(id,"successful");
+                hideButtons(id);
+                storePublishedEvent(id,datas.responseData[0]);
+                if(attendee){
+                    console.log("Sending Mail");
+                    console.log(attendee);
+                    sendInvites(datas , attendee);
+                }
+            }
+        }
+    });
+}
+
+function storePublishedEvent(id,respData) {
+    var e = storedEvents[id];
+    var data = {
+
+        "eventId" : "",
+        "startDate":"",
+        "endDate":"",
+        "userId" :"",
+        "emailId":""
+
+    };
+    data.url =  respData.urlKey;
+    data.activityId =respData.eventId;
+    data.eventId = e.id;
+    data.startDate = e.startTime.year+"-"+e.startTime.month+"-"+e.startTime.date+" " +e.startTime.hour+":" + e.startTime.minute+ ":" + e.startTime.second;
+
+    data.endDate=e.endTime.year+"-"+e.endTime.month+"-"+e.endTime.date+" " +e.endTime.hour+":" + e.endTime.minute+ ":" + e.endTime.second;
+
+    var userData = localStorage.getItem("userdata");
+    userData = JSON.parse(userData);
+    data.userId = userData.id;
+    data.emailId = userData.email;
+    data=JSON.stringify(data);
+
+    $.ajax({
+        url: 'https://staging-app.cavantics.com/api/publishedGoogleEvents',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: data,
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas);
+            if(datas.status=true){
+                console.log(datas.responseData);
+                publishedEvents.push(JSON.parse(data));
+                compareEvents();
+            }
+        }
+    });
+}
+
+function compareEvents(){
+    console.log("Comparing Events");
+    if(publishedEvents){
+        console.log(publishedEvents);
+        if(publishedEvents.length>0){
+            console.log(publishedEvents.length);
+            console.log(storedEvents);
+            for(var i=0; i<publishedEvents.length ; i++){
+                console.log("comparing");
+                for(var j=0;j<storedEvents.length;j++){
+                    if(publishedEvents[i].eventId == storedEvents[j].id){
+                        storedEvents[j].published = true;
+                        storedEvents[j].activityId = publishedEvents[i].activityId;
+                        console.log(storedEvents[j]);
+                        console.log("compared");
+                        break;
+                    }
+                    else{
+                        console.log("not compared");
+                        if(storedEvents[j].published!=true){
+                            storedEvents[j].published = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+function sendInvites(data, attendee){
+    var template = { "eventId":data.responseData[0].eventId,
+        "userId":null,
+        "flag":"emailIds",
+        "emailIds":[],
+        "mobileNos":[]
+    };
+    var userdata = JSON.parse(localStorage.getItem("userdata"));
+    template.userId = userdata.id;
+
+    for(var i=0;i< attendee.length;i++){
+        if(attendee[i].email!=viewer){
+            template.emailIds.push({
+                "email" : attendee[i].email,
+                "userId" : ""
+            });
+        }
+    }
+    console.log(template);
+    $.ajax({
+        url: 'https://staging-app.cavantics.com/api/moodCaptureInvitees',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: JSON.stringify(template),
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas.status);
+
+        }
+    });
+
+}
+
+function eventCallback(response) {
+    console.log("Callback Events called");
+    var Response = response[0];
+    if ('error' in response[0]) {
+        alert('Something went wrong');
+        return;
+    }
+    if (response && response.length > 0) {
+        x = response[0].events;
+        var k=0;
+        ownerEvents=[];
+        for(l=0;l<x.length;l++){
+            var e = x[l];
+            if(e.owner.email==viewer){
+                console.log(e);
+                console.log(l);
+                console.log(k);
+                ownerEvents[k]=e;
+                k++;
+            }
+        }
+    } else {
+        storedEvents = [];
+    }
+    console.log(response[0].events);
+    console.log(ownerEvents);
+    storedEvents=ownerEvents;
+    compareEvents();
+    drawScreen();
+
+}
+
+function getEvent()
+{
+    var optionalParams = { 'requestedFields': ['owner', 'status', 'attendeeCount', 'details', 'attendees'] };
+    console.log("Events trying to be fetched");
+    console.log("Start time:-" + start);
+    console.log(calendarStartDate);
+    console.log("End time:-" + end);
+    console.log(calendarEndDate);
+    console.log(viewer);
+
+    if(!viewer){
+        google.calendar.getPreferences(preferencesCallback);
+        return;
+    }
+    else{
+        var x = [];
+        x[0] = viewer;
+        console.log(x);
+        google.calendar.read.getEvents(eventCallback,x, calendarStartDate ,calendarEndDate,optionalParams);
+        console.log("Events should have been fetched");
+    }
+}
+function setupEventRetrieval() {
+        getEvent();
+        google.calendar.subscribeToDataChange(getEvent);
+}
+
+function ShowEvent(id){
+    var e = storedEvents[id];
+    var eid = e.id;
+    google.calendar.showEvent(eid);
+}
+
+function hideButtons(id){
+
+    var b1 = document.getElementById('butA'+id);
+    var b2 = document.getElementById('butB'+id);
+    var b3 = document.getElementById('butC'+id);
+    var li = document.getElementById('li'+id);
+    var check = document.getElementById('check'+id);
+
+    $(b1).hide();
+    $(b2).hide();
+    $(b3).hide();
+    $(check).hide();
+    curEventId = -1;
+
+
+}
+
+function showButtons(id)
+{
+
+    if(localStorage.getItem("userdata")&&loginButtonDisabled)
+    {
+
+
+
+        var b1 = document.getElementById('butA'+id);
+        var b2 = document.getElementById('butB'+id);
+        var b5 = document.getElementById('butC'+id);
+        var li = document.getElementById('li'+id);
+        var check = document.getElementById('check'+id);
+
+        if(curEventId>-1&&curEventId!=id){
+            var b3 = document.getElementById('butA'+curEventId);
+            var b4 = document.getElementById('butB'+curEventId);
+            var b6 = document.getElementById('butC'+curEventId);
+            var check2 = document.getElementById('check'+curEventId);
+            if(storedEvents[curEventId].published){
+                $(b6).toggle();
+            }
+            else{
+                $(b3).toggle();
+                $(b4).toggle();
+                $(check2).toggle();
+            }
+        }
+        console.log(b1);
+        console.log(b2);
+        if(storedEvents[id].published){
+            $(b5).toggle();
+        }
+        else{
+            $(b1).toggle();
+            $(b2).toggle();
+            $(check).toggle();
+        }
+        if(curEventId!=id){
+            curEventId= id;
+        }
+        else{
+            curEventId = -1;
+        }
+    }
+
+    else{
+        Popup(id,"login");
+    }
+    gadgets.window.adjustHeight();
+
+
+
+}
+
+
+function signIn(){
+    childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+}
+
+function getPublishedEvents(){
+    var status;
+    if(!localStorage.getItem("userdata")){
+        Popup(id,"login");
+    }
+    else{
+        fetchPublishFlag = 0;
+        var userData = localStorage.getItem("userdata");
+        userData = JSON.parse(userData);
+        var userId = userData.id;
+        var start = new Date();
+        start.setDate(start.getDate() - 7);
+        calendarStartDate = google.calendar.utils.fromDate(start);
+        console.log(calendarStartDate);
+        var end = new Date();
+        end.setDate(end.getDate() + 7);
+        calendarEndDate = google.calendar.utils.fromDate(end);
+        console.log(calendarEndDate);
+        var startdate = calendarStartDate.year+"-"+ calendarStartDate.month+"-"+ calendarStartDate.date+" " +calendarStartDate.hour+":" +   calendarStartDate.minute+ ":" + calendarStartDate.second;
+        var enddate = calendarEndDate.year+"-"+ calendarEndDate.month+"-"+ calendarEndDate.date+" " +calendarEndDate.hour+":" +   calendarEndDate.minute+ ":" + calendarEndDate.second;
+        var str = 'userId='+userId+'&startDate="'+ startdate+'"&endDate="'+enddate+'"';
+        console.log(str);
+
+        $.ajax
+        ({
+            type: "GET",
+            url: "https://staging-app.cavantics.com/api/publishedGoogleEvents?"+str,
+            dataType: 'json',
+            headers: {
+                'Authorization':'Bearer '+ localStorage.getItem("jwt")
+
+            },
+            success: function (data){
+                console.log("data.status");
+                console.log(data);
+                publishedEvents = data;
+                fetchPublishFlag = 1;
+                compareEvents();
+            }
+        })
+    }
+}
+function receiveMessage(event) {
+    // Check to make sure that this message came from the correct domain
+    if (event.origin !== "https://staging-app.cavantics.com"){
+        console.log(event.origin);
+        console.log("Some other origin");
+        return;
+    }
+    // Update the div element to display the message.
+    console.log("Message Received: ");
+    console.log(event.data);
+    localStorage.setItem("userdata",JSON.stringify(event.data.user));
+    localStorage.setItem("jwt",event.data.token);
+    if(localStorage.getItem("userdata")){
+        var signin = document.getElementById("signin");
+        var welcome = document.getElementById("welcome");
+        var userdata = localStorage.getItem("userdata");
+        userdata = JSON.parse(userdata);
+        childWin.close();
+        if(userdata.email == viewer){
+          $(signin).hide();
+          welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+          $(welcome).show();
+          loginButtonDisabled=1;
+          
+          getPublishedEvents();
+        }
+        else{
+          console.log("Different Mail Id's");
+          Popup(1,"DifferentId");
+        }
+    }
+    else{
+        childWin.close();
+        signIn();
+    }
+}
+
+function setData(data) {
+    console.log(data);
+    var strData = JSON.stringify(data);
+}
+
+window.onload = function() {
+    
+    if(localStorage.getItem("userdata")){
+        if(userdata.email == viewer){
+        var signin = document.getElementById("signin");
+        var welcome = document.getElementById("welcome");
+        var userdata = localStorage.getItem("userdata");
+        userdata = JSON.parse(userdata);
+        $(signin).hide();
+        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+        $(welcome).show();
+        loginButtonDisabled=1;
+        getPublishedEvents();
+        }
+        else{
+          console.log("Different Mail Id's");
+          Popup(1,"DifferentId");
+
+        }
+    }
+
+    // Ask the calendar for the preferences
+    google.calendar.getPreferences(preferencesCallback);
+
+    // Setup an event listener that calls receiveMessage() when the window
+// receives a new MessageEvent.
+    window.addEventListener('message', receiveMessage);
+};
+ </script> 
+ <div class="logo-box">
+<img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
+  <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Cavantics</button>
+  <span id="welcome" style="display:none;"></span>
+ </div>
+ <span class = "noselect pop" id="popup" style="display:none"></span>
+ <ul id="out">loading</ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+ <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
+</body>
+</html>
+]]>
+</Content>
+</Module>
+  
