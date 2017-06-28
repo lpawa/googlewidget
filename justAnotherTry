@@ -439,6 +439,10 @@ function Popup(id,status){
         popup.innerHTML = "<span>Kindly login to Cavantics</span>";
         $(popup).css("background-color", "#eb6e47");
     }
+    else if(status=="DifferentId"){
+        popup.innerHTML = "<span>Kindly login with your Google Calendar Id</span>";
+        $(popup).css("background-color", "#eb6e47");
+    }
     $(popup).show();
     gadgets.window.adjustHeight();
     setTimeout(function(){
@@ -851,7 +855,8 @@ function receiveMessage(event) {
           getPublishedEvents();
         }
         else{
-          console.log("Different Mail Id's")
+          console.log("Different Mail Id's");
+          Popup(1,"DifferentId");
         }
     }
     else{
@@ -881,6 +886,7 @@ window.onload = function() {
         }
         else{
           console.log("Different Mail Id's");
+          Popup(1,"DifferentId");
 
         }
     }
