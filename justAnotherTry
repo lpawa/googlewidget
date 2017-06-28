@@ -145,7 +145,7 @@ margin:0px;
   height: 100px
 }
 ul::-webkit-scrollbar {
-    width: 1em;
+    width: 3px;
 }
  
 ul::-webkit-scrollbar-track {
@@ -154,7 +154,7 @@ ul::-webkit-scrollbar-track {
  
 ul::-webkit-scrollbar-thumb {
   background-color: #03a9f4;
-  outline: 1px solid #C0CA33;
+  outline: 1px solid #eb6e47;
 }
 </style>
 </head>
