@@ -28,9 +28,6 @@ ul {
     float: left;
     text-align: center;
         margin: 10px 0px 0px 0px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    max-height: 260px;
     width: 100%;
 }
 ul li {
@@ -144,18 +141,7 @@ margin:0px;
   width: 100px;
   height: 100px
 }
-ul::-webkit-scrollbar {
-    width: 6px;
-}
- 
-ul::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
- 
-ul::-webkit-scrollbar-thumb {
-  background-color: #eb6e47;
-  outline: 1px solid #eb6e47;
-}
+
 </style>
 </head>
 <body>
@@ -863,18 +849,15 @@ function receiveMessage(event) {
         var userdata = localStorage.getItem("userdata");
         userdata = JSON.parse(userdata);
         childWin.close();
-        if(userdata.email == viewer){
+        
           $(signin).hide();
           welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
           $(welcome).show();
           loginButtonDisabled=1;
           
           getPublishedEvents();
-        }
-        else{
-          console.log("Different Mail Id's");
-          Popup(1,"DifferentId");
-        }
+        
+        
     }
     else{
         childWin.close();
@@ -890,7 +873,7 @@ function setData(data) {
 window.onload = function() {
     
     if(localStorage.getItem("userdata")){
-        if(userdata.email == viewer){
+        
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
         var userdata = localStorage.getItem("userdata");
@@ -900,12 +883,8 @@ window.onload = function() {
         $(welcome).show();
         loginButtonDisabled=1;
         getPublishedEvents();
-        }
-        else{
-          console.log("Different Mail Id's");
-          Popup(1,"DifferentId");
-
-        }
+        
+        
     }
 
     // Ask the calendar for the preferences
