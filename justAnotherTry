@@ -898,12 +898,18 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
             },
             success: function (data){
                 console.log("data.status");
+                console.log(data);
             }
         })
             .done(function(result){
-                status= result.status;
-                console.log(status);
                 console.log(result)
+                if(result.length>0){
+                  console.log(result[0]);
+                  console.log("Check for the viewer/googleEmail id's");
+                }
+                else{
+                  console.log("Send the email because the id doesn't exist in database");
+                }
             })
 }
 
