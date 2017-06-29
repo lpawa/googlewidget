@@ -931,14 +931,12 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
 }
 
 function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
-
-  $.ajax({
-
-        var data ={
+  var data ={
          "cavanticsEmailId" : cavanticsEmailId,
           "googleCalendarEmailId": googleCalendarEmailId
         }
-
+        
+  $.ajax({
 
         url: 'https://staging-app.cavantics.com/api/googleEmailLinkingController',
         headers: {
