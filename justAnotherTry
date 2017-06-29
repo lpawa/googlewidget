@@ -963,7 +963,7 @@ function setData(data) {
 
 window.onload = function() {
     
-    if(localStorage.getItem("userdata")){
+    if(localStorage.getItem("userdata")!=null){
         userdata=JSON.parse(userdata);
         if(userdata.email == viewer){
         var signin = document.getElementById("signin");
