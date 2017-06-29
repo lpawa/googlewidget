@@ -887,10 +887,8 @@ function receiveMessage(event) {
 }
 
 function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
-  
-  var str = "cavanticsEmailId='" + cavanticsEmailId +"'";
-  str = encodeURIComponent(str);
-
+  cavanticsEmailId = encodeURIComponent(cavanticsEmailId);  
+  var str = "cavanticsEmailId=" + cavanticsEmailId;
   console.log(str);
   $.ajax
         ({
