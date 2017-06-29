@@ -890,11 +890,12 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   
   var str = "cavanticsEmailId='" + cavanticsEmailId +"'";
   str = encodeURIComponent(str);
+
+  console.log(str);
   $.ajax
         ({
             type: "GET",
-            
-            console.log(str);
+
             url: "https://staging-app.cavantics.com/api/googleEmailLinkingController?"+str,
             dataType: 'json',
             headers: {
