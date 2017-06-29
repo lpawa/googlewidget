@@ -906,9 +906,27 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                 if(result.length>0){
                   console.log(result[0]);
                   console.log("Check for the viewer/googleEmail id's");
+                  if(viewer==googleCalendarEmailId){
+                    if(result[0].isConfirmed){
+                      var signin = document.getElementById("signin");
+                      var welcome = document.getElementById("welcome");
+                      var userdata = localStorage.getItem("userdata");
+                      userdata = JSON.parse(userdata);
+                      $(signin).hide();
+                      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                      $(welcome).show();
+                      loginButtonDisabled=1;
+                      getPublishedEvents();
+                    }
+                    else{
+                      popup(1,"ConfirmYourEmail");
+                    }
+                  }
                 }
                 else{
                   console.log("Send the email because the id doesn't exist in database");
+                  linkEmailIds(cavanticsEmailId,googleCalendarEmailId);
+                  console.log()
                 }
             })
 }
@@ -961,7 +979,6 @@ window.onload = function() {
         else{
           console.log("Different Mail Id's");
           Popup(1,"DifferentId");
-
         }
     }
 
