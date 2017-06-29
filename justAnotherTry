@@ -460,6 +460,10 @@ function Popup(id,status){
         popup.innerHTML = "<span>Kindly login with your Google Calendar Id</span>";
         $(popup).css("background-color", "#eb6e47");
     }
+    else if(status=="CheckMail"){
+        popup.innerHTML = "<span>Kindly Confirm the linking of your EmailID. CHeck your mail</span>";
+        $(popup).css("background-color", "#C0CA33");
+    }
     $(popup).show();
     gadgets.window.adjustHeight();
     setTimeout(function(){
@@ -918,7 +922,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       getPublishedEvents();
                     }
                     else{
-                      popup(1,"ConfirmYourEmail");
+                      popup(1,"CheckMail");
                     }
                   }
                 }
@@ -952,9 +956,8 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
         success: function(datas){
             console.log('success: '+datas);
             if(datas.status=true){
-                console.log(datas.responseData);
-                publishedEvents.push(JSON.parse(data));
-                compareEvents();
+                console.log("Email Sent");
+                popup(1,"CheckMail")
             }
         }
     });
