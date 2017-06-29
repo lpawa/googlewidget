@@ -935,7 +935,7 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
          "cavanticsEmailId" : cavanticsEmailId,
           "googleCalendarEmailId": googleCalendarEmailId
         }
-        
+  data = JSON.stringify(data);
   $.ajax({
 
         url: 'https://staging-app.cavantics.com/api/googleEmailLinkingController',
