@@ -934,8 +934,7 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
 
   $.ajax({
 
-        var data = 
-        {
+        var data ={
          "cavanticsEmailId" : cavanticsEmailId,
           "googleCalendarEmailId": googleCalendarEmailId
         }
