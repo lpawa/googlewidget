@@ -922,7 +922,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       getPublishedEvents();
                     }
                     else{
-                      popup(1,"CheckMail");
+                      Popup(1,"CheckMail");
                     }
                   }
                 }
@@ -957,7 +957,7 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
             console.log('success: '+datas);
             if(datas.status=true){
                 console.log("Email Sent");
-                popup(1,"CheckMail")
+                Popup(1,"CheckMail")
             }
         }
     });
