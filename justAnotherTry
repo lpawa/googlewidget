@@ -873,7 +873,6 @@ function receiveMessage(event) {
         }
         else{
           console.log("Different Mail Id's");
-          Popup(1,"DifferentId");
           checkEmailIds(userdata.email,viewer);
         }
     }
@@ -885,7 +884,7 @@ function receiveMessage(event) {
 
 function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   
-  var str = "cavanticsEmailId = " + cavanticsEmailId;
+  var str = "cavanticsEmailId='" + cavanticsEmailId +"'";
 
   $.ajax
         ({
@@ -934,6 +933,14 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
 function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
 
   $.ajax({
+
+        var data = 
+        {
+         "cavanticsEmailId" : cavanticsEmailId,
+          "googleCalendarEmailId": googleCalendarEmailId
+        }
+
+
         url: 'https://staging-app.cavantics.com/api/googleEmailLinkingController',
         headers: {
             'Authorization':'Bearer ' + localStorage.getItem("jwt"),
