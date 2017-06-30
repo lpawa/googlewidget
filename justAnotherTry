@@ -189,7 +189,7 @@ var EventTemplate={
     "userId":"",
     "title":"",
     "hashtag":"",
-    "description":"",
+    "description":" ",
     "type":"Normal",
     "startDateTime":"",
     "endDateTime":"",
@@ -333,7 +333,7 @@ function PublishandEdit(id){
             data.description = e.details;
         }
         else{
-            data.description = e.title;
+            data.description = " ";
         }
         console.log(e.startTime);
 
@@ -485,7 +485,7 @@ function CreateActivity(id){
         data.description = e.details;
     }
     else{
-        data.description = e.title;
+        data.description = " ";
     }
 
 
@@ -539,6 +539,7 @@ function CreateActivity(id){
                 Popup(id,"successful");
                 hideButtons(id);
                 storePublishedEvent(id,datas.responseData[0]);
+                sendCreatorMail(datas.responseData[0].eventId)
                 if(attendee){
                     console.log("Sending Mail");
                     console.log(attendee);
@@ -625,7 +626,26 @@ function compareEvents(){
     }
 
 }
+function sendCreatorMail(eventId){
+  template = {"eventId" : eventId}
+  $.ajax({
+        url: 'https://staging-app.cavantics.com/api/moodCaptureCreatorEmail',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: JSON.stringify(template),
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas.status);
 
+        }
+    });
+}
 function sendInvites(data, attendee){
     var template = { "eventId":data.responseData[0].eventId,
         "userId":null,
