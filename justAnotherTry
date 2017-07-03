@@ -189,7 +189,7 @@ var EventTemplate={
     "userId":"",
     "title":"",
     "hashtag":"",
-    "description":" ",
+    "description":"-",
     "type":"Normal",
     "startDateTime":"",
     "endDateTime":"",
@@ -333,7 +333,7 @@ function PublishandEdit(id){
             data.description = e.details;
         }
         else{
-            data.description = " ";
+            data.description = "-";
         }
         console.log(e.startTime);
 
@@ -485,7 +485,7 @@ function CreateActivity(id){
         data.description = e.details;
     }
     else{
-        data.description = " ";
+        data.description = "-";
     }
 
 
