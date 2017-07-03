@@ -829,7 +829,7 @@ function showButtons(id)
 
 function putLoader(){
 
-  html = "<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">"
+  html = '<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">';
   
   document.getElementById('out').innerHTML = html;
 }
