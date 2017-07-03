@@ -30,7 +30,7 @@ ul {
         margin: 10px 0px 0px 0px;
     overflow-x: hidden;
     overflow-y: scroll;
-    max-height: 260px;
+    max-height: 350px;
     width: 100%;
 }
 ul li {
