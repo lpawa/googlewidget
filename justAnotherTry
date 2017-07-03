@@ -182,6 +182,7 @@ calendarEndDate = google.calendar.utils.fromDate(end);
 console.log(calendarEndDate);
 startTime = {year: 2017, month: 12, date : 25};
 endTime = {year: 2018, month: 12, date : 26};
+var notLoading=1;
 
 
 
@@ -546,6 +547,10 @@ function CreateActivity(id){
                     sendInvites(datas , attendee);
                 }
             }
+            else{
+            Popup(1,"login");
+            enableSignInButton();
+            }
         }
     });
 }
@@ -770,7 +775,7 @@ function hideButtons(id){
 function showButtons(id)
 {
 
-    if(localStorage.getItem("userdata")&&loginButtonDisabled)
+    if(localStorage.getItem("userdata")&&loginButtonDisabled&&notLoading)
     {
 
 
@@ -822,9 +827,26 @@ function showButtons(id)
 
 }
 
+function putLoader(){
+
+  html = "<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">"
+  
+  document.getElementById('out').innerHTML = html;
+}
+
 
 function signIn(){
     childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+}
+
+function enableSignInButton(){
+  var signin = document.getElementById("signin");
+  var welcome = document.getElementById("welcome");
+  localStorage.setItem("userdata" , null);
+  localStorage.setItem("jwt" , null);
+  $(signin).show();
+  $(welcome).hide();
+  loginButtonDisabled=0;
 }
 
 function getPublishedEvents(){
@@ -910,6 +932,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   cavanticsEmailId = encodeURIComponent(cavanticsEmailId);  
   var str = "cavanticsEmailId=" + cavanticsEmailId;
   console.log(str);
+  notLoading=0;
   $.ajax
         ({
             type: "GET",
@@ -941,16 +964,18 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       $(welcome).show();
                       loginButtonDisabled=1;
                       getPublishedEvents();
+                      notLoading=1;
                     }
                     else{
                       Popup(1,"CheckMail");
+                      notLoading=1;
                     }
                   }
                 }
                 else{
                   console.log("Send the email because the id doesn't exist in database");
                   linkEmailIds(cavanticsEmailId,googleCalendarEmailId);
-                  console.log()
+                  notLoading=1;
                 }
             })
 }
@@ -1008,6 +1033,7 @@ window.onload = function() {
           console.log("Different Mail Id's");
           Popup(1,"DifferentId");
         }
+        putLoader();
     }
 
     // Ask the calendar for the preferences
