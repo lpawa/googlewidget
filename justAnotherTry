@@ -1015,7 +1015,7 @@ function setData(data) {
 }
 
 window.onload = function() {
-    
+    putLoader();
     if(localStorage.getItem("userdata")!=null){
         userdata=JSON.parse(localStorage.getItem("userdata"));
         if(userdata.email == viewer){
@@ -1033,7 +1033,7 @@ window.onload = function() {
           console.log("Different Mail Id's");
           Popup(1,"DifferentId");
         }
-        putLoader();
+        
     }
 
     // Ask the calendar for the preferences
@@ -1050,7 +1050,7 @@ window.onload = function() {
   <span id="welcome" style="display:none;"></span>
  </div>
  <span class = "noselect pop" id="popup" style="display:none"></span>
- <ul id="out">loading</ul>
+ <ul id="out"></ul>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
