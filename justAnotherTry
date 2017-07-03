@@ -992,7 +992,7 @@ function setData(data) {
 window.onload = function() {
     
     if(localStorage.getItem("userdata")!=null){
-        userdata=JSON.parse(userdata);
+        userdata=JSON.parse(localStorage.getItem("userdata"));
         if(userdata.email == viewer){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
