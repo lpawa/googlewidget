@@ -925,6 +925,7 @@ function receiveMessage(event) {
     console.log(event.data);
     localStorage.setItem("userdata",JSON.stringify(event.data.user));
     localStorage.setItem("jwt",event.data.token);
+    putLoader();
     if(localStorage.getItem("userdata")){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
