@@ -516,10 +516,10 @@ function CreateActivity(id){
 
     console.log(data);
 
-    if($("#cb"+id).is(':checked')){
+    <!-- if($("#cb"+id).is(':checked')){ -->
         attendee = e.attendees;
         console.log("Call Invite function");
-    }
+    <!-- } -->
 
     $.ajax({
         url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
@@ -602,14 +602,13 @@ function storePublishedEvent(id,respData) {
 }
 
 function compareEvents(){
-    console.log("Comparing Events");
-    if(publishedEvents){
-        console.log(publishedEvents);
+        if(publishedEvents){
+        
         if(publishedEvents.length>0){
-            console.log(publishedEvents.length);
+            
             console.log(storedEvents);
             for(var i=0; i<publishedEvents.length ; i++){
-                console.log("comparing");
+                
                 for(var j=0;j<storedEvents.length;j++){
                     if(publishedEvents[i].eventId == storedEvents[j].id){
                         storedEvents[j].published = true;
