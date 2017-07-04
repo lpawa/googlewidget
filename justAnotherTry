@@ -419,20 +419,41 @@ function CheckHashtag(id){
         var data = EventTemplate;
         var str = e.title;
         str = str.replace(/\W/g, '');
-        $.ajax
-        ({
-            type: "GET",
-            url: "https://staging-app.cavantics.com/api/checkHashtagExist/"+str,
-            dataType: 'json',
-            headers: {
-                'Authorization':'Bearer '+ localStorage.getItem("jwt")
+        var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second);
+        var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
 
-            },
-            success: function (data){
-                console.log("data.status");
-            }
-        })
-            .done(function(result){
+        data.startDateTime=moment(startDateTime)._d;            
+        data.endDateTime=moment(endDateTime)._d;
+
+        var m1 = moment(startDateTime);
+        var m2 = moment(endDateTime);
+        m1.subtract(1,'days');
+        m2.add(1,'days');
+        var linkStart = m1._d;
+        var linkEnd = m2._d;
+
+        var data = {
+          "hashtag":str,
+          "linkLiveDate":linkStart,
+          "linkExpiryDate":linkEnd
+        }
+        $.ajax({
+        url: 'https://staging-app.cavantics.com/api/isActivityHashtagValid',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: data,
+        processData: false,
+        success: function(datas){
+            console.log(datas.status);
+          }
+       })
+      .done(function(result){
                 status= result.status;
                 console.log(status);
                 if(status){
@@ -473,6 +494,7 @@ function Popup(id,status){
         $(popup).css("background-color", "#eb6e47");
     }
     $(popup).show();
+    drawScreen();
     gadgets.window.adjustHeight();
     setTimeout(function(){
         $(popup).fadeOut(2000);
