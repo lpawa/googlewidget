@@ -465,8 +465,12 @@ function Popup(id,status){
         $(popup).css("background-color", "#eb6e47");
     }
     else if(status=="CheckMail"){
-        popup.innerHTML = "<span>Kindly Confirm the linking of your EmailID. CHeck your mail</span>";
+        popup.innerHTML = "<span>Confirm the linking of your Email ID. Check your mail</span>";
         $(popup).css("background-color", "#C0CA33");
+    }
+    else if(status=="MailError"){
+        popup.innerHTML = "<span>Error In Linking. Try Again with right account</span>";
+        $(popup).css("background-color", "#eb6e47");
     }
     $(popup).show();
     gadgets.window.adjustHeight();
@@ -1029,8 +1033,14 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
             console.log('success: '+datas);
             if(datas.status=true){
                 console.log("Email Sent");
-                Popup(1,"CheckMail")
+                Popup(1,"CheckMail");
+
             }
+            else{
+              Popup(1,"MailError");
+
+            }
+            drawScreen();
         }
     });
 }
