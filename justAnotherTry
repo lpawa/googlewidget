@@ -614,14 +614,11 @@ function compareEvents(){
                     if(publishedEvents[i].eventId == storedEvents[j].id){
                         storedEvents[j].published = true;
                         storedEvents[j].activityId = publishedEvents[i].activityId;
-                        console.log(storedEvents[j]);
-                        console.log("compared");
                         break;
                     }
                     else{
-                        console.log("not compared");
-                        if(storedEvents[j].published!=true){
-                            storedEvents[j].published = false;
+                          if(storedEvents[j].published!=true){
+                          storedEvents[j].published = false;
                         }
                     }
                 }
