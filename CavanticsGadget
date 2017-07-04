@@ -409,10 +409,12 @@ function openWindow(url){
 }
 function CheckHashtag(id){
     var status;
+
     if(!localStorage.getItem("userdata")){
         Popup(id,"login");
     }
     else{
+        putLoader();
         var e = storedEvents[id];
         var data = EventTemplate;
         var str = e.title;
@@ -435,6 +437,7 @@ function CheckHashtag(id){
                 console.log(status);
                 if(status){
                     Popup(id,"hashtag");
+                    drawScreen();
                 }
                 else{
                     CreateActivity(id);
@@ -487,12 +490,7 @@ function CreateActivity(id){
     }
     else{
         data.description = "-";
-    }
-
-
-
-    
-
+    } 
 
     var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second);
     var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
@@ -627,6 +625,7 @@ function compareEvents(){
                         }
                     }
                 }
+                drawScreen();
             }
         }
     }
@@ -741,10 +740,33 @@ function getEvent()
         var x = [];
         x[0] = viewer;
         console.log(x);
+        checkAlreadySignIn();
         google.calendar.read.getEvents(eventCallback,x, calendarStartDate ,calendarEndDate,optionalParams);
         console.log("Events should have been fetched");
     }
 }
+
+function checkAlreadySignIn(){
+   if(localStorage.getItem("userdata")!=null){
+        userdata=JSON.parse(localStorage.getItem("userdata"));
+        if(userdata.email == viewer){
+        var signin = document.getElementById("signin");
+        var welcome = document.getElementById("welcome");
+        var userdata = localStorage.getItem("userdata");
+        userdata = JSON.parse(userdata);
+        $(signin).hide();
+        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+        $(welcome).show();
+        loginButtonDisabled=1;
+        getPublishedEvents();
+        }
+        else{
+          console.log("Different Mail ID's");
+          checkEmailIds(userdata.email,viewer);
+        }  
+    }
+}
+
 function setupEventRetrieval() {
         getEvent();
         google.calendar.subscribeToDataChange(getEvent);
@@ -904,6 +926,7 @@ function receiveMessage(event) {
     console.log(event.data);
     localStorage.setItem("userdata",JSON.stringify(event.data.user));
     localStorage.setItem("jwt",event.data.token);
+    putLoader();
     if(localStorage.getItem("userdata")){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
@@ -934,6 +957,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   var str = "cavanticsEmailId=" + cavanticsEmailId;
   console.log(str);
   notLoading=0;
+  putLoader();
   $.ajax
         ({
             type: "GET",
@@ -970,6 +994,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                     else{
                       Popup(1,"CheckMail");
                       notLoading=1;
+                      drawScreen();
                     }
                   }
                 }
@@ -1017,25 +1042,6 @@ function setData(data) {
 
 window.onload = function() {
     putLoader();
-    if(localStorage.getItem("userdata")!=null){
-        userdata=JSON.parse(localStorage.getItem("userdata"));
-        if(userdata.email == viewer){
-        var signin = document.getElementById("signin");
-        var welcome = document.getElementById("welcome");
-        var userdata = localStorage.getItem("userdata");
-        userdata = JSON.parse(userdata);
-        $(signin).hide();
-        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
-        $(welcome).show();
-        loginButtonDisabled=1;
-        getPublishedEvents();
-        }
-        else{
-          console.log("Different Mail Id's");
-          Popup(1,"DifferentId");
-        }
-        
-    }
 
     // Ask the calendar for the preferences
     google.calendar.getPreferences(preferencesCallback);
