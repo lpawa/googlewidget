@@ -465,8 +465,12 @@ function Popup(id,status){
         $(popup).css("background-color", "#eb6e47");
     }
     else if(status=="CheckMail"){
-        popup.innerHTML = "<span>Kindly Confirm the linking of your EmailID. CHeck your mail</span>";
+        popup.innerHTML = "<span>Confirm the linking of your Email ID. Check your mail</span>";
         $(popup).css("background-color", "#C0CA33");
+    }
+    else if(status=="MailError"){
+        popup.innerHTML = "<span>Error In Linking. Try Again with right account</span>";
+        $(popup).css("background-color", "#eb6e47");
     }
     $(popup).show();
     gadgets.window.adjustHeight();
@@ -519,6 +523,10 @@ function CreateActivity(id){
     if($("#cb"+id).is(':checked')){
         attendee = e.attendees;
         console.log("Call Invite function");
+    }
+    if(e.attendees){
+        attendee = e.attendees;
+        console.log("Call Invite function2");
     }
 
     $.ajax({
@@ -602,26 +610,22 @@ function storePublishedEvent(id,respData) {
 }
 
 function compareEvents(){
-    console.log("Comparing Events");
-    if(publishedEvents){
-        console.log(publishedEvents);
+        if(publishedEvents){
+        
         if(publishedEvents.length>0){
-            console.log(publishedEvents.length);
+            
             console.log(storedEvents);
             for(var i=0; i<publishedEvents.length ; i++){
-                console.log("comparing");
+                
                 for(var j=0;j<storedEvents.length;j++){
                     if(publishedEvents[i].eventId == storedEvents[j].id){
                         storedEvents[j].published = true;
                         storedEvents[j].activityId = publishedEvents[i].activityId;
-                        console.log(storedEvents[j]);
-                        console.log("compared");
                         break;
                     }
                     else{
-                        console.log("not compared");
-                        if(storedEvents[j].published!=true){
-                            storedEvents[j].published = false;
+                          if(storedEvents[j].published!=true){
+                          storedEvents[j].published = false;
                         }
                     }
                 }
@@ -1029,8 +1033,14 @@ function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
             console.log('success: '+datas);
             if(datas.status=true){
                 console.log("Email Sent");
-                Popup(1,"CheckMail")
+                Popup(1,"CheckMail");
+
             }
+            else{
+              Popup(1,"MailError");
+
+            }
+            drawScreen();
         }
     });
 }
