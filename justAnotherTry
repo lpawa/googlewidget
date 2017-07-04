@@ -497,8 +497,8 @@ function CreateActivity(id){
     var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second);
     var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
 
-    data.startDateTime=moment.utc(startDateTime).local().format("YYYY-MM-DD HH:mm");            
-    data.endDateTime=moment.utc(endDateTime).local().format("YYYY-MM-DD HH:mm");
+    data.startDateTime=moment(startDateTime)._d;            
+    data.endDateTime=moment(endDateTime)._d;
 
     var m1 = moment(startDateTime);
     var m2 = moment(endDateTime);
