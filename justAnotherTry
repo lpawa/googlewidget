@@ -625,6 +625,7 @@ function compareEvents(){
                         }
                     }
                 }
+                drawScreen();
             }
         }
     }
@@ -956,6 +957,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   var str = "cavanticsEmailId=" + cavanticsEmailId;
   console.log(str);
   notLoading=0;
+  putLoader();
   $.ajax
         ({
             type: "GET",
@@ -992,6 +994,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                     else{
                       Popup(1,"CheckMail");
                       notLoading=1;
+                      drawScreen();
                     }
                   }
                 }
