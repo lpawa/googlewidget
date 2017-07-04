@@ -516,10 +516,14 @@ function CreateActivity(id){
 
     console.log(data);
 
-    <!-- if($("#cb"+id).is(':checked')){ -->
+    if($("#cb"+id).is(':checked')){
         attendee = e.attendees;
         console.log("Call Invite function");
-    <!-- } -->
+    }
+    if(e.attendees){
+        attendee = e.attendees;
+        console.log("Call Invite function2");
+    }
 
     $.ajax({
         url: 'https://staging-app.cavantics.com/api/moodCaptureEvent',
