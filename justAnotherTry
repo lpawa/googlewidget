@@ -491,15 +491,15 @@ function CreateActivity(id){
 
 
 
-    data.startDateTime=new Date(moment.utc(e.startTime).local().format("YYYY-MM-DD HH:mm") : "-";
-            
+    
 
-    data.endDateTime=new Date(moment.utc(e.endTime).local().format("YYYY-MM-DD HH:mm") : "-";
-   
 
     var startDateTime = new Date(e.startTime.year, e.startTime.month -1, e.startTime.date, e.startTime.hour, e.startTime.minute, e.startTime.second);
     var endDateTime = new Date(e.endTime.year, e.endTime.month -1, e.endTime.date, e.endTime.hour, e.endTime.minute, e.endTime.second);
 
+    data.startDateTime=moment.utc(startDateTime).local().format("YYYY-MM-DD HH:mm") : "-";            
+
+    data.endDateTime=moment.utc(endDateTime).local().format("YYYY-MM-DD HH:mm") : "-";
 
     var m1 = moment(startDateTime);
     var m2 = moment(endDateTime);
