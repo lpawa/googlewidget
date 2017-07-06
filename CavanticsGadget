@@ -183,6 +183,7 @@ console.log(calendarEndDate);
 startTime = {year: 2017, month: 12, date : 25};
 endTime = {year: 2018, month: 12, date : 26};
 var notLoading=1;
+var checked;
 
 
 
@@ -414,6 +415,8 @@ function CheckHashtag(id){
         Popup(id,"login");
     }
     else{
+        checked = $("#cb"+id).is(':checked');
+        console.log(checked);
         putLoader();
         var e = storedEvents[id];
         var data = EventTemplate;
@@ -508,10 +511,11 @@ function CreateActivity(id){
     var userdata = localStorage.getItem("userdata");
     userdata = JSON.parse(userdata);
     data.userId = userdata.id;
-    data.title = e.title;
+    
     var str = e.title;
     str = str.replace(/\W/g, '');
     data.hashtag = str;
+    data.title = str;
     if(e.details){
         data.description = e.details;
     }
@@ -542,14 +546,10 @@ function CreateActivity(id){
     data.linkExpiryDate = linkEnd;
 
     console.log(data);
-
-    if($("#cb"+id).is(':checked')){
+    console.log(checked);
+    if(checked){
         attendee = e.attendees;
         console.log("Call Invite function");
-    }
-    if(e.attendees){
-        attendee = e.attendees;
-        console.log("Call Invite function2");
     }
 
     $.ajax({
