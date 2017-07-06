@@ -437,6 +437,7 @@ function CheckHashtag(id){
           "linkLiveDate":linkStart,
           "linkExpiryDate":linkEnd
         }
+        data = JSON.stringify(data);
         $.ajax({
         url: 'https://staging-app.cavantics.com/api/isActivityHashtagValid',
         headers: {
