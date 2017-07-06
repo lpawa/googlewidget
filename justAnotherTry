@@ -511,10 +511,11 @@ function CreateActivity(id){
     var userdata = localStorage.getItem("userdata");
     userdata = JSON.parse(userdata);
     data.userId = userdata.id;
-    data.title = e.title;
+    
     var str = e.title;
     str = str.replace(/\W/g, '');
     data.hashtag = str;
+    data.title = str;
     if(e.details){
         data.description = e.details;
     }
