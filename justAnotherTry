@@ -774,8 +774,8 @@ function getEvent()
 }
 
 function checkAlreadySignIn(){
-   if(localStorage.getItem("userdata")!=null){
-        userdata=JSON.parse(localStorage.getItem("userdata"));
+    var userdata=JSON.parse(localStorage.getItem("userdata"));
+   if(userdata!=null){
         if(userdata.email == viewer){
         var signin = document.getElementById("signin");
         var welcome = document.getElementById("welcome");
