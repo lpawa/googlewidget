@@ -183,6 +183,7 @@ console.log(calendarEndDate);
 startTime = {year: 2017, month: 12, date : 25};
 endTime = {year: 2018, month: 12, date : 26};
 var notLoading=1;
+var checked;
 
 
 
@@ -414,6 +415,8 @@ function CheckHashtag(id){
         Popup(id,"login");
     }
     else{
+        checked = document.getElementById("#cb"+id).checked;
+        console.log(checked);
         putLoader();
         var e = storedEvents[id];
         var data = EventTemplate;
@@ -542,9 +545,8 @@ function CreateActivity(id){
     data.linkExpiryDate = linkEnd;
 
     console.log(data);
-    var check = document.getElementById("#cb"+id).checked;
-    console.log(check);
-    if(check){
+    console.log(checked);
+    if(checked){
         attendee = e.attendees;
         console.log("Call Invite function");
     }
