@@ -197,7 +197,7 @@ var EventTemplate={
     "linkLiveDate": "",
     "linkExpiryDate": "",
     "imageURLId":"",
-    "thankYouNote":"Thank You!",
+    "thankYouNote":"Your feedback has been captured. Thank You!",
     "isReversed":false,
     "isOrgEvent":false,
     "moods":[
