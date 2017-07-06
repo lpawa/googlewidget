@@ -542,8 +542,9 @@ function CreateActivity(id){
     data.linkExpiryDate = linkEnd;
 
     console.log(data);
-
-    if(document.getElementById("#cb"+id).checked){
+    var check = document.getElementById("#cb"+id).checked;
+    console.log(check);
+    if(check){
         attendee = e.attendees;
         console.log("Call Invite function");
     }
