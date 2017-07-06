@@ -415,7 +415,7 @@ function CheckHashtag(id){
         Popup(id,"login");
     }
     else{
-        checked = document.getElementById("#cb"+id).checked;
+        checked = $("#cb"+id).is(':checked'));
         console.log(checked);
         putLoader();
         var e = storedEvents[id];
