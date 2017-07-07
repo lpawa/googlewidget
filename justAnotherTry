@@ -774,24 +774,52 @@ function getEvent()
 }
 
 function checkAlreadySignIn(){
-    var userdata=JSON.parse(localStorage.getItem("userdata"));
-   if(userdata!=null){
-        if(userdata.email == viewer){
-        var signin = document.getElementById("signin");
-        var welcome = document.getElementById("welcome");
-        var userdata = localStorage.getItem("userdata");
-        userdata = JSON.parse(userdata);
-        $(signin).hide();
-        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
-        $(welcome).show();
-        loginButtonDisabled=1;
-        getPublishedEvents();
+     var userdata = localStorage.getItem("userdata");
+     
+     if(userdata!=null){
+     userdata = JSON.parse(userdata);
+     $.ajax({
+
+        url: 'https://staging-app.cavantics.com/api/validateToken',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: {},
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas);
+            if(datas.status=true){
+                if(userdata.email == viewer){
+                  var signin = document.getElementById("signin");
+                  var welcome = document.getElementById("welcome");
+                  var userdata = localStorage.getItem("userdata");
+                  userdata = JSON.parse(userdata);
+                  $(signin).hide();
+                  welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                  $(welcome).show();
+                  loginButtonDisabled=1;
+                  getPublishedEvents();
+                  }
+                  else{
+                    console.log("Different Mail ID's");
+                    checkEmailIds(userdata.email,viewer);
+                  }
+
+            }
+            else{
+              Popup(1,"login");
+              enableSignInButton();
+
+            }
+           
         }
-        else{
-          console.log("Different Mail ID's");
-          checkEmailIds(userdata.email,viewer);
-        }  
-    }
+    });
+  }
 }
 
 function setupEventRetrieval() {
