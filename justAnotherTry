@@ -794,6 +794,7 @@ function checkAlreadySignIn(){
         success: function(datas){
             console.log('success: '+datas);
             if(datas.status=true){
+                console.log(userdata);
                 if(userdata.email == viewer){
                   var signin = document.getElementById("signin");
                   var welcome = document.getElementById("welcome");
