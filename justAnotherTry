@@ -1034,7 +1034,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
 }
 function checkgoogleEmailIds(cavanticsEmailId,googleCalendarEmailId){
   googleCalendarEmailId = encodeURIComponent(googleCalendarEmailId);  
-  var str = "cavanticsEmailId=" + googleCalendarEmailId;
+  var str = "googleCalendarEmailId=" + googleCalendarEmailId;
   console.log(str);
   notLoading=0;
   putLoader();
