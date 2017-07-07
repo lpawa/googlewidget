@@ -1027,12 +1027,46 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                 }
                 else{
                   console.log("Send the email because the id doesn't exist in database");
+                  checkgoogleEmailIds(cavanticsEmailId,googleCalendarEmailId);
+                  notLoading=1;
+                }
+            })
+}
+function checkgoogleEmailIds(cavanticsEmailId,googleCalendarEmailId){
+  googleCalendarEmailId = encodeURIComponent(googleCalendarEmailId);  
+  var str = "googleCalendarEmailId=" + googleCalendarEmailId;
+  console.log(str);
+  notLoading=0;
+  putLoader();
+  $.ajax
+        ({
+            type: "GET",
+
+            url: "https://staging-app.cavantics.com/api/googleEmailLinkingController?"+str,
+            dataType: 'json',
+            headers: {
+                'Authorization':'Bearer '+ localStorage.getItem("jwt")
+
+            },
+            success: function (data){
+                console.log("data.status");
+                console.log(data);
+            }
+        })
+            .done(function(result){
+                console.log(result)
+                if(result.length>0){
+                  console.log(result[0]);
+                  Popup(1,"MailError");
+                  drawScreen();
+                }
+                else{
+                  console.log("Send the email because the id doesn't exist in database");
                   linkEmailIds(cavanticsEmailId,googleCalendarEmailId);
                   notLoading=1;
                 }
             })
 }
-
 function linkEmailIds(cavanticsEmailId,googleCalendarEmailId){
   var data ={
          "cavanticsEmailId" : cavanticsEmailId,
