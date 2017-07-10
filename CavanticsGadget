@@ -593,7 +593,7 @@ function CreateActivity(id){
                 Popup(id,"successful");
                 hideButtons(id);
                 storePublishedEvent(id,datas.responseData[0]);
-                sendCreatorMail(datas.responseData[0].eventId)
+                <!-- sendCreatorMail(datas.responseData[0].eventId) -->
                 if(attendee){
                     console.log("Sending Mail");
                     console.log(attendee);
