@@ -310,7 +310,19 @@ function drawScreen(){
 function ShowGraph(id){
     var e = storedEvents[id];
     var activityId = e.activityId;
-    var url = "https://staging-app.cavantics.com/#/moodTrends/" + activityId;
+     var userdata = localStorage.getItem("userdata");
+    userdata = JSON.parse(userdata);
+    var queryData = {
+                    "app":"google-widget",
+                    "action":"redirect",
+                    "redirectUrl":"/moodTrends/",
+                    "userId":
+                    }
+    queryData.redirectUrl += activityId;
+    queryData.userId = userdata.id;
+    var query = btoa(JSON.stringify(queryData));
+    var url = "https://staging-app.cavantics.com/#/signin?q=" + query;
+
     openWindow(url);
 }
 
