@@ -403,8 +403,19 @@ function PublishandEdit(id){
                     console.log('success: '+datas);
                     if(datas.status=true){
                         hideButtons(id);
+                        var userdata = localStorage.getItem("userdata");
+                        userdata = JSON.parse(userdata);
                         console.log(datas.responseData);
-                        var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
+                            var queryData ={
+                            "app":"google-widget",
+                            "action":"redirect",
+                            "redirectUrl":"/admin/moodcapture/",
+                            "userId":null
+                             }
+                        queryData.redirectUrl += datas.responseData.id;
+                        queryData.userId = userdata.id;
+                        var query = btoa(JSON.stringify(queryData));
+                        var url = "https://staging-app.cavantics.com/#/signin?q=" + query;
                         console.log(url);
                         openWindow(url);
                     }
