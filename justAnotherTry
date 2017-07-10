@@ -918,7 +918,7 @@ function putLoader(){
 function signIn(){
     var queryData={
       "app":"google-widget",
-      "action" = "login"
+      "action" :"login"
     }
     childWin = window.open("https://staging-app.cavantics.com/#/signin", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
