@@ -409,7 +409,7 @@ function PublishandEdit(id){
                             var queryData ={
                             "app":"google-widget",
                             "action":"redirect",
-                            "redirectUrl":"/admin/moodcapture/",
+                            "redirectUrl":"/admin/moodcapture/edit/",
                             "userId":null
                              }
                         queryData.redirectUrl += datas.responseData.id;
