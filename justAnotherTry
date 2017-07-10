@@ -312,12 +312,12 @@ function ShowGraph(id){
     var activityId = e.activityId;
      var userdata = localStorage.getItem("userdata");
     userdata = JSON.parse(userdata);
-    var queryData = {
-                    "app":"google-widget",
-                    "action":"redirect",
-                    "redirectUrl":"/moodTrends/",
-                    "userId":
-                    }
+    var queryData ={
+    "app":"google-widget",
+    "action":"redirect",
+    "redirectUrl":"/moodTrends/",
+    "userId":null
+     }
     queryData.redirectUrl += activityId;
     queryData.userId = userdata.id;
     var query = btoa(JSON.stringify(queryData));
