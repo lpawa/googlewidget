@@ -920,7 +920,10 @@ function signIn(){
       "app":"google-widget",
       "action" :"login"
     }
-    childWin = window.open("https://staging-app.cavantics.com/#/signin", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+
+    queryData = btoa(queryData);
+    var url = "https://staging-app.cavantics.com/#/signin?q=" + queryData;
+    childWin = window.open(url, "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
 
 function enableSignInButton(){
