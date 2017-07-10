@@ -310,7 +310,19 @@ function drawScreen(){
 function ShowGraph(id){
     var e = storedEvents[id];
     var activityId = e.activityId;
-    var url = "https://staging-app.cavantics.com/#/moodTrends/" + activityId;
+     var userdata = localStorage.getItem("userdata");
+    userdata = JSON.parse(userdata);
+    var queryData ={
+    "app":"google-widget",
+    "action":"redirect",
+    "redirectUrl":"/moodTrends/",
+    "userId":null
+     }
+    queryData.redirectUrl += activityId;
+    queryData.userId = userdata.id;
+    var query = btoa(JSON.stringify(queryData));
+    var url = "https://staging-app.cavantics.com/#/signin?q=" + query;
+
     openWindow(url);
 }
 
@@ -391,8 +403,19 @@ function PublishandEdit(id){
                     console.log('success: '+datas);
                     if(datas.status=true){
                         hideButtons(id);
+                        var userdata = localStorage.getItem("userdata");
+                        userdata = JSON.parse(userdata);
                         console.log(datas.responseData);
-                        var url = 'https://staging-app.cavantics.com/#/admin/moodcapture/edit/' +datas.responseData.id;
+                            var queryData ={
+                            "app":"google-widget",
+                            "action":"redirect",
+                            "redirectUrl":"/admin/moodcapture/edit/",
+                            "userId":null
+                             }
+                        queryData.redirectUrl += datas.responseData.id;
+                        queryData.userId = userdata.id;
+                        var query = btoa(JSON.stringify(queryData));
+                        var url = "https://staging-app.cavantics.com/#/signin?q=" + query;
                         console.log(url);
                         openWindow(url);
                     }
@@ -774,24 +797,54 @@ function getEvent()
 }
 
 function checkAlreadySignIn(){
-    var userdata=JSON.parse(localStorage.getItem("userdata"));
-   if(userdata!=null){
-        if(userdata.email == viewer){
-        var signin = document.getElementById("signin");
-        var welcome = document.getElementById("welcome");
-        var userdata = localStorage.getItem("userdata");
-        userdata = JSON.parse(userdata);
-        $(signin).hide();
-        welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
-        $(welcome).show();
-        loginButtonDisabled=1;
-        getPublishedEvents();
+     var userdata = localStorage.getItem("userdata");
+     
+     if(userdata!=null){
+     userdata = JSON.parse(userdata);
+     $.ajax({
+
+        url: 'https://staging-app.cavantics.com/api/validateToken',
+        headers: {
+            'Authorization':'Bearer ' + localStorage.getItem("jwt"),
+            'content-type':'application/json',
+            'Access-Control-Allow-Origin'  : '*',
+            'Access-Control-Allow-Headers' : 'Content-Type'
+        },
+        method: 'POST',
+        dataType: "json",
+        data: {},
+        processData: false,
+        success: function(datas){
+            console.log('success: '+datas);
+            if(datas.status=true){
+                var userdata = localStorage.getItem("userdata");
+                  userdata = JSON.parse(userdata);
+                console.log(userdata);
+                if(userdata.email == viewer){
+                  var signin = document.getElementById("signin");
+                  var welcome = document.getElementById("welcome");
+                  
+                  $(signin).hide();
+                  welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                  $(welcome).show();
+                  loginButtonDisabled=1;
+                  getPublishedEvents();
+                  }
+                  else{
+                    console.log("Different Mail ID's");
+                    checkEmailIds(userdata.email,viewer);
+                  }
+
+            }
+            else{
+              Popup(1,"login");
+              enableSignInButton();
+
+            }
+           
         }
-        else{
-          console.log("Different Mail ID's");
-          checkEmailIds(userdata.email,viewer);
-        }  
-    }
+    });
+  }
 }
 
 function setupEventRetrieval() {
@@ -886,7 +939,14 @@ function putLoader(){
 
 
 function signIn(){
-    childWin = window.open("https://staging-app.cavantics.com/#/signingoogle", "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+    var queryData={
+      "app":"google-widget",
+      "action" :"login"
+    }
+
+    queryData = btoa(JSON.stringify(queryData));
+    var url = "https://staging-app.cavantics.com/#/signin?q=" + queryData;
+    childWin = window.open(url, "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
 
 function enableSignInButton(){
