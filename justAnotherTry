@@ -921,7 +921,7 @@ function signIn(){
       "action" :"login"
     }
 
-    queryData = btoa(queryData);
+    queryData = btoa(JSON.stringify(queryData));
     var url = "https://staging-app.cavantics.com/#/signin?q=" + queryData;
     childWin = window.open(url, "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
 }
