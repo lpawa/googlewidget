@@ -1037,7 +1037,7 @@ function receiveMessage(event) {
     // Update the div element to display the message.
     console.log("Message Received: ");
     console.log(event.data);
-    if(event.data=="logout"){
+    if(event.data=="Logout"){
       childWin.close();
       enableSignInButton();
     }
