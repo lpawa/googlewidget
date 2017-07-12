@@ -1042,7 +1042,9 @@ function receiveMessage(event) {
         childWin.close();
         if(userdata.email == viewer){
           $(signin).hide();
-          welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+          var html = 'Welcome ' + userdata.first_name + ' <p onclick="logout()">Logout</p><br>';
+          welcome.innerHTML = html;
+          console.log(html);          
           $(welcome).show();
           loginButtonDisabled=1;
           
@@ -1092,7 +1094,9 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       var userdata = localStorage.getItem("userdata");
                       userdata = JSON.parse(userdata);
                       $(signin).hide();
-                      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                      var html = 'Welcome ' + userdata.first_name + ' <p onclick="logout()">Logout</p><br>';
+                      welcome.innerHTML = html;
+                      console.log(html);
                       $(welcome).show();
                       loginButtonDisabled=1;
                       getPublishedEvents();
