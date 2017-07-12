@@ -836,7 +836,7 @@ function checkAlreadySignIn(){
                   var welcome = document.getElementById("welcome");
                   
                   $(signin).hide();
-                  welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                  welcome.innerHTML = "Welcome " + userdata.first_name + "<a onclick="logout()">Logout</a><br>";
                   $(welcome).show();
                   loginButtonDisabled=1;
                   getPublishedEvents();
@@ -856,6 +856,12 @@ function checkAlreadySignIn(){
         }
     });
   }
+}
+
+function logout(){
+  localStorage.clear();
+  enableSignInButton();
+
 }
 
 function setupEventRetrieval() {
@@ -965,8 +971,7 @@ function signIn(){
 function enableSignInButton(){
   var signin = document.getElementById("signin");
   var welcome = document.getElementById("welcome");
-  localStorage.setItem("userdata" , null);
-  localStorage.setItem("jwt" , null);
+  localStorage.clear();
   $(signin).show();
   $(welcome).hide();
   loginButtonDisabled=0;
