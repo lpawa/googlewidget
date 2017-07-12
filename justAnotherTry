@@ -441,6 +441,7 @@ function CheckHashtag(id){
         checked = $("#cb"+id).is(':checked');
         console.log(checked);
         putLoader();
+
         var e = storedEvents[id];
         var data = EventTemplate;
         var str = e.title;
@@ -577,7 +578,7 @@ function CreateActivity(id){
 
     data.linkLiveDate = linkStart;
     data.linkExpiryDate = linkEnd;
-    
+
     console.log(data);
     console.log(checked);
     if(checked){
@@ -945,6 +946,8 @@ function putLoader(){
   html = '<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">';
   
   document.getElementById('out').innerHTML = html;
+  hideButtons(curEventId);
+
 }
 
 
