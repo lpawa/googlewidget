@@ -565,9 +565,19 @@ function CreateActivity(id){
 
     <!-- data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second; -->
 
+    
+    console.log(moment(linkEnd).isBefore())
+    if(moment(linkEnd).isBefore()){
+      var now = moment();
+      console.log(now);
+      now.add(1,'days');
+      console.log(now);
+      linkEnd = now._d;
+    }
+
     data.linkLiveDate = linkStart;
     data.linkExpiryDate = linkEnd;
-
+    
     console.log(data);
     console.log(checked);
     if(checked){
