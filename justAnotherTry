@@ -836,7 +836,7 @@ function checkAlreadySignIn(){
                   var welcome = document.getElementById("welcome");
                   
                   $(signin).hide();
-                  welcome.innerHTML = "Welcome " + userdata.first_name + '<a onclick="logout()">Logout</a><br>';
+                  welcome.innerHTML = 'Welcome ' + userdata.first_name + ' <a onclick="logout()">Logout</a><br>';
                   $(welcome).show();
                   loginButtonDisabled=1;
                   getPublishedEvents();
