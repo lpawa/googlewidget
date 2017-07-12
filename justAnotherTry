@@ -836,7 +836,7 @@ function checkAlreadySignIn(){
                   var welcome = document.getElementById("welcome");
                   
                   $(signin).hide();
-                  var html = 'Welcome ' + userdata.first_name + ' <p onclick="logout()">Logout</p><br>';
+                  var html = 'Welcome ' + userdata.first_name + ' <br><a onclick="logout()">Logout</a><br>';
                   welcome.innerHTML = html;
                   console.log(html);
                   $(welcome).show();
@@ -1042,7 +1042,7 @@ function receiveMessage(event) {
         childWin.close();
         if(userdata.email == viewer){
           $(signin).hide();
-          var html = 'Welcome ' + userdata.first_name + ' <p onclick="logout()">Logout</p><br>';
+          var html = 'Welcome ' + userdata.first_name + ' <br><a onclick="logout()">Logout</a><br>';
           welcome.innerHTML = html;
           console.log(html);          
           $(welcome).show();
@@ -1094,7 +1094,7 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       var userdata = localStorage.getItem("userdata");
                       userdata = JSON.parse(userdata);
                       $(signin).hide();
-                      var html = 'Welcome ' + userdata.first_name + ' <p onclick="logout()">Logout</p><br>';
+                      var html = 'Welcome ' + userdata.first_name + ' <br><a onclick="logout()">Logout</a><br>';
                       welcome.innerHTML = html;
                       console.log(html);
                       $(welcome).show();
