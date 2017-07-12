@@ -441,6 +441,7 @@ function CheckHashtag(id){
         checked = $("#cb"+id).is(':checked');
         console.log(checked);
         putLoader();
+
         var e = storedEvents[id];
         var data = EventTemplate;
         var str = e.title;
@@ -564,6 +565,16 @@ function CreateActivity(id){
     <!-- data.linkLiveDate=linkStart.year+"-"+linkStart.month+"-"+linkStart.date+" " +linkStart.hour+":" + linkStart.minute+ ":" + linkStart.second; -->
 
     <!-- data.linkExpiryDate=linkEnd.year+"-"+linkEnd.month+"-"+linkEnd.date+" " +linkEnd.hour+":" + linkEnd.minute+ ":" + linkEnd.second; -->
+
+    
+    console.log(moment(linkEnd).isBefore())
+    if(moment(linkEnd).isBefore()){
+      var now = moment();
+      console.log(now);
+      now.add(1,'days');
+      console.log(now);
+      linkEnd = now._d;
+    }
 
     data.linkLiveDate = linkStart;
     data.linkExpiryDate = linkEnd;
@@ -935,6 +946,8 @@ function putLoader(){
   html = '<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">';
   
   document.getElementById('out').innerHTML = html;
+  hideButtons(curEventId);
+
 }
 
 
