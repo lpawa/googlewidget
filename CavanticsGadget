@@ -836,7 +836,9 @@ function checkAlreadySignIn(){
                   var welcome = document.getElementById("welcome");
                   
                   $(signin).hide();
-                  welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                  var html = 'Welcome ' + userdata.first_name + ' <br><a href="#" onclick="logout()">Logout</a><br>';
+                  welcome.innerHTML = html;
+                  console.log(html);
                   $(welcome).show();
                   loginButtonDisabled=1;
                   getPublishedEvents();
@@ -856,6 +858,18 @@ function checkAlreadySignIn(){
         }
     });
   }
+}
+
+function logout(){
+  var queryData={
+      "app":"google-widget",
+      "action" :"logout"
+    }
+
+    queryData = btoa(JSON.stringify(queryData));
+    var url = "https://staging-app.cavantics.com/#/logout?q=" + queryData;
+    childWin = window.open(url, "_blank", "height=600, width=450, status=yes, toolbar=no, menubar=no, location=no,addressbar=no");
+
 }
 
 function setupEventRetrieval() {
@@ -965,8 +979,7 @@ function signIn(){
 function enableSignInButton(){
   var signin = document.getElementById("signin");
   var welcome = document.getElementById("welcome");
-  localStorage.setItem("userdata" , null);
-  localStorage.setItem("jwt" , null);
+  localStorage.clear();
   $(signin).show();
   $(welcome).hide();
   loginButtonDisabled=0;
@@ -1024,6 +1037,12 @@ function receiveMessage(event) {
     // Update the div element to display the message.
     console.log("Message Received: ");
     console.log(event.data);
+    if(event.data=="Logout"){
+      childWin.close();
+      enableSignInButton();
+    }
+    else
+    {
     localStorage.setItem("userdata",JSON.stringify(event.data.user));
     localStorage.setItem("jwt",event.data.token);
     putLoader();
@@ -1035,7 +1054,9 @@ function receiveMessage(event) {
         childWin.close();
         if(userdata.email == viewer){
           $(signin).hide();
-          welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+          var html = 'Welcome ' + userdata.first_name + ' <br><a href="#" onclick="logout()">Logout</a><br>';
+          welcome.innerHTML = html;
+          console.log(html);          
           $(welcome).show();
           loginButtonDisabled=1;
           
@@ -1049,6 +1070,7 @@ function receiveMessage(event) {
     else{
         childWin.close();
         signIn();
+    }
     }
 }
 
@@ -1085,7 +1107,9 @@ function checkEmailIds(cavanticsEmailId,googleCalendarEmailId){
                       var userdata = localStorage.getItem("userdata");
                       userdata = JSON.parse(userdata);
                       $(signin).hide();
-                      welcome.innerHTML = "Welcome " + userdata.first_name + "<br>";
+                      var html = 'Welcome ' + userdata.first_name + ' <br><a href="#" onclick="logout()">Logout</a><br>';
+                      welcome.innerHTML = html;
+                      console.log(html);
                       $(welcome).show();
                       loginButtonDisabled=1;
                       getPublishedEvents();
