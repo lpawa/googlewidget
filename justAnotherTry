@@ -688,6 +688,7 @@ function compareEvents(){
                 }
             }
         }
+        console.log("Drawing screen")
         drawScreen();
     }
 
