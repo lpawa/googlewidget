@@ -957,7 +957,7 @@ function showButtons(id)
 
 function putLoader(){
 
-  html = '<img id="Loader" src = "http://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">';
+  html = '<img id="Loader" src = "https://res.cloudinary.com/owlyadmin/image/upload/v1493361785/loader-icon.gif">';
   
   document.getElementById('out').innerHTML = html;
   hideButtons(curEventId);
@@ -1216,7 +1216,7 @@ window.onload = function() {
 };
  </script> 
  <div class="logo-box">
-<img src ="http://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
+<img src ="https://res.cloudinary.com/owlyadmin/image/upload/v1496299701/emailtemplates/Cav_logo_100x100-01.png">
   <button class="blue-btn" id= "signin" onclick="signIn()">Sign In With Cavantics</button>
   <span id="welcome" style="display:none;"></span>
  </div>
