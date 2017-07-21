@@ -686,9 +686,9 @@ function compareEvents(){
                         }
                     }
                 }
-                drawScreen();
             }
         }
+        drawScreen();
     }
 
 }
