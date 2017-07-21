@@ -129,6 +129,8 @@ button {
     font-weight: 300;
     float: left;
     line-height: 20px;
+    width: 80%;
+    text-align: left;
 }
 p{
 padding:0px;
